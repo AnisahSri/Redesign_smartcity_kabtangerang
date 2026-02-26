@@ -6,15 +6,14 @@ import '../../styles/components/header.css';
 const Header = () => {
   const location = useLocation();
   const pathname = location.pathname;
+
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isAboutDropdownOpen, setIsAboutDropdownOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [isSearchExpanded, setIsSearchExpanded] = useState(false);
-  const dropdownTimeoutRef = useRef(null);
+
   const searchInputRef = useRef(null);
 
-  // Handle scroll effect
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
@@ -22,50 +21,16 @@ const Header = () => {
 
     setIsScrolled(window.scrollY > 20);
     window.addEventListener('scroll', handleScroll, { passive: true });
+
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Handle resize
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth > 1024) {
-        setIsMobileMenuOpen(false);
-      }
-      if (window.innerWidth > 768) {
-        setIsAboutDropdownOpen(false);
-      }
-    };
-
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  // Close dropdown if on profile page
-  useEffect(() => {
-    if (pathname === '/profile') {
-      setIsAboutDropdownOpen(false);
-    }
-  }, [pathname]);
-
   const toggleMobileMenu = () => {
-    if (dropdownTimeoutRef.current) {
-      clearTimeout(dropdownTimeoutRef.current);
-    }
     setIsMobileMenuOpen(!isMobileMenuOpen);
-    if (isMobileMenuOpen) {
-      setIsAboutDropdownOpen(false);
-    }
   };
 
-  const handleSearch = (e) => {
-    if (e.key === 'Enter' || e.type === 'click') {
-      e.preventDefault();
-      if (searchQuery.trim()) {
-        console.log('Searching for:', searchQuery);
-        setSearchQuery('');
-        setIsSearchExpanded(false);
-      }
-    }
+  const handleNavClick = () => {
+    setIsMobileMenuOpen(false);
   };
 
   const toggleSearch = () => {
@@ -75,38 +40,14 @@ const Header = () => {
     }
   };
 
-  const handleSearchBlur = () => {
-    if (!searchQuery.trim()) {
-      setIsSearchExpanded(false);
-    }
-  };
-
-  const handleNavClick = () => {
-    setIsMobileMenuOpen(false);
-    setIsAboutDropdownOpen(false);
-    if (dropdownTimeoutRef.current) {
-      clearTimeout(dropdownTimeoutRef.current);
-    }
-  };
-
-  const toggleAboutDropdown = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setIsAboutDropdownOpen(!isAboutDropdownOpen);
-  };
-
-  const handleDropdownMouseEnter = () => {
-    if (dropdownTimeoutRef.current) {
-      clearTimeout(dropdownTimeoutRef.current);
-    }
-    setIsAboutDropdownOpen(true);
-  };
-
-  const handleDropdownMouseLeave = () => {
-    if (window.innerWidth > 768) {
-      dropdownTimeoutRef.current = setTimeout(() => {
-        setIsAboutDropdownOpen(false);
-      }, 300);
+  const handleSearch = (e) => {
+    if (e.key === 'Enter' || e.type === 'click') {
+      e.preventDefault();
+      if (searchQuery.trim()) {
+        console.log('Searching:', searchQuery);
+        setSearchQuery('');
+        setIsSearchExpanded(false);
+      }
     }
   };
 
@@ -114,36 +55,81 @@ const Header = () => {
     <>
       <header className={`main-header ${isScrolled ? 'scrolled' : ''}`}>
         <div className="header-content">
+
+          {/* LOGO */}
           <div className="logo">
             <Link to="/" className="logo-text" onClick={handleNavClick}>
               SmartCity
             </Link>
           </div>
 
+          {/* DESKTOP NAV */}
           <nav className="desktop-nav">
             <ul>
-              <li><Link to="/" className={pathname === '/' ? 'active-nav-link' : ''} onClick={handleNavClick}>Beranda</Link></li>
 
-              <li
-                className="dropdown"
-                onMouseEnter={handleDropdownMouseEnter}
-                onMouseLeave={handleDropdownMouseLeave}
-              >
-                <a href="#" className={isAboutDropdownOpen ? 'dropdown-active' : ''} onClick={(e) => e.preventDefault()}>
-                  Tentang <ChevronDown className={`arrow-icon ${isAboutDropdownOpen ? 'rotated' : ''}`} size={16}/>
-                </a>
-                <div className={`dropdown-content ${isAboutDropdownOpen ? 'show' : ''}`}>
-                  <Link to="/profile" className={pathname === '/profile' ? 'active-nav-link' : ''} onClick={handleNavClick}>Profil</Link>
+              <li>
+                <Link to="/" className={pathname === '/' ? 'active-nav-link' : ''}>
+                  Beranda
+                </Link>
+              </li>
+
+              {/* Tentang */}
+              <li className="dropdown">
+                <span>
+                  Tentang <ChevronDown size={16} />
+                </span>
+                <div className="dropdown-content">
+                  <Link to="/profile">Profil</Link>
+                  <Link to="/persona">Persona</Link>
+                  <Link to="/about">Sejarah</Link>
                 </div>
               </li>
 
-              <li><Link to="/event" className={pathname === '/event' ? 'active-nav-link' : ''} onClick={handleNavClick}>City of Event</Link></li>
-              <li><Link to="/dimensi" className={pathname === '/dimensi' ? 'active-nav-link' : ''} onClick={handleNavClick}>Dimensi</Link></li>
-              <li><Link to="/publication" className={pathname === '/publication' ? 'active-nav-link' : ''} onClick={handleNavClick}>Publikasi</Link></li>
+              <li>
+                <Link to="/dimensi">Dimensi</Link>
+              </li>
+
+              <li>
+                <Link to="/event">Agenda</Link>
+              </li>
+
+              {/* Katalog */}
+              <li className="dropdown">
+                <span>
+                  Katalog <ChevronDown size={16} />
+                </span>
+                <div className="dropdown-content">
+                  <Link to="/">Sistem Kunjungan Halaman</Link>
+                  <Link to="/">Tangerang Gemilang</Link>
+                  <Link to="/">Mata Hub</Link>
+                  <Link to="/">D'naker Digi</Link>
+                </div>
+              </li>
+
+              {/* Fasilitas Publik */}
+              <li className="dropdown">
+                <span>
+                  Fasilitas Publik <ChevronDown size={16} />
+                </span>
+                <div className="dropdown-content">
+                  <Link to="/">Sekolah</Link>
+                  <Link to="/">Perpustakaan</Link>
+                  <Link to="/">Beasiswa</Link>
+                  <Link to="/">Wifi Publik</Link>
+                  <Link to="/">Fasilitas Kesehatan</Link>
+                </div>
+              </li>
+
+              <li>
+                <Link to="/publication">Publikasi</Link>
+              </li>
+
             </ul>
           </nav>
 
+          {/* RIGHT CONTROLS */}
           <div className="header-controls">
+
             <div className={`search-container ${isSearchExpanded ? 'expanded' : ''}`}>
               <input
                 ref={searchInputRef}
@@ -152,54 +138,68 @@ const Header = () => {
                 placeholder="Cari..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                onKeyPress={handleSearch}
-                onBlur={handleSearchBlur}
+                onKeyDown={handleSearch}
               />
               <button
                 type="button"
                 className="search-icon"
                 onClick={isSearchExpanded ? handleSearch : toggleSearch}
-                aria-label="Search"
-                title="Search"
               >
-                <Search size={22} />
+                <Search size={20} />
               </button>
             </div>
 
             <button
-              className={`mobile-menu-btn ${isMobileMenuOpen ? 'active' : ''}`}
+              className="mobile-menu-btn"
               onClick={toggleMobileMenu}
-              aria-label="Toggle menu"
-              title="Toggle menu"
             >
               {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
+
           </div>
         </div>
       </header>
 
-      {/* Mobile Menu */}
+      {/* MOBILE NAV */}
       <nav className={`mobile-nav ${isMobileMenuOpen ? 'open' : ''}`}>
         <ul>
-          <li><Link to="/" className={pathname === '/' ? 'active-nav-link' : ''} onClick={handleNavClick}>Beranda</Link></li>
 
-          <li className={`dropdown-mobile ${isAboutDropdownOpen ? 'open' : ''}`}>
-            <button type="button" className={`dropbtn-mobile ${isAboutDropdownOpen ? 'dropdown-active' : ''}`} onClick={toggleAboutDropdown}>
-              Tentang <ChevronDown className={`arrow-icon ${isAboutDropdownOpen ? 'rotated' : ''}`} size={16}/>
-            </button>
-            <div className="dropdown-content-mobile">
-              <Link to="/profile" className={pathname === '/profile' ? 'active-nav-link' : ''} onClick={handleNavClick}>profil</Link>
-            </div>
+          <li><Link to="/" onClick={handleNavClick}>Beranda</Link></li>
+
+          <li>
+            <span className="mobile-section-title">Tentang</span>
+            <Link to="/profile" onClick={handleNavClick}>Profil</Link>
+            <Link to="/persona" onClick={handleNavClick}>Persona</Link>
+            <Link to="/about" onClick={handleNavClick}>Sejarah</Link>
           </li>
 
-          <li><Link to="/event" className={pathname === '/event' ? 'active-nav-link' : ''} onClick={handleNavClick}>City of Event</Link></li>
-          <li><Link to="/dimensi" className={pathname === '/dimensi' ? 'active-nav-link' : ''} onClick={handleNavClick}>Dimensi</Link></li>
-          <li><Link to="/publication" className={pathname === '/publication' ? 'active-nav-link' : ''} onClick={handleNavClick}>Publikasi</Link></li>
+          <li><Link to="/dimensi" onClick={handleNavClick}>Dimensi</Link></li>
+          <li><Link to="/event" onClick={handleNavClick}>Agenda</Link></li>
+
+          <li>
+            <span className="mobile-section-title">Katalog</span>
+            <Link to="/">Sistem Kunjungan Halaman</Link>
+            <Link to="/">Tangerang Gemilang</Link>
+            <Link to="/">Mata Hub</Link>
+            <Link to="/">D'naker Digi</Link>
+          </li>
+
+          <li>
+            <span className="mobile-section-title">Fasilitas Publik</span>
+            <Link to="/">Sekolah</Link>
+            <Link to="/">Perpustakaan</Link>
+            <Link to="/">Beasiswa</Link>
+            <Link to="/">Wifi Publik</Link>
+            <Link to="/">Fasilitas Kesehatan</Link>
+          </li>
+
+          <li><Link to="/publication" onClick={handleNavClick}>Publikasi</Link></li>
+
         </ul>
       </nav>
 
       {isMobileMenuOpen && (
-        <div className={`mobile-overlay ${isMobileMenuOpen ? 'show' : ''}`} onClick={toggleMobileMenu}></div>
+        <div className="mobile-overlay" onClick={toggleMobileMenu}></div>
       )}
     </>
   );

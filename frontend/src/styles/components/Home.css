@@ -1,0 +1,100 @@
+/* =========================
+   GLOBAL HOME
+========================= */
+.home {
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* =========================
+   HERO SECTION
+========================= */
+.hero {
+  height: 100vh;
+
+  /* GANTI NAMA GAMBAR SESUAI PUNYA LU */
+  background-image: 
+    linear-gradient(
+      rgba(0, 0, 0, 0.55),
+      rgba(0, 0, 0, 0.55)
+    ),
+    url("/images/bgbaru.jpg");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+
+.hero h1 {
+  font-size: 48px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.hero p {
+  font-size: 20px;
+  max-width: 700px;
+  opacity: 0.95;
+}
+
+/* =========================
+   FEATURES SECTION
+========================= */
+.features {
+  padding: 100px 20px;
+  background: #f4f6f9;
+  text-align: center;
+}
+
+.features h2 {
+  font-size: 36px;
+  margin-bottom: 60px;
+  color: #222;
+}
+
+/* GRID */
+.feature-grid {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+/* CARD */
+.feature-card {
+  background: white;
+  padding: 35px;
+  width: 300px;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.feature-card h3 {
+  margin-bottom: 15px;
+  color: #0f87bf;
+  font-size: 20px;
+}
+
+.feature-card p {
+  color: #555;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* HOVER EFFECT */
+.feature-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
