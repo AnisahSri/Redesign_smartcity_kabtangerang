@@ -1,115 +1,83 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Facebook, Twitter, Instagram, Youtube, MapPin, Mail, Phone } from 'lucide-react';
+import React from "react";
+import { Twitter, Facebook, Instagram, Youtube } from "lucide-react";
 import "../../styles/components/footer.css";
-
-// Komponen SVG untuk TikTok
-const TikTokIcon = () => (
-  <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22">
-    <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
-  </svg>
-);
 
 const Footer = () => {
   return (
     <footer className="footer">
+      <div className="footer-top-line"></div>
+
       <div className="footer-content">
-        <div className="footer-section about">
-          <img 
-            src="https://smartcity.tangerangkab.go.id/media_library/images/9c55b512c3f8e5f2998a07f677d2d1fe.png" 
-            alt="Logo Smart City" 
-            className="logo-smartcity"
+        {/* Kolom 1 */}
+        <div className="footer-section">
+          <img
+            src="/assets../..images/logo.svg"
+            alt="Logo Smart City"
+            className="footer-logo"
           />
+
+          <h4>Alamat</h4>
           <p>
-            Smart City Kab. Tangerang merupakan program pengembangan smart city 
-            terintegrasi yang bertujuan untuk meningkatkan kualitas hidup masyarakat 
-            melalui pemanfaatan teknologi informasi dan komunikasi.
+            Jl. H. Somawinata No.1, Gedung Smart Building Puspemkab Tangerang,
+            Kec. Tigaraksa, Kabupaten Tangerang, Banten 15720, Indonesia
           </p>
+
+          <h4>Kontak</h4>
+          <p>Telepon : +62 811-1031-632</p>
+          <p>Email : diskominfo@tangerangkab.go.id</p>
         </div>
-        
-        <div className="footer-section links">
-          <h3>Tautan Cepat</h3>
-          <ul>
-            <li><Link to="/profile">profil</Link></li>
-            <li><Link to="/dimensi">Dimensi</Link></li>
-            <li><Link to="/event">Event</Link></li>
-            <li><Link to="/publication">Publikasi</Link></li>
-          </ul>
-        </div>
-        
-        <div className="footer-section contact">
-          <h3>Kontak Kami</h3>
-          <div className="contact-item">
-            <MapPin size={18} />
-            <p>
-              Jl. H. Somawinata No.5, Kadu Agung, Kec. Tigaraksa,
-              Kabupaten Tangerang, Banten 15119
-            </p>
-          </div>
-          <div className="contact-item">
-            <Mail size={18} />
-            <p>diskominfo@tangerangkab.go.id</p>
-          </div>
-          <div className="contact-item">
-            <Phone size={18} />
-            <p>(021) 5523456</p>
-          </div>
-        </div>
-        
-        <div className="footer-section socials">
-          <h3>Ikuti Kami</h3>
+
+        {/* Kolom 2 */}
+        <div className="footer-section">
+          <h4>Temukan kami di sosial media</h4>
+
           <div className="social-icons">
-            <a 
-              href="https://www.facebook.com/pemkabtangerang" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              aria-label="Facebook" 
-              title="Facebook"
-            >
-              <Facebook size={22} />
+            <a href="https://x.com/pemkabtangerang" target="_blank">
+              <Twitter size={20} />
             </a>
-            <a 
-              href="https://x.com/pemkabtangerang" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              aria-label="Twitter" 
-              title="Twitter"
-            >
-              <Twitter size={22} />
+            <a href="https://facebook.com/pemkabtangerang" target="_blank">
+              <Facebook size={20} />
             </a>
-            <a 
-              href="https://www.instagram.com/pemkabtangerang" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              aria-label="Instagram" 
-              title="Instagram"
-            >
-              <Instagram size={22} />
+            <a href="https://www.tiktok.com/@pemkabtangerang" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 1 1-2.31-2.83V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 1 0 15.86 15.67v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+              </svg>
             </a>
-            <a 
-              href="https://www.youtube.com/@pemkabtangerang" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              aria-label="Youtube" 
-              title="Youtube"
-            >
-              <Youtube size={22} />
+            <a href="https://instagram.com/pemkabtangerang" target="_blank">
+              <Instagram size={20} />
             </a>
-            <a 
-              href="https://www.tiktok.com/@pemkabtangerang" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              aria-label="TikTok" 
-              title="TikTok"
-            >
-              <TikTokIcon />
+            <a href="https://youtube.com/@pemkabtangerang" target="_blank">
+              <Youtube size={20} />
             </a>
+          </div>
+        </div>
+
+        {/* Kolom 3 */}
+        <div className="footer-section">
+          <h4>Blog</h4>
+
+          <h4>Jam Operasional Pelayanan</h4>
+          <p>Senin - Jumat: 07.30 - 16.30 WIB</p>
+
+          <h4>Website Resmi</h4>
+          <a
+            href="https://diskominfo.tangerangkab.go.id"
+            target="_blank"
+            className="footer-link"
+          >
+            diskominfo.tangerangkab.go.id
+          </a>
+
+          <h4>Unduh Tangerang Gemilang</h4>
+          <div className="store-buttons">
+            <img src="/assets/images/google-play.png" alt="Google Play" />
+            <img src="/assets/images/app-store.png" alt="App Store" />
           </div>
         </div>
       </div>
-      
+
       <div className="footer-bottom">
-        &copy; 2025 Smart City Kab. Tangerang | All Rights Reserved
+        © 2026 Smart City Kabupaten Tangerang. All Rights Reserved
       </div>
     </footer>
   );
