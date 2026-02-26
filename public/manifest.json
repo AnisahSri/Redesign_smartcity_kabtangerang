@@ -1,9 +1,0 @@
-{
-  "name": "SmartCity Kab Tangerang",
-  "short_name": "SmartCity",
-  "start_url": ".",
-  "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#6366f1",
-  "icons": []
-}
