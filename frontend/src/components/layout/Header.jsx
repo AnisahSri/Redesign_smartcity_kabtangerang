@@ -58,21 +58,18 @@ const Header = () => {
 
           {/* LOGO */}
           <div className="logo">
-            <Link to="/" className="logo-text" onClick={handleNavClick}>
-              SmartCity
+            <Link to="/" onClick={handleNavClick}>
+             <img
+             src="/gambar/smartcity.svg"
+             alt="Smart City Logo"
+             className="logo-img"
+             />
             </Link>
           </div>
 
           {/* DESKTOP NAV */}
           <nav className="desktop-nav">
             <ul>
-
-              <li>
-                <Link to="/" className={pathname === '/' ? 'active-nav-link' : ''}>
-                  Beranda
-                </Link>
-              </li>
-
               {/* Tentang */}
               <li className="dropdown">
                 <span>
@@ -80,7 +77,6 @@ const Header = () => {
                 </span>
                 <div className="dropdown-content">
                   <Link to="/profile">Profil</Link>
-                  <Link to="/persona">Persona</Link>
                   <Link to="/about">Sejarah</Link>
                 </div>
               </li>
@@ -115,7 +111,7 @@ const Header = () => {
                   <Link to="/">Sekolah</Link>
                   <Link to="/">Perpustakaan</Link>
                   <Link to="/">Beasiswa</Link>
-                  <Link to="/">Wifi Publik</Link>
+                  <Link to="/">WiFi Publik</Link>
                   <Link to="/">Fasilitas Kesehatan</Link>
                 </div>
               </li>
@@ -169,7 +165,6 @@ const Header = () => {
           <li>
             <span className="mobile-section-title">Tentang</span>
             <Link to="/profile" onClick={handleNavClick}>Profil</Link>
-            <Link to="/persona" onClick={handleNavClick}>Persona</Link>
             <Link to="/about" onClick={handleNavClick}>Sejarah</Link>
           </li>
 
@@ -189,7 +184,7 @@ const Header = () => {
             <Link to="/">Sekolah</Link>
             <Link to="/">Perpustakaan</Link>
             <Link to="/">Beasiswa</Link>
-            <Link to="/">Wifi Publik</Link>
+            <Link to="/">WiFi Publik</Link>
             <Link to="/">Fasilitas Kesehatan</Link>
           </li>
 
