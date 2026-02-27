@@ -45,6 +45,11 @@
   align-items: center;
 }
 
+.logo-img {
+  height: 40px;   /* ubah ini untuk atur besar kecil */
+  width: auto;
+}
+
 .logo-text {
   font-size: 26px;
   font-weight: bold;
@@ -86,6 +91,14 @@
   color: var(--primary-200);
 }
 
+.desktop-nav .dropdown-content a {
+  color: #0074BA;
+}
+
+.desktop-nav .dropdown-content a:hover {
+  background: #F5F5F5;
+  color: #0057A4;
+}
 /* ============================
    DROPDOWN DESKTOP
 ============================ */
@@ -98,7 +111,7 @@
   top: 100%;
   left: 0;
   margin-top: 15px;
-  background: var(--gradient-primary);
+  background: #F5F5F5;
   min-width: 220px;
   padding: 10px;
   border-radius: 8px;
@@ -121,14 +134,14 @@
   padding: 10px 12px;
   font-size: 14px;
   border-radius: 6px;
-  color: white;
+  color: #0074BA;
   text-decoration: none;
   transition: all 0.3s ease;
 }
 
 .dropdown-content a:hover {
-  background: rgba(255,255,255,0.1);
-  color: var(--primary-200);
+  background: #0057A4;
+  color:#0074BA;
 }
 
 /* ============================
