@@ -11,6 +11,9 @@ const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [isSearchExpanded, setIsSearchExpanded] = useState(false);
+  const [isSearchHovered, setIsSearchHovered] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState(null);
+  const [language, setLanguage] = useState("ID");
 
   const searchInputRef = useRef(null);
 
@@ -51,6 +54,14 @@ const Header = () => {
     }
   };
 
+  const toggleDropdown = (menu) => {
+  setOpenDropdown(openDropdown === menu ? null : menu);
+};
+
+  const toggleLanguage = (lang) => {
+  setLanguage(lang);
+};
+
   return (
     <>
       <header className={`main-header ${isScrolled ? 'scrolled' : ''}`}>
@@ -77,7 +88,7 @@ const Header = () => {
                 </span>
                 <div className="dropdown-content">
                   <Link to="/profile">Profil</Link>
-                  <Link to="/about">Sejarah</Link>
+                  <Link to="/sejarah">Sejarah</Link>
                 </div>
               </li>
 
@@ -89,17 +100,8 @@ const Header = () => {
                 <Link to="/event">Agenda</Link>
               </li>
 
-              {/* Katalog */}
-              <li className="dropdown">
-                <span>
-                  Katalog <ChevronDown size={16} />
-                </span>
-                <div className="dropdown-content">
-                  <Link to="/">Sistem Kunjungan Halaman</Link>
-                  <Link to="/">Tangerang Gemilang</Link>
-                  <Link to="/">Mata Hub</Link>
-                  <Link to="/">D'naker Digi</Link>
-                </div>
+              <li>
+                <Link to="/katalog">Katalog</Link>
               </li>
 
               {/* Fasilitas Publik */}
@@ -126,74 +128,118 @@ const Header = () => {
           {/* RIGHT CONTROLS */}
           <div className="header-controls">
 
-            <div className={`search-container ${isSearchExpanded ? 'expanded' : ''}`}>
-              <input
-                ref={searchInputRef}
-                type="text"
-                className="search-input"
-                placeholder="Cari..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                onKeyDown={handleSearch}
-              />
+              {/* SEARCH */}
+                <div
+                  className={`search-container ${(isSearchExpanded || isSearchHovered) ? 'expanded' : ''}`}
+                  onMouseEnter={() => setIsSearchHovered(true)}
+                  onMouseLeave={() => setIsSearchHovered(false)}
+                >
+                <input
+                  ref={searchInputRef}
+                  type="text"
+                  className="search-input"
+                  placeholder={language === "ID" ? "Cari..." : "Search..."}
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onKeyDown={handleSearch}
+                />
+                <button
+                  type="button"
+                  className="search-icon"
+                  onClick={toggleSearch}
+                >
+                  <Search size={20} />
+                </button>
+              </div>
+
+              {/* LANGUAGE SWITCH */}
+              <div className="lang-switch">
+                <button
+                  className={language === "ID" ? "active" : ""}
+                  onClick={() => toggleLanguage("ID")}
+                >
+                  ID
+                </button>
+                <button
+                  className={language === "EN" ? "active" : ""}
+                  onClick={() => toggleLanguage("EN")}
+                >
+                  EN
+                </button>
+              </div>
+
               <button
-                type="button"
-                className="search-icon"
-                onClick={isSearchExpanded ? handleSearch : toggleSearch}
+                className="mobile-menu-btn"
+                onClick={toggleMobileMenu}
               >
-                <Search size={20} />
+                {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
               </button>
+
             </div>
-
-            <button
-              className="mobile-menu-btn"
-              onClick={toggleMobileMenu}
-            >
-              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-
-          </div>
         </div>
       </header>
 
       {/* MOBILE NAV */}
-      <nav className={`mobile-nav ${isMobileMenuOpen ? 'open' : ''}`}>
-        <ul>
+<nav className={`mobile-nav ${isMobileMenuOpen ? 'open' : ''}`}>
+  <ul>
 
-          <li><Link to="/" onClick={handleNavClick}>Beranda</Link></li>
+    {/* Tentang */}
+    <li className={`mobile-dropdown ${openDropdown === 'tentang' ? 'active' : ''}`}>
+      <div 
+        className="mobile-dropdown-title"
+        onClick={() => toggleDropdown('tentang')}
+      >
+        Tentang <span>▾</span>
+      </div>
 
-          <li>
-            <span className="mobile-section-title">Tentang</span>
-            <Link to="/profile" onClick={handleNavClick}>Profil</Link>
-            <Link to="/about" onClick={handleNavClick}>Sejarah</Link>
-          </li>
+      <ul className="mobile-submenu">
+        <li><Link to="/profile" onClick={handleNavClick}>Profil</Link></li>
+        <li><Link to="/about" onClick={handleNavClick}>Sejarah</Link></li>
+      </ul>
+    </li>
 
-          <li><Link to="/dimensi" onClick={handleNavClick}>Dimensi</Link></li>
-          <li><Link to="/event" onClick={handleNavClick}>Agenda</Link></li>
+    {/* Dimensi */}
+    <li>
+      <Link to="/dimensi" onClick={handleNavClick}>Dimensi</Link>
+    </li>
 
-          <li>
-            <span className="mobile-section-title">Katalog</span>
-            <Link to="/">Sistem Kunjungan Halaman</Link>
-            <Link to="/">Tangerang Gemilang</Link>
-            <Link to="/">Mata Hub</Link>
-            <Link to="/">D'naker Digi</Link>
-          </li>
+    {/* Agenda */}
+    <li>
+      <Link to="/event" onClick={handleNavClick}>Agenda</Link>
+    </li>
 
-          <li>
-            <span className="mobile-section-title">Fasilitas Publik</span>
-            <Link to="/">Sekolah</Link>
-            <Link to="/">Perpustakaan</Link>
-            <Link to="/">Beasiswa</Link>
-            <Link to="/">WiFi Publik</Link>
-            <Link to="/">Fasilitas Kesehatan</Link>
-          </li>
+    {/* Katalog */}
+    <li>
+      <Link to="/katalog" onClick={handleNavClick}>Katalog</Link>
+    </li>
 
-          <li><Link to="/publication" onClick={handleNavClick}>Publikasi</Link></li>
+    {/* Fasilitas Publik */}
+    <li className={`mobile-dropdown ${openDropdown === 'fasilitas' ? 'active' : ''}`}>
+      <div 
+        className="mobile-dropdown-title"
+        onClick={() => toggleDropdown('fasilitas')}
+      >
+        Fasilitas Publik <span>▾</span>
+      </div>
 
-        </ul>
-      </nav>
+      <ul className="mobile-submenu">
+        <li><Link to="/">Sekolah</Link></li>
+        <li><Link to="/">Perpustakaan</Link></li>
+        <li><Link to="/">Beasiswa</Link></li>
+        <li><Link to="/">WiFi Publik</Link></li>
+        <li><Link to="/">Fasilitas Kesehatan</Link></li>
+      </ul>
+    </li>
 
-      {isMobileMenuOpen && (
+    {/* Publikasi */}
+    <li>
+      <Link to="/publication" onClick={handleNavClick}>Publikasi</Link>
+    </li>
+
+  </ul>
+</nav>
+
+        {isMobileMenuOpen && (
         <div className="mobile-overlay" onClick={toggleMobileMenu}></div>
       )}
     </>

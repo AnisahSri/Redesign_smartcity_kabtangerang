@@ -15,7 +15,7 @@
   left: 0;
   width: 100%;
   z-index: 1000;
-  background: transparent !important;
+  background: #0074BA !important;
   box-shadow: none !important;
   backdrop-filter: blur(0px);
   border-bottom: none !important;
@@ -23,8 +23,9 @@
 }
 
 .main-header.scrolled {
-  background: var(--gradient-primary) !important;
-  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.4);
+  background: rgba(0, 116, 186, 0.75) !important;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
 }
 
 .header-content {
@@ -88,7 +89,11 @@
 }
 
 .desktop-nav ul li a:hover {
-  color: var(--primary-200);
+  color: #0057A4;
+}
+
+.desktop-nav ul li.dropdown:hover > span {
+  color: #0057A4;
 }
 
 .desktop-nav .dropdown-content a {
@@ -96,9 +101,10 @@
 }
 
 .desktop-nav .dropdown-content a:hover {
-  background: #F5F5F5;
-  color: #0057A4;
+  background: #0074BA;
+  color: #F5F5F5;
 }
+
 /* ============================
    DROPDOWN DESKTOP
 ============================ */
@@ -140,8 +146,18 @@
 }
 
 .dropdown-content a:hover {
-  background: #0057A4;
-  color:#0074BA;
+  background: #0074BA;
+  color: #F5F5F5;
+}
+
+.dropdown-content::before {
+  content: "";
+  position: absolute;
+  top: -8px;
+  left: 25px;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 8px solid #F5F5F5;
 }
 
 /* ============================
@@ -157,22 +173,61 @@
   position: relative;
   display: flex;
   align-items: center;
+  background: #F5F5F5;
+  border-radius: 20px;
+  padding: 3px;
+  overflow: hidden;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .search-input {
   width: 0;
   padding: 0;
-  border-radius: 20px;
   border: none;
   outline: none;
+  background: transparent;
+  color: #0074BA;
   opacity: 0;
-  transition: all 0.4s ease;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.search-container:hover .search-input {
-  width: 200px;
-  padding: 6px 15px;
+.search-container.expanded .search-input {
+  width: 240px;
+  padding: 6px 12px;
   opacity: 1;
+}
+
+.search-icon {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #0074BA;
+  padding: 5px 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lang-switch {
+  display: flex;
+  border: 1px solid white;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.lang-switch button {
+  background: transparent;
+  border: none;
+  padding: 4px 10px;
+  font-size: 13px;
+  color: white;
+  cursor: pointer;
+}
+
+.lang-switch button.active {
+  background: white;
+  color: #0074BA;
+  font-weight: 600;
 }
 
 /* ============================
@@ -187,7 +242,7 @@
 }
 
 /* ============================
-   MOBILE NAV
+   MOBILE NAV (FIXED LAYER)
 ============================ */
 .mobile-nav {
   position: fixed;
@@ -197,11 +252,12 @@
   background: var(--gradient-primary);
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.5s ease;
+  transition: max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 9999;   /* FIX: layer paling atas */
 }
 
 .mobile-nav.open {
-  max-height: 500px;
+  max-height: 600px;
 }
 
 .mobile-nav ul {
@@ -212,13 +268,74 @@
 
 .mobile-nav ul li a {
   display: block;
-  padding: 12px 24px;
+  padding: 14px 24px;
   color: white;
   text-decoration: none;
 }
 
 .mobile-nav ul li a:hover {
   background: rgba(255,255,255,0.1);
+}
+
+.mobile-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+  z-index: 9998;
+}
+
+.mobile-dropdown-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  padding: 12px 16px;
+  font-weight: 600;
+}
+
+.mobile-dropdown-title span {
+  transition: transform 0.3s ease;
+}
+
+.mobile-dropdown.active .mobile-dropdown-title span {
+  transform: rotate(180deg);
+}
+
+.mobile-submenu {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  background: #F5F5F5 !important;
+  border-radius: 0 0 12px 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+}
+
+.mobile-dropdown.active .mobile-submenu {
+  max-height: 500px;
+}
+
+.mobile-submenu li a {
+  padding: 10px 24px;
+  display: block;
+  font-size: 14px;
+  color: #0074BA !important;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.mobile-submenu li a:hover {
+  background: #0074BA !important;
+  color: #F5F5F5 !important;
+}
+
+/* WARNA JUDUL DROPDOWN - DEFAULT */
+.mobile-dropdown-title {
+  color: white;
+}
+
+/* WARNA JUDUL DROPDOWN - SAAT AKTIF / DIKLIK */
+.mobile-dropdown.active .mobile-dropdown-title {
+  color: #0057A4;
 }
 
 /* ============================

@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import "../styles/pages/profile_page.css";
+import { Link } from 'react-router-dom';
 
 export default function Profile() {
   const observerRef = useRef(null);
@@ -144,127 +145,117 @@ export default function Profile() {
 
   return (
     <main className="profile-main">
-      <section className="profile-hero-section">
-        <div className="container">
-          <h1>Profil SmartCity</h1>
-          <p>
-            Mengenal lebih dalam visi, misi, dan strategi pengembangan Kabupaten Tangerang
-            sebagai kota pintar yang berkelanjutan.
-          </p>
+  {/* ================= HERO PROFILE ================= */}
+      <div className="profile-hero">
+        <img
+          src="/gambar/website.svg"
+          alt="Profile"
+          className="profile-center-image"
+        />
+        <div className="hero-text">
+          <h1>Tentang Kami</h1>
         </div>
-      </section>
+      </div>
 
       <section className="profile-overview-section">
         <div className="container">
           <div className="overview-grid">
             <div className="overview-content">
-              <h2>Tentang SmartCity Kabupaten Tangerang</h2>
+              <h2>Jejak Transformasi Kabupaten Tangerang Tentang Smart City</h2>
               <p>
-                SmartCity Kabupaten Tangerang adalah inisiatif transformasi digital yang bertujuan
-                untuk meningkatkan kualitas hidup masyarakat melalui penerapan teknologi informasi
-                dan komunikasi yang terintegrasi.
+                Kabupaten Tangerang Smart City hadir untuk mendukung transformasi digital daerah. 
+                Kami memanfaatkan teknologi agar pelayanan publik jadi lebih mudah, cepat, dan transparan, serta mendukung pembangunan daerah yang modern dan inovatif.
               </p>
 
-              <div className="stats-grid">
-                <div className="stat-item">
-                  <div className="stat-number">6</div>
-                  <div className="stat-label">Dimensi Smart City</div>
+          <Link to="/sejarah">
+                <button className="btn-sejarah">
+                  Sejarah KTSC →
+                </button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="highlight-section">
+        <div className="container highlight-grid">
+          <div className="highlight-content">
+              <h3>Hai Hai Hai...</h3>
+                <h2>Kenalin Nih SuperApp nya Kabupaten Tangerang!</h2>
+
+                <div className="highlight-stats">
+                  <div className="highlight-item">
+                    <img src="/public/icon/iconlayanan.svg" alt="Layanan" className="highlight-icon" />
+                    <span className="highlight-number">17</span>
+                    <p>Layanan</p>
+                  </div>
+
+                  <div className="highlight-item">
+                    <img src="/public/icon/iconlaporan.svg" alt="Laporan" className="highlight-icon" />
+                    <span className="highlight-number">26+</span>
+                    <p>Laporan Dari Masyarakat</p>
+                  </div>
+
+                  <div className="highlight-item">
+                    <img src="/public/icon/iconunduh.svg" alt="Unduh" className="highlight-icon" />
+                    <span className="highlight-number">50rb+</span>
+                    <p>Masyarakat Mengunduh</p>
+                  </div>
                 </div>
-                <div className="stat-item">
-                  <div className="stat-number">1.5M+</div>
+              </div>
+              <div className="highlight-image">
+                <img src="/gambar/hp.svg" alt="App Preview" />
+                <h4>#Kabupaten Tangerang Membantu</h4>
+                <h4>Unduh Tangerang Gemilang :</h4>
+                
+                <div className="store-buttons">
+                  <img src="/gambar/googleplay.svg" alt="Google Play" />
+                  <img src="/gambar/appstore.svg" alt="App Store" />
+                </div>
+              </div>
+            </div>
+      </section>
+
+        <div className="logo-between">
+          <img src="/gambar/logoo.svg" alt="Logo" />
+        </div>
+
+        <section className="coverage-section">
+          <div className="container">
+            <h2 className="section-title">
+              Cakupan Data Kabupaten Tangerang Smart City
+            </h2>
+
+          <div className="coverage-grid">
+
+              <a 
+                href="https://geoportal.tangerangkab.go.id/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="coverage-card"
+              >
+                <div className="stat-number">959 KM²</div>
+                <div className="stat-label">Luas Wilayah</div>
+              </a>
+
+                <div className="coverage-card">
+                  <div className="stat-number">1.5JT+</div>
                   <div className="stat-label">Penduduk</div>
                 </div>
-                <div className="stat-item">
+
+                <div className="coverage-card">
                   <div className="stat-number">29</div>
                   <div className="stat-label">Kecamatan</div>
                 </div>
-                <div className="stat-item">
+
+                <div className="coverage-card">
                   <div className="stat-number">246</div>
-                  <div className="stat-label">Kelurahan/Desa</div>
+                  <div className="stat-label">Kelurahan / Desa</div>
                 </div>
-              </div>
-            </div>
 
-            <div className="overview-image">
-              <div className="image-placeholder">
-                <div className="placeholder-content">
-                  <svg width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
-                    <polyline points="3.27,6.96 12,12.01 20.73,6.96"/>
-                    <line x1="12" y1="22.08" x2="12" y2="12"/>
-                  </svg>
-                  <p>Smart Infrastructure</p>
-                </div>
-              </div>
             </div>
           </div>
-        </div>
-      </section>
-
-      <section className="vision-mission-section">
-        <div className="container">
-          <div className="section-header">
-            <h2>Visi dan Misi</h2>
-          </div>
-          <div className="vm-grid">
-            <div
-              className="vm-card"
-              tabIndex="0"
-              role="button"
-              onClick={() => handleCardClick("vm-card")}
-              onKeyDown={(e) => handleKeyDown(e, "vm-card")}
-            >
-              <h3>Visi</h3>
-              <p>
-                Terwujudnya Kabupaten Tangerang sebagai Smart City yang terintegrasi,
-                inovatif, dan berkelanjutan menuju masyarakat sejahtera dan berdaya saing global.
-              </p>
-            </div>
-
-            <div
-              className="vm-card"
-              tabIndex="0"
-              role="button"
-              onClick={() => handleCardClick("vm-card")}
-              onKeyDown={(e) => handleKeyDown(e, "vm-card")}
-            >
-              <h3>Misi</h3>
-              <ul>
-                <li><span className="mission-circle"></span>Mengembangkan tata kelola pemerintahan yang cerdas dan transparan.</li>
-                <li><span className="mission-circle"></span>Meningkatkan kualitas pelayanan publik berbasis digital.</li>
-                <li><span className="mission-circle"></span>Mendorong pertumbuhan ekonomi kreatif dan inovatif.</li>
-                <li><span className="mission-circle"></span>Menciptakan lingkungan yang bersih dan berkelanjutan.</li>
-                <li><span className="mission-circle"></span>Memperkuat partisipasi masyarakat dalam pembangunan kota.</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="timeline-section">
-        <div className="container">
-          <div className="section-header">
-            <h2>Roadmap SmartCity</h2>
-          </div>
-          <div className="timeline">
-            {[
-              { year: "2022", title: "Fase Perencanaan", desc: "Studi kelayakan dan penyusunan masterplan SmartCity" },
-              { year: "2023", title: "Fase Pengembangan", desc: "Pengembangan platform digital dan sistem informasi" },
-              { year: "2024", title: "Fase Implementasi", desc: "Peluncuran aplikasi layanan publik dan sistem monitoring kota" },
-              { year: "2025", title: "Fase Integrasi", desc: "Integrasi penuh semua dimensi SmartCity dan evaluasi komprehensif" },
-              { year: "2026+", title: "Fase Optimasi", desc: "Pengembangan berkelanjutan dan inovasi teknologi terdepan" },
-            ].map((item, i) => (
-              <div className="timeline-item" key={i}>
-                <div className="timeline-date">{item.year}</div>
-                <div className="timeline-content">
-                  <h4>{item.title}</h4>
-                  <p>{item.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+        </section>
     </main>
   );
 }
