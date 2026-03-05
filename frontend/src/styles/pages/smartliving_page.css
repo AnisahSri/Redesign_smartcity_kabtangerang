@@ -1,0 +1,435 @@
+.kunjungan-wrapper {
+  background: white;
+  font-family: sans-serif;
+}
+
+/* ================= HERO ================= */
+
+.kunjungan-hero {
+  text-align: center;
+}
+
+.kunjungan-blue {
+  background-color: #0b5fa5;
+  padding: 80px 20px 140px 20px;
+}
+
+.kunjungan-blue h1 {
+  color: white;
+  font-size: 42px;
+  margin: 0;
+}
+
+.kunjungan-content {
+  margin-top: -100px;
+}
+
+.kunjungan-image {
+  width: 850px;
+  max-width: 90%;
+  border-radius: 20px;
+  margin-bottom: 60px;
+}
+
+/* ================= FITUR ================= */
+
+.kunjungan-fitur {
+  padding-bottom: 60px;
+}
+
+.kunjungan-icons {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+
+.fitur-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+}
+
+.icon-circle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid #0b5fa5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+
+.icon-circle img {
+  width: 32px;
+  height: 32px;
+}
+
+.fitur-item.active .icon-circle {
+  background-color: #0b5fa5;
+}
+
+.fitur-item span {
+  font-size: 13px;
+  color: #0b5fa5;
+}
+
+/* ================= TAB ================= */
+
+.kunjungan-tab {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.kunjungan-tab button {
+  padding: 10px 35px;
+  border-radius: 20px;
+  border: none;
+  background: #e5e5e5;
+  cursor: pointer;
+}
+
+.kunjungan-tab button.active {
+  background: #0b5fa5;
+  color: white;
+}
+
+/* ================= BERITA ================= */
+
+.berita-section {
+  width: 100%;
+}
+
+.berita-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 100px 120px;
+  gap: 80px;
+}
+
+/* 🔵 BIRU */
+.biru-row {
+  background: #0b5fa5;
+  color: white;
+  flex-direction: row-reverse;
+}
+
+/* ⚪ PUTIH */
+.putih-row {
+  background: white;
+  color: #0b5fa5;
+  flex-direction: row;
+}
+
+.berita-image img {
+  width: 420px;
+  max-width: 100%;
+}
+
+.berita-content {
+  max-width: 500px;
+}
+
+.berita-content h2 {
+  font-size: 26px;
+  margin-bottom: 20px;
+}
+
+.berita-content p {
+  line-height: 1.7;
+  margin-bottom: 25px;
+}
+
+/* SCROLL */
+.berita-scroll-wrapper {
+  display: flex;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+.berita-row {
+  min-width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 100px 120px;
+  gap: 80px;
+}
+
+/* WARNA */
+.biru-row {
+  background: #0b5fa5;
+  color: white;
+  flex-direction: row-reverse;
+}
+
+.putih-row {
+  background: white;
+  color: #0b5fa5;
+  flex-direction: row;
+}
+
+/* PAGINATION */
+.berita-pagination {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin: 50px 0 80px 0;
+}
+
+.berita-pagination button {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: 2px solid #0b5fa5;
+  background: white;
+  color: #0b5fa5;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.berita-pagination button.active {
+  background: #0b5fa5;
+  color: white;
+}
+
+.berita-pagination button:hover {
+  background: #0b5fa5;
+  color: white;
+}
+/* ================= BERITA SLIDER ================= */
+
+.berita-section {
+  overflow: hidden;
+}
+
+.berita-scroll-wrapper {
+  display: flex;
+  overflow: hidden;
+  scroll-behavior: smooth;
+}
+
+.berita-slide {
+  min-width: 100%;
+}
+
+/* BERITA ROW */
+.berita-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 100px 120px;
+  gap: 80px;
+}
+
+/* WARNA SELANG SELING */
+.biru-row {
+  background: #0b5fa5;
+  color: white;
+  flex-direction: row-reverse;
+}
+
+.putih-row {
+  background: white;
+  color: #0b5fa5;
+  flex-direction: row;
+}
+
+/* PAGINATION */
+.berita-pagination {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin: 50px 0 80px 0;
+}
+
+.berita-pagination button {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: 2px solid #0b5fa5;
+  background: white;
+  color: #0b5fa5;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.berita-pagination button.active,
+.berita-pagination button:hover {
+  background: #0b5fa5;
+  color: white;
+}
+
+/* ================= INOVASI ================= */
+
+.inovasi-section {
+  padding: 60px 0;
+}
+
+.inovasi-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 350px);
+  gap: 40px;
+  justify-content: center;
+}
+
+/* Card ke-3 benar-benar di tengah */
+.inovasi-card:nth-child(3) {
+  grid-column: 1 / -1;
+  margin: 0 auto;
+}
+
+.inovasi-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 350px);
+  gap: 40px;
+  justify-content: center;
+}
+
+/* Card ke-3 benar-benar di tengah */
+.inovasi-card:nth-child(3) {
+  grid-column: 1 / -1;
+  margin: 0 auto;
+}
+
+.inovasi-card {
+  position: relative;
+  width: 350px;
+  height: 220px;
+  border-radius: 20px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: 0.4s ease;
+}
+
+.inovasi-card:hover {
+  transform: translateY(-8px);
+}
+
+.inovasi-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: 0.6s ease;
+}
+
+.inovasi-card:hover img {
+  transform: scale(1.1);
+}
+
+/* OVERLAY GRADIENT + BLUR */
+.inovasi-card::before {
+  content: "";
+  position: absolute;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 116, 186, 0.65),
+    rgba(0, 116, 186, 0.35)
+  );
+  backdrop-filter: blur(6px);
+  transition: 0.6s ease;
+  z-index: 1;
+}
+
+.inovasi-card::after {
+  content: "";
+  position: absolute;
+  bottom: -100%;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background: linear-gradient(
+    to top,
+    rgba(0, 116, 186, 0.65),
+    rgba(0, 116, 186, 0.35)
+  );
+  backdrop-filter: blur(6px);
+  transition: 0.6s ease;
+  z-index: 1;
+}
+
+.inovasi-card:hover::before {
+  top: 0;
+}
+
+.inovasi-card:hover::after {
+  bottom: 0;
+}
+
+/* TEXT */
+.inovasi-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-weight: 700;
+  font-size: 18px;
+  opacity: 0;
+  transition: 0.6s ease;
+  z-index: 2;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+.inovasi-card:hover .inovasi-overlay {
+  opacity: 1;
+}
+
+/* MODAL */
+.inovasi-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.inovasi-modal img {
+  width: 70%;
+  max-width: 900px;
+  border-radius: 20px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+}
+
+/* ===== BREADCRUMB ===== */
+.smart-breadcrumb {
+  text-align: center;
+  padding: 20px 0 10px 0;
+  font-size: 16px;
+  font-weight: 500;
+  color: #0b63a9;
+}
+
+.smart-breadcrumb span {
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.smart-breadcrumb span:hover {
+  opacity: 0.7;
+}
+
+.smart-breadcrumb .dot {
+  margin: 0 10px;
+  cursor: default;
+}
+
+.smart-breadcrumb .active {
+  font-weight: 600;
+  cursor: default;
+}

@@ -1,377 +1,220 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { Calendar, User, Eye, Clock } from 'lucide-react';
-import { apiEndpoints } from '../../utils/helpers';
-import '../../styles/pages/explore_dimensions.css';
+import React, { useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
+import backgroundKunjungan from "../../assets/images/background_kunjungan.svg";
+import backgroundBerita from "../../assets/images/background_berita.svg";
 
-export default function SmartBranding() {
-  const [selectedCategory, setSelectedCategory] = useState('inovasi');
-  const [currentPage, setCurrentPage] = useState(1);
-  const [artikelData, setArtikelData] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [showModal, setShowModal] = useState(false);
-  const [selectedIndex, setSelectedIndex] = useState(0);
-  const [inovasiImages, setInovasiImages] = useState([]);
-  const [touchStart, setTouchStart] = useState(null);
-  const [touchEnd, setTouchEnd] = useState(null);
-  const itemsPerPage = 6;
+/* ICON */
+import smartGovernance from "../../assets/icons/smartgovernance.svg";
+import smartLiving from "../../assets/icons/smartliving.svg";
+import smartSociety from "../../assets/icons/smartsociety.svg";
+import smartEconomy from "../../assets/icons/smarteconomy.svg";
+import smartEnvironment from "../../assets/icons/smartenvironment.svg";
+import smartBranding from "../../assets/icons/smartbranding.svg";
 
-  useEffect(() => {
-    const fetchInovasi = async () => {
-      try {
-        setLoading(true);
-        const response = await apiEndpoints.inovasi.getAll('Smart Branding');
-        const inovasiData = response.data.data || [];
+import "../../styles/pages/smartgovernance_page.css";
 
-        // Transform backend data to frontend format
-        const transformedData = inovasiData.map(item => ({
-          id: item.id,
-          title: item.name,
-          excerpt: item.description,
-          category: 'inovasi',
-          categoryLabel: 'INOVASI',
-          date: new Date(item.createdAt).toLocaleDateString('id-ID', {
-            day: 'numeric',
-            month: 'long',
-            year: 'numeric'
-          }),
-          author: 'Admin SmartCity',
-          views: '0 views',
-          readTime: '5 min',
-          image: item.image ? item.image.url : '/images/default.jpg'
-        }));
+function SmartBranding() {
+  const [selectedCategory, setSelectedCategory] = useState("berita");
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [selectedInnovation, setSelectedInnovation] = useState(null);
 
-        setArtikelData(transformedData);
-      } catch (error) {
-        console.error('Error fetching inovasi:', error);
-        setArtikelData([]);
-      } finally {
-        setLoading(false);
-      }
-    };
+  const navigate = useNavigate();
+  const scrollRef = useRef(null);
 
-    fetchInovasi();
-  }, []);
+  const totalSlide = 3;
 
-  const categories = [
-    { id: 'inovasi', label: 'Inovasi' },
-    { id: 'berita', label: 'Berita' }
-  ];
-
-  const filteredArtikel = artikelData.filter(item => {
-    return item.category === selectedCategory;
-  });
-
-  const totalPages = Math.ceil(filteredArtikel.length / itemsPerPage);
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const paginatedArtikel = filteredArtikel.slice(startIndex, startIndex + itemsPerPage);
-
-  const handleCategoryChange = (categoryId) => {
-    setSelectedCategory(categoryId);
-    setCurrentPage(1);
+  const scrollToIndex = (index) => {
+    const container = scrollRef.current;
+    const width = container.offsetWidth;
+    container.scrollTo({
+      left: width * index,
+      behavior: "smooth",
+    });
+    setActiveIndex(index);
   };
 
-  const getCategoryClass = (category) => {
-    const classes = {
-      berita: 'badge-berita',
-      inovasi: 'badge-inovasi'
-    };
-    return classes[category] || 'badge-berita';
+  const scrollLeft = () => {
+    if (activeIndex > 0) scrollToIndex(activeIndex - 1);
   };
 
-  const handleImageClick = (item) => {
-    setSelectedIndex(filteredArtikel.indexOf(item));
-    setInovasiImages(filteredArtikel.map(artikel => ({ src: artikel.image, title: artikel.title })));
-    setShowModal(true);
-  };
-
-  const closeModal = () => {
-    setShowModal(false);
-    setSelectedIndex(0);
-    setInovasiImages([]);
-  };
-
-  const nextImage = () => {
-    setSelectedIndex((prevIndex) => (prevIndex + 1) % inovasiImages.length);
-  };
-
-  const prevImage = () => {
-    setSelectedIndex((prevIndex) => (prevIndex - 1 + inovasiImages.length) % inovasiImages.length);
-  };
-
-  // Touch handlers for mobile swipe
-  const handleTouchStart = (e) => {
-    setTouchEnd(null);
-    setTouchStart(e.targetTouches[0].clientX);
-  };
-
-  const handleTouchMove = (e) => {
-    setTouchEnd(e.targetTouches[0].clientX);
-  };
-
-  const handleTouchEnd = () => {
-    if (!touchStart || !touchEnd) return;
-    const distance = touchStart - touchEnd;
-    const isLeftSwipe = distance > 50;
-    const isRightSwipe = distance < -50;
-
-    if (isLeftSwipe && inovasiImages.length > 1) {
-      nextImage();
-    }
-    if (isRightSwipe && inovasiImages.length > 1) {
-      prevImage();
-    }
+  const scrollRight = () => {
+    if (activeIndex < totalSlide - 1) scrollToIndex(activeIndex + 1);
   };
 
   return (
-    <div className="explore-page">
-      {/* Hero Section */}
-      <section className="explore-hero">
-        <div className="explore-hero-content">
-          <h1 className="explore-hero-title">Smart Branding</h1>
-          <p className="explore-hero-subtitle">
-            Strategi Komunikasi, Citra Kota, dan Inovasi Pemasaran Pariwisata Digital Kabupaten Tangerang
-          </p>
+    <div className="kunjungan-wrapper">
+
+      {/* HERO */}
+      <section className="kunjungan-hero">
+        <div className="kunjungan-blue">
+          <h1>Smart Branding</h1>
         </div>
-      </section>
 
-      {/* Main Content */}
-      <section className="explore-main">
-        <div className="explore-container">
-          {/* Sidebar Category */}
-          <aside className="explore-sidebar">
-            <div className="explore-sidebar-card">
-              <h3 className="explore-sidebar-title">KATEGORI</h3>
-              <div className="explore-category-list">
-                {categories.map(category => (
-                  <button
-                    key={category.id}
-                    className={`explore-category-btn ${selectedCategory === category.id ? 'active' : ''}`}
-                    onClick={() => handleCategoryChange(category.id)}
-                  >
-                    {category.label}
-                  </button>
-                ))}
-              </div>
-            </div>
-          </aside>
+        <div className="kunjungan-content">
+          <img
+            src={backgroundKunjungan}
+            alt="Smart Branding"
+            className="kunjungan-image"
+          />
 
-          {/* Content Area */}
-          <div className="explore-content">
-            {paginatedArtikel.length > 0 ? (
-              <>
-                {/* Article Grid */}
-                <div className="explore-grid">
-                  {paginatedArtikel.map(item => (
-                    <article key={item.id} className="explore-card">
-                      {item.category === 'inovasi' ? (
-                        <div className="explore-card-image" onClick={() => handleImageClick(item)} style={{ cursor: 'pointer' }}>
-                          <img src={item.image} alt={item.title} />
-                          <div className="explore-image-overlay">
-                            <span className="explore-overlay-text">{item.title}</span>
-                          </div>
-                        </div>
-                      ) : (
-                        <>
-                          <div className="explore-card-image">
-                            <img src={item.image} alt={item.title} />
-                            <span className={`explore-badge ${getCategoryClass(item.category)}`}>
-                              {item.categoryLabel}
-                            </span>
-                          </div>
-                          <div className="explore-card-body">
-                            <h2 className="explore-card-title">{item.title}</h2>
-                            <p className="explore-card-excerpt">{item.excerpt}</p>
+          {/* BREADCRUMB */}
+          <div className="smart-breadcrumb">
+            <span onClick={() => navigate("/")}>Beranda</span>
+            <span className="dot">•</span>
+            <span onClick={() => navigate("/Dimensi")}>Dimensi</span>
+            <span className="dot">•</span>
+            <span className="active">Smart Branding</span>
+          </div>
 
-                            <div className="explore-card-meta">
-                              <div className="explore-meta-item">
-                                <Calendar size={14} />
-                                <span>{item.date}</span>
-                              </div>
-                              <div className="explore-meta-item">
-                                <User size={14} />
-                                <span>{item.author}</span>
-                              </div>
-                              <div className="explore-meta-item">
-                                <Eye size={14} />
-                                <span>{item.views}</span>
-                              </div>
-                            </div>
+          <div className="kunjungan-fitur">
+            <div className="kunjungan-icons">
 
-                            <div className="explore-card-footer">
-                              <div className="explore-read-time">
-                                <Clock size={14} />
-                                <span>{item.readTime}</span>
-                              </div>
-                              <Link to={`/artikel/${item.id}`} className="explore-read-more">
-                                Baca Selengkapnya
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                  <path d="M5 12h14M12 5l7 7-7 7"/>
-                                </svg>
-                              </Link>
-                            </div>
-                          </div>
-                        </>
-                      )}
-                    </article>
-                  ))}
+              <div className="fitur-item" onClick={() => navigate("/SmartGovernance")}>
+                <div className="icon-circle">
+                  <img src={smartGovernance} alt="" />
                 </div>
-
-                {/* Pagination */}
-                {totalPages > 1 && (
-                  <div className="explore-pagination">
-                    <button
-                      className="explore-pagination-btn"
-                      disabled={currentPage === 1}
-                      onClick={() => setCurrentPage(currentPage - 1)}
-                    >
-                      Sebelumnya
-                    </button>
-
-                    <div className="explore-pagination-numbers">
-                      {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
-                        <button
-                          key={page}
-                          className={`explore-pagination-number ${currentPage === page ? 'active' : ''}`}
-                          onClick={() => setCurrentPage(page)}
-                        >
-                          {page}
-                        </button>
-                      ))}
-                    </div>
-
-                    <button
-                      className="explore-pagination-btn"
-                      disabled={currentPage === totalPages}
-                      onClick={() => setCurrentPage(currentPage + 1)}
-                    >
-                      Selanjutnya
-                    </button>
-                  </div>
-                )}
-              </>
-            ) : (
-              <div className="explore-empty">
-                <p>Tidak ada artikel dalam kategori ini.</p>
+                <span>Smart Governance</span>
               </div>
-            )}
+
+              <div className="fitur-item" onClick={() => navigate("/SmartLiving")}>
+                <div className="icon-circle">
+                  <img src={smartLiving} alt="" />
+                </div>
+                <span>Smart Living</span>
+              </div>
+
+              <div className="fitur-item" onClick={() => navigate("/SmartSociety")}>
+                <div className="icon-circle">
+                  <img src={smartSociety} alt="" />
+                </div>
+                <span>Smart Society</span>
+              </div>
+
+              <div className="fitur-item" onClick={() => navigate("/SmartEconomy")}>
+                <div className="icon-circle">
+                  <img src={smartEconomy} alt="" />
+                </div>
+                <span>Smart Economy</span>
+              </div>
+
+              <div className="fitur-item" onClick={() => navigate("/SmartEnvironment")}>
+                <div className="icon-circle">
+                  <img src={smartEnvironment} alt="" />
+                </div>
+                <span>Smart Environment</span>
+              </div>
+
+              <div className="fitur-item active">
+                <div className="icon-circle">
+                  <img src={smartBranding} alt="" />
+                </div>
+                <span>Smart Branding</span>
+              </div>
+
+            </div>
+
+            <div className="kunjungan-tab">
+              <button
+                className={selectedCategory === "berita" ? "active" : ""}
+                onClick={() => setSelectedCategory("berita")}
+              >
+                Berita
+              </button>
+
+              <button
+                className={selectedCategory === "inovasi" ? "active" : ""}
+                onClick={() => setSelectedCategory("inovasi")}
+              >
+                Inovasi
+              </button>
+            </div>
+
           </div>
         </div>
       </section>
 
-      {/* Image Modal */}
-      {showModal && inovasiImages.length > 0 && (
-        <div
-          className="modal-overlay"
-          onClick={closeModal}
-          style={{
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            backgroundColor: 'rgba(0, 0, 0, 0.8)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            zIndex: 1000,
-            cursor: 'pointer'
-          }}
-        >
-          <div
-            className="modal-content"
-            style={{
-              maxWidth: '90vw',
-              maxHeight: '90vh',
-              position: 'relative'
-            }}
-            onClick={(e) => e.stopPropagation()}
-          >
-            <img
-              src={inovasiImages[selectedIndex].src}
-              alt={inovasiImages[selectedIndex].title}
-              style={{
-                maxWidth: '100%',
-                maxHeight: '100%',
-                objectFit: 'contain'
-              }}
-              onTouchStart={handleTouchStart}
-              onTouchMove={handleTouchMove}
-              onTouchEnd={handleTouchEnd}
-            />
-            <button
-              onClick={closeModal}
-              style={{
-                position: 'absolute',
-                top: '-40px',
-                right: '0',
-                background: 'none',
-                border: 'none',
-                color: 'white',
-                fontSize: '24px',
-                cursor: 'pointer',
-                padding: '5px'
-              }}
-            >
-              ×
-            </button>
-            <h3
-              style={{
-                position: 'absolute',
-                bottom: '-50px',
-                left: '0',
-                right: '0',
-                textAlign: 'center',
-                color: 'white',
-                fontSize: '18px',
-                margin: '0'
-              }}
-            >
-              {inovasiImages[selectedIndex].title}
-            </h3>
-            {inovasiImages.length > 1 && (
-              <>
-                <button
-                  onClick={prevImage}
-                  style={{
-                    position: 'absolute',
-                    left: '-50px',
-                    top: '50%',
-                    transform: 'translateY(-50%)',
-                    background: 'rgba(0, 0, 0, 0.5)',
-                    border: 'none',
-                    color: 'white',
-                    fontSize: '24px',
-                    cursor: 'pointer',
-                    padding: '10px',
-                    borderRadius: '50%'
-                  }}
-                >
-                  ‹
-                </button>
-                <button
-                  onClick={nextImage}
-                  style={{
-                    position: 'absolute',
-                    right: '-50px',
-                    top: '50%',
-                    transform: 'translateY(-50%)',
-                    background: 'rgba(0, 0, 0, 0.5)',
-                    border: 'none',
-                    color: 'white',
-                    fontSize: '24px',
-                    cursor: 'pointer',
-                    padding: '10px',
-                    borderRadius: '50%'
-                  }}
-                >
-                  ›
-                </button>
-              </>
-            )}
+      {/* BERITA */}
+      {selectedCategory === "berita" && (
+        <section className="berita-section">
+          <div className="berita-scroll-wrapper" ref={scrollRef}>
+            {Array.from({ length: totalSlide }).map((_, slideIndex) => (
+              <div key={slideIndex} className="berita-slide">
+                {[0, 1, 2].map((itemIndex) => {
+                  const globalIndex = slideIndex * 3 + itemIndex;
+                  const isBlue = globalIndex % 2 === 0;
+
+                  return (
+                    <div
+                      key={itemIndex}
+                      className={`berita-row ${isBlue ? "biru-row" : "putih-row"}`}
+                    >
+                      <div className="berita-content">
+                        <h2>Peluncuran Platform SmartCity Tangerang 2025</h2>
+                        <p>
+                          Lorem ipsum dolor sit amet consectetur.
+                          In pharetra aliquam adipiscing sed nisl.
+                        </p>
+                      </div>
+
+                      <div className="berita-image">
+                        <img src={backgroundBerita} alt="Berita" />
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            ))}
           </div>
-        </div>
+
+          <div className="berita-pagination">
+            <button onClick={scrollLeft}>{"<<"}</button>
+
+            {Array.from({ length: totalSlide }).map((_, index) => (
+              <button
+                key={index}
+                className={activeIndex === index ? "active" : ""}
+                onClick={() => scrollToIndex(index)}
+              >
+                {index + 1}
+              </button>
+            ))}
+
+            <button onClick={scrollRight}>{">>"}</button>
+          </div>
+        </section>
       )}
+
+      {/* INOVASI */}
+      {selectedCategory === "inovasi" && (
+        <section className="inovasi-section">
+          <div className="inovasi-grid">
+            {[1, 2, 3].map((item) => (
+              <div
+                key={item}
+                className="inovasi-card"
+                onClick={() => setSelectedInnovation(backgroundBerita)}
+              >
+                <img src={backgroundBerita} alt="Inovasi" />
+                <div className="inovasi-overlay">
+                  <h3>Digitalisasi Layanan Publik</h3>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {selectedInnovation && (
+            <div
+              className="inovasi-modal"
+              onClick={() => setSelectedInnovation(null)}
+            >
+              <img src={selectedInnovation} alt="Preview" />
+            </div>
+          )}
+        </section>
+      )}
+
     </div>
   );
 }
+
+export default SmartBranding;
