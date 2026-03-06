@@ -1,100 +1,354 @@
-/* =========================
-   GLOBAL HOME
-========================= */
-.home {
-  font-family: 'Segoe UI', sans-serif;
+/* ================= RESET ================= */
+body {
   margin: 0;
-  padding: 0;
+  font-family: "Poppins", sans-serif;
 }
 
-/* =========================
-   HERO SECTION
-========================= */
+/* ================= HERO ================= */
 .hero {
-  height: 100vh;
-
-  /* GANTI NAMA GAMBAR SESUAI PUNYA LU */
-  background-image: 
-    linear-gradient(
-      rgba(0, 0, 0, 0.55),
-      rgba(0, 0, 0, 0.55)
-    ),
-    url("/images/bgbaru.jpg");
-
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  color: white;
   text-align: center;
-  padding: 20px;
+  padding: 120px 20px 0;
+  background: linear-gradient(
+    to bottom,
+    #0074BA 0%,
+    #0074BA 60%,
+    #ffffff 60%,
+    #ffffff 100%
+  );
+  position: relative;
 }
 
+/* Judul */
 .hero h1 {
-  font-size: 48px;
-  margin-bottom: 20px;
-  font-weight: bold;
+  font-size: 42px;
+  margin-bottom: 60px;
+  color: #ffffff;
+  line-height: 1.4;
 }
 
-.hero p {
-  font-size: 20px;
-  max-width: 700px;
-  opacity: 0.95;
+/* Container gambar */
+.hero-image {
+  position: relative;
+  margin-top: 40px;
 }
 
-/* =========================
-   FEATURES SECTION
-========================= */
-.features {
-  padding: 100px 20px;
-  background: #f4f6f9;
+/* Gambar meeting */
+.hero-image img {
+  width: 90%;
+  max-width: 1100px;
+  border-radius: 20px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+}
+
+/* ================= FITUR UNGGULAN ================= */
+
+.fitur {
+  padding: 80px 20px;
+  background: #f8f9fa;
   text-align: center;
 }
 
-.features h2 {
+/* Judul */
+.fitur h2 {
   font-size: 36px;
-  margin-bottom: 60px;
-  color: #222;
+  font-weight: 700;
+  color: #0074BA;
+  margin-bottom: 50px;
 }
 
-/* GRID */
-.feature-grid {
+/* Wrapper sejajar full */
+.fitur-wrapper {
   display: flex;
-  justify-content: center;
-  gap: 30px;
-  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }
 
-/* CARD */
-.feature-card {
-  background: white;
-  padding: 35px;
-  width: 300px;
-  border-radius: 15px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-  transition: all 0.3s ease;
+/* Item */
+.fitur-item {
+  width: calc(100% / 6);
+  text-align: center;
   cursor: pointer;
+  transition: 0.3s ease;
 }
 
-.feature-card h3 {
-  margin-bottom: 15px;
-  color: #0f87bf;
-  font-size: 20px;
+/* Lingkaran Icon */
+.icon-circle {
+  width: 90px;
+  height: 90px;
+  margin: 0 auto 15px;
+  border-radius: 50%;
+  border: 2px solid #0074BA;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s ease;
 }
 
-.feature-card p {
-  color: #555;
-  font-size: 15px;
+/* Icon */
+.icon-circle img {
+  width: 40px;
+  transition: 0.3s ease;
+}
+
+/* Text */
+.fitur-item p {
+  font-weight: 600;
+  font-size: 14px;
+  color: #1a1a2e;
+  transition: 0.3s ease;
+}
+
+/* ================= HOVER EFFECT ================= */
+
+.fitur-item:hover .icon-circle {
+  background: #0074BA;
+}
+
+.fitur-item:hover .icon-circle img {
+  filter: brightness(0) invert(1);
+}
+
+.fitur-item:hover p {
+  color: #0074BA;
+}
+
+/* ================= ACTIVE (CLICK) ================= */
+
+.fitur-item.active .icon-circle {
+  background: #0074BA;
+}
+
+.fitur-item.active .icon-circle img {
+  filter: brightness(0) invert(1);
+}
+
+.fitur-item.active p {
+  color: #0074BA;
+}
+
+/* ================= BUTTON DETAIL ================= */
+
+.btn-detail {
+  margin-top: 50px;
+  padding: 12px 35px;
+  border-radius: 30px;
+  border: 2px solid #0074BA;
+  background: white;
+  color: #0074BA;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+/* Hover tombol */
+.btn-detail:hover {
+  background: #0074BA;
+  color: white;
+}
+
+/* ================= GEMILANG ================= */
+.gemilang {
+  padding: 120px 8%;
+  background: #0074BA;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+.gemilang::before {
+  content: "";
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 50%;
+  top: -150px;
+  right: -150px;
+  filter: blur(80px);
+}
+
+.gemilang-content {
+  max-width: 550px;
+  position: relative;
+  z-index: 2;
+}
+
+.gemilang .produk {
+  font-size: 14px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+.gemilang h2 {
+  font-size: 40px;
+  margin: 20px 0;
+  line-height: 1.4;
+  font-weight: 700;
+}
+
+.gemilang .desc {
+  font-size: 18px;
+  opacity: 0.9;
   line-height: 1.6;
 }
 
-/* HOVER EFFECT */
-.feature-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+.gemilang-icons {
+  position: relative;
+  width: 380px;
+  height: 380px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gemilang-icons img {
+  position: absolute;
+  width: 75px;
+  transition: all 0.4s ease;
+  filter: drop-shadow(0 10px 20px rgba(0,0,0,0.2));
+}
+
+.gemilang-icons img:hover {
+  transform: translateY(-8px) scale(1.08);
+}
+
+.gemilang-icons img:nth-child(1) {
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.gemilang-icons img:nth-child(2) {
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.gemilang-icons img:nth-child(3) {
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.gemilang-icons img:nth-child(4) {
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.gemilang-icons img:last-child {
+  position: relative;
+  width: 170px;
+  z-index: 2;
+}
+
+/* ================= VIRTUAL TOUR ================= */
+.virtual {
+  padding: 120px 20px;
+  text-align: center;
+  background: #f5f5f5;
+}
+
+.virtual h2 {
+  font-size: 40px;
+  margin-bottom: 50px;
+  color: #0074BA;
+}
+
+.virtual-box {
+  background: white;
+  padding: 80px 110px;
+  border-radius: 30px;
+  width: 95%;
+  max-width: 1100px;
+  margin: 0 auto;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.virtual-box img {
+  width: 100%;
+  max-width: 800px;
+  border-radius: 0px;
+}
+
+/* ===== TEXT BERJALAN ===== */
+.running-text {
+  margin-top: 30px;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  height: 40px;
+}
+
+.running-text p {
+  position: absolute;
+  white-space: nowrap;
+  font-size: 30px;
+  font-weight: 800;
+  color: #BC90BA;
+  animation: runningText 10s linear infinite;
+}
+
+@keyframes runningText {
+  from {
+    left: 100%;
+  }
+  to {
+    left: -100%;
+  }
+}
+
+/* ================= FOOTER ================= */
+.footer {
+  padding: 30px;
+  text-align: center;
+  background: #F5F5F5;
+  color: white;
+  font-size: 14px;
+}
+
+/* ================= TAMBAHAN ================= */
+
+/* hilangkan box putih dan besarkan gambar */
+.virtual-box{
+  position: relative;
+  background: transparent;
+  box-shadow: none;
+  padding: 0;
+  width: 100%;
+  max-width: 1200px;
+}
+
+/* gambar lebih besar */
+.virtual-box img{
+  width: 100%;
+  max-width: 1100px;
+  border-radius: 20px;
+}
+
+/* running text di atas gambar */
+.running-text{
+  position: absolute;
+  bottom: -50px;
+  left: 0;
+  width: 100%;
+  height: 120px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+/* teks besar tapi tidak kepotong */
+.running-text p{
+  font-size: 70px;
+  line-height: 1.2;
 }

@@ -2,6 +2,10 @@ import React from "react";
 import { Twitter, Facebook, Instagram, Youtube } from "lucide-react";
 import "../../styles/components/footer.css";
 
+import logoImg from "../../assets/images/logo.svg";
+import googlePlayImg from "../../assets/images/googleplay.svg";
+import appStoreImg from "../../assets/images/appstore.svg";
+
 const Footer = () => {
   return (
     <footer className="footer">
@@ -11,7 +15,7 @@ const Footer = () => {
         {/* Kolom 1 */}
         <div className="footer-section">
           <img
-            src="/public/gambar/logo.svg"   // pastikan ada di folder public
+            src={logoImg}
             alt="Logo Smart City"
             className="footer-logo"
           />
@@ -81,14 +85,14 @@ const Footer = () => {
               rel="noopener noreferrer"
             >
               <img
-                src="/public/gambar/googleplay.svg"
+                src={googlePlayImg}
                 alt="Download di Google Play"
               />
             </a>
 
             <a href="#" target="_blank" rel="noopener noreferrer">
               <img
-                src="/public/gambar/appstore.svg"
+                src={appStoreImg}
                 alt="Download di App Store"
               />
             </a>
