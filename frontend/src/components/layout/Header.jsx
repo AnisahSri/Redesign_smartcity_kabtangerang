@@ -4,10 +4,12 @@ import { Link, useLocation } from 'react-router-dom';
 import '../../styles/components/header.css';
 
 import logoImg from "../../assets/images/smartcity.svg";
+import { useLanguage } from '../../utils/LanguageContext';
 
 const Header = () => {
   const location = useLocation();
   const pathname = location.pathname;
+  const { language, toggleLanguage } = useLanguage();
 
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -15,7 +17,6 @@ const Header = () => {
   const [isSearchExpanded, setIsSearchExpanded] = useState(false);
   const [isSearchHovered, setIsSearchHovered] = useState(false);
   const [openDropdown, setOpenDropdown] = useState(null);
-  const [language, setLanguage] = useState("ID");
 
   const searchInputRef = useRef(null);
 
@@ -60,10 +61,6 @@ const Header = () => {
     setOpenDropdown(openDropdown === menu ? null : menu);
   };
 
-  const toggleLanguage = (lang) => {
-    setLanguage(lang);
-  };
-
   return (
     <>
       <header className={`main-header ${isScrolled ? 'scrolled' : ''}`}>
@@ -86,41 +83,68 @@ const Header = () => {
 
               <li className="dropdown">
                 <span>
-                  Tentang <ChevronDown size={16} />
+                  {language === "ID" ? "Tentang" : "About"} <ChevronDown size={16} />
                 </span>
                 <div className="dropdown-content">
-                  <Link to="/profile">Profil</Link>
-                  <Link to="/sejarah">Sejarah</Link>
+                  <Link to="/profile">
+                    {language === "ID" ? "Profil" : "Profile"}
+                  </Link>
+                  <Link to="/sejarah">
+                    {language === "ID" ? "Sejarah" : "History"}
+                  </Link>
                 </div>
               </li>
 
               <li>
-                <Link to="/dimensi">Dimensi</Link>
+                <Link to="/dimensi">
+                  {language === "ID" ? "Dimensi" : "Dimensions"}
+                </Link>
               </li>
 
               <li>
-                <Link to="/event">Agenda</Link>
+                <Link to="/event">
+                  {language === "ID" ? "Agenda" : "Events"}
+                </Link>
               </li>
 
               <li>
-                <Link to="/katalog">Katalog</Link>
+                <Link to="/katalog">
+                  {language === "ID" ? "Katalog" : "Catalog"}
+                </Link>
               </li>
 
               <li className="dropdown">
                 <span>
-                  Fasilitas Publik <ChevronDown size={16} />
+                  {language === "ID" ? "Fasilitas Publik" : "Public Facilities"} <ChevronDown size={16} />
                 </span>
                 <div className="dropdown-content">
-                  <Link to="/">Sekolah</Link>
-                  <Link to="/">Perpustakaan</Link>
-                  <Link to="/">Beasiswa</Link>
-                  <Link to="/">WiFi Publik</Link>
-                  <Link to="/">Fasilitas Kesehatan</Link>
-                </div>
+                    <a href="https://geomaps.tangerangkab.go.id/#/" target="_blank" rel="noopener noreferrer">
+                      {language === "ID" ? "Sekolah" : "Schools"}
+                    </a>
+
+                    <a href="https://geomaps.tangerangkab.go.id/#/" target="_blank" rel="noopener noreferrer">
+                      {language === "ID" ? "Perpustakaan" : "Libraries"}
+                    </a>
+
+                    <a href="https://geomaps.tangerangkab.go.id/#/" target="_blank" rel="noopener noreferrer">
+                      {language === "ID" ? "Beasiswa" : "Scholarships"}
+                    </a>
+
+                    <a href="https://geomaps.tangerangkab.go.id/#/" target="_blank" rel="noopener noreferrer">
+                      {language === "ID" ? "WiFi Publik" : "Public WiFi"}
+                    </a>
+
+                    <a href="https://geomaps.tangerangkab.go.id/#/" target="_blank" rel="noopener noreferrer">
+                      {language === "ID" ? "Fasilitas Kesehatan" : "Health Facilities"}
+                    </a>
+
+                  </div>
               </li>
 
               <li>
-                <Link to="/publication">Publikasi</Link>
+                <Link to="/publication">
+                  {language === "ID" ? "Publikasi" : "Publications"}
+                </Link>
               </li>
 
             </ul>
@@ -191,25 +215,39 @@ const Header = () => {
               className="mobile-dropdown-title"
               onClick={() => toggleDropdown('tentang')}
             >
-              Tentang <span>▾</span>
+              {language === "ID" ? "Tentang" : "About"} <span>▾</span>
             </div>
 
             <ul className="mobile-submenu">
-              <li><Link to="/profile" onClick={handleNavClick}>Profil</Link></li>
-              <li><Link to="/about" onClick={handleNavClick}>Sejarah</Link></li>
+              <li>
+                <Link to="/profile" onClick={handleNavClick}>
+                  {language === "ID" ? "Profil" : "Profile"}
+                </Link>
+              </li>
+              <li>
+                <Link to="/sejarah" onClick={handleNavClick}>
+                  {language === "ID" ? "Sejarah" : "History"}
+                </Link>
+              </li>
             </ul>
           </li>
 
           <li>
-            <Link to="/dimensi" onClick={handleNavClick}>Dimensi</Link>
+            <Link to="/dimensi" onClick={handleNavClick}>
+              {language === "ID" ? "Dimensi" : "Dimensions"}
+            </Link>
           </li>
 
           <li>
-            <Link to="/event" onClick={handleNavClick}>Agenda</Link>
+            <Link to="/event" onClick={handleNavClick}>
+              {language === "ID" ? "Agenda" : "Events"}
+            </Link>
           </li>
 
           <li>
-            <Link to="/katalog" onClick={handleNavClick}>Katalog</Link>
+            <Link to="/katalog" onClick={handleNavClick}>
+              {language === "ID" ? "Katalog" : "Catalog"}
+            </Link>
           </li>
 
           <li className={`mobile-dropdown ${openDropdown === 'fasilitas' ? 'active' : ''}`}>
@@ -217,20 +255,47 @@ const Header = () => {
               className="mobile-dropdown-title"
               onClick={() => toggleDropdown('fasilitas')}
             >
-              Fasilitas Publik <span>▾</span>
+              {language === "ID" ? "Fasilitas Publik" : "Public Facilities"} <span>▾</span>
             </div>
 
             <ul className="mobile-submenu">
-              <li><Link to="/">Sekolah</Link></li>
-              <li><Link to="/">Perpustakaan</Link></li>
-              <li><Link to="/">Beasiswa</Link></li>
-              <li><Link to="/">WiFi Publik</Link></li>
-              <li><Link to="/">Fasilitas Kesehatan</Link></li>
+
+              <li>
+                <a href="https://geomaps.tangerangkab.go.id/#/" target="_blank" rel="noopener noreferrer">
+                  {language === "ID" ? "Sekolah" : "Schools"}
+                </a>
+              </li>
+
+              <li>
+                <a href="https://geomaps.tangerangkab.go.id/#/" target="_blank" rel="noopener noreferrer">
+                  {language === "ID" ? "Perpustakaan" : "Libraries"}
+                </a>
+              </li>
+
+              <li>
+                <a href="https://geomaps.tangerangkab.go.id/#/" target="_blank" rel="noopener noreferrer">
+                  {language === "ID" ? "Beasiswa" : "Scholarships"}
+                </a>
+              </li>
+
+              <li>
+                <a href="https://geomaps.tangerangkab.go.id/#/" target="_blank" rel="noopener noreferrer">
+                  {language === "ID" ? "WiFi Publik" : "Public WiFi"}
+                </a>
+              </li>
+
+              <li>
+                <a href="https://geomaps.tangerangkab.go.id/#/" target="_blank" rel="noopener noreferrer">
+                  {language === "ID" ? "Fasilitas Kesehatan" : "Health Facilities"}
+                </a>
+              </li>
             </ul>
           </li>
 
           <li>
-            <Link to="/publication" onClick={handleNavClick}>Publikasi</Link>
+            <Link to="/publication" onClick={handleNavClick}>
+              {language === "ID" ? "Publikasi" : "Publications"}
+            </Link>
           </li>
 
         </ul>

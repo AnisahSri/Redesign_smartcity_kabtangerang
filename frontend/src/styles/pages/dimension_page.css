@@ -1,15 +1,18 @@
 /* ================= HERO ATAS ================= */
+.dimensi-section{
+  background:#f5f5f5;
+}
 
 .dimensi-hero {
   background-color: #0074BA;
-  position: relative; /* penting biar gambar bisa absolute */
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
 
-  height: 420px;        /* lebih stabil dari padding bawah */
-  padding: 70px 20px 0 20px;  /* atas lega, bawah nol */
+  height: 420px;
+  padding: 70px 20px 0 20px;
   overflow: visible;
 }
 
@@ -17,12 +20,12 @@
 .hero-text h1 {
   color: white;
   font-size: 55px;
-  margin-bottom: 50px; /* jarak ke gambar */
+  margin-bottom: 50px;
 }
 
-/* Gambar background dimensi (dibesarkan & tidak nabrak) */
+/* Gambar background dimensi */
 .dimensi-center-image {
-  width: 800px;        /* diperbesar */
+  width: 800px;
   max-width: 95%;
   border-radius: 16px;
 }
@@ -37,7 +40,7 @@
   justify-content: center;
   border-radius: 30px;
 
-  margin: 300px 120px 0 120px; /* 🔥 lebih jauh supaya gak nabrak */
+  margin: 300px 120px 0 120px;
   position: relative;
   z-index: 1;
 }
@@ -46,65 +49,80 @@
 .dimensi-info-container {
   display: flex;
   align-items: center;
-  gap: 60px; /* lebih lega */
+  gap: 60px;
   max-width: 1000px;
   width: 100%;
 }
 
 /* ICON KIRI */
 .dimensi-info-icon {
-  width: 300px; /* sedikit diperkecil biar balance */
+  width: 300px;
   height: auto;
   opacity: 0.95;
 }
 
 /* TEXT KANAN */
 .dimensi-info-text h2 {
-  color: white;
+  color: #ffffff;
   font-size: 38px;
   margin-bottom: 15px;
 }
 
 .dimensi-info-text p {
-  color: #e3f2fd;
+  color: #ffffff;
   font-size: 22px;
   line-height: 1.7;
-  max-width: 520px;
+  max-width: 650px;
+
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 }
+
 
 /* ================= FITUR UNGGULAN ================= */
 
 .fitur {
-  padding: 100px 120px;
+  padding: 80px 20px 300px 20px;
+  background: #f5f5f5;
   text-align: center;
+  position: relative;
+  overflow: visible;
 }
 
 .fitur h2 {
-  font-size: 40px;
-  margin-bottom: 60px;
-  color: #0b3c66;
+  font-size: 36px;
+  font-weight: 700;
+  color: #0074BA;
+  margin-bottom: 50px;
 }
 
 .fitur-wrapper {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: nowrap;
+  gap: 30px;
+
+  width: 100%;
   max-width: 1200px;
   margin: 0 auto;
+  position: relative;
 }
 
-/* Item icon */
 .fitur-item {
+  width: 160px;
+  flex-shrink: 0;
+  text-align: center;
   cursor: pointer;
   transition: 0.3s ease;
-  width: 150px;
+  position: relative;
 }
 
 .fitur-item:hover {
   transform: translateY(-5px);
 }
 
-.fitur-item.active .icon-circle {
+.fitur-item.active .dimensi-icon-circle {
   background-color: #0074BA;
 }
 
@@ -113,108 +131,245 @@
   font-weight: 600;
 }
 
-.icon-circle {
+/* Lingkaran Icon */
+.dimensi-icon-circle {
   width: 100px;
   height: 100px;
-  background-color: #e6f3fb;
+  margin: 0 auto 15px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto 15px auto;
+
+  overflow: hidden;
   transition: 0.3s ease;
+  box-shadow: inset 0 0 0 3px #0074BA;
 }
 
-.icon-circle img {
+/* Icon */
+.dimensi-icon-circle img {
   width: 50px;
   height: auto;
-}
-
-.fitur-item p {
-  font-size: 18px;
-  color: #333;
-}
-
-
-/* ================= POPUP DETAIL FITUR ================= */
-
-.fitur-popup {
-  position: relative;
-  margin-top: 80px;
-  padding: 60px 60px 40px 60px;
-  border: 2px solid #0b5fa5;
-  border-radius: 25px;
-  background-color: #f5f7fa;
-  text-align: left;
-  animation: fadeIn 0.4s ease;
-}
-
-.fitur-popup h2 {
-  font-size: 36px;
-  color: #0b5fa5;
-  margin-bottom: 30px;
-}
-
-.fitur-popup p {
-  font-size: 18px;
-  line-height: 1.8;
-  color: #444;
-}
-
-/* Garis bawah */
-.fitur-popup::after {
-  content: "";
+  object-fit: contain;
   display: block;
-  margin-top: 40px;
-  height: 2px;
-  background-color: #0b5fa5;
-  opacity: 0.5;
 }
 
-/* Tombol close */
-.close-btn {
-  position: absolute;
-  top: 25px;
-  right: 30px;
-  background: none;
-  border: none;
-  font-size: 22px;
-  cursor: pointer;
-  color: #333;
+/* Text */
+.fitur-item p {
+  font-weight: 600;
+  font-size: 14px;
+  color: #0074BA;
+  transition: 0.3s ease;
 }
 
-/* Tombol kunjungan */
-.popup-bottom {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 30px;
+/* ================= HOVER EFFECT ================= */
+
+.fitur-item:hover .dimensi-icon-circle {
+  background: #0074BA;
 }
 
-.btn-kunjungan {
-  padding: 12px 25px;
-  border: 1px solid #0b5fa5;
-  border-radius: 12px;
-  background: white;
-  color: #0b5fa5;
-  font-weight: 500;
+.fitur-item:hover .dimensi-icon-circle img {
+  filter: brightness(0) invert(1);
+}
+
+.fitur-item:hover p {
+  color: #0074BA;
+}
+
+/* ================= ACTIVE ================= */
+
+.fitur-item.active .dimensi-icon-circle {
+  background: #0074BA;
+}
+
+.fitur-item.active .dimensi-icon-circle img {
+  filter: brightness(0) invert(1);
+}
+
+.fitur-item.active p {
+  color: #0074BA;
+}
+
+
+/* ================= BUTTON DETAIL ================= */
+
+.btn-detail {
+  margin-top: 50px;
+  padding: 12px 35px;
+  border-radius: 30px;
+  border: 2px solid #0074BA;
+  background: #f5f5f5;
+  color: #0074BA;
+  font-weight: 600;
   cursor: pointer;
   transition: 0.3s ease;
 }
 
-.btn-kunjungan:hover {
-  background-color: #0b5fa5;
-  color: white;
+/* Hover tombol */
+.btn-detail:hover {
+  background: #0074BA;
+  color: #ffffff;
+}
+
+/* ================= BUTTON KUNJUNGI HALAMAN ================= */
+
+.btn-kunjungan{
+  padding:10px 25px;
+  border-radius:30px;
+  border:2px solid #0074BA;
+  background:#f5f5f5 !important;
+  color:#0074BA !important;
+  font-weight:600;
+  cursor:pointer;
+  transition:0.3s ease;
+}
+
+/* hover */
+.btn-kunjungan:hover{
+  background:#0074BA !important;
+  color:#f5f5f5 !important;
+}
+
+/* ================= POPUP FITUR ================= */
+
+.fitur-item{
+  position: relative;
+}
+
+/* popup */
+.fitur-popup{
+  position: absolute;
+  top: 140px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 420px;
+  max-width: 90vw;
+  pointer-events: auto;
+
+  background: #f5f5f5;
+  border: 2px solid #0074BA;
+  border-radius: 20px;
+  padding: 30px;
+
+  text-align: left;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  z-index: 100;
+  animation: fadeIn 0.25s ease;
+}
+
+.fitur-item:first-child .fitur-popup{
+  left: 0;
+  transform: translateX(0);
+}
+
+.fitur-item:last-child .fitur-popup{
+  left: auto;
+  right: 0;
+  transform: translateX(0);
+}
+
+/* segitiga */
+.popup-arrow{
+  position: absolute;
+  top: -4px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+
+  width: 20px;
+  height: 20px;
+  background: #f5f5f5;
+  border-left: 2px solid #0074BA;
+  border-top: 2px solid #0074BA;
+}
+
+.fitur-item:first-child .popup-arrow{
+  left: 40px;
+  transform: rotate(45deg);
+}
+
+.fitur-item:last-child .popup-arrow{
+  left: auto;
+  right: 40px;
+  transform: rotate(45deg);
+}
+
+/* judul */
+.fitur-popup h2{
+  font-size: 22px;
+  color: #0074BA;
+  margin-bottom: 15px;
+}
+
+/* text */
+.fitur-popup p{
+  font-size: 14px;
+  line-height: 1.7;
+  color: #ffffff;
+}
+
+/* close button */
+.close-btn{
+  position: absolute;
+  top: 10px;
+  right: 15px;
+
+  border: none;
+  background: none;
+
+  font-size: 18px;
+  cursor: pointer;
 }
 
 
-/* Animasi muncul halus */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(15px);
+/* animasi */
+@keyframes fadeIn{
+  from{
+    opacity:0;
+    margin-top:15px;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+  to{
+    opacity:1;
+    margin-top:0;
   }
+}
+
+
+/* =====================================
+   RESPONSIVE
+===================================== */
+
+@media (max-width:992px){
+
+.fitur-wrapper{
+  flex-wrap:wrap;
+  justify-content:center;
+}
+
+.fitur-item{
+  width:30%;
+  min-width:160px;
+}
+
+.dimensi-info-container{
+  flex-direction:column;
+  text-align:center;
+}
+
+.dimensi-info-text p{
+  max-width:100%;
+}
+
+}
+
+@media (max-width:576px){
+
+.fitur-wrapper{
+  flex-wrap:wrap;
+}
+
+.fitur-item{
+  width:100%;
+  max-width:220px;
+}
+
 }

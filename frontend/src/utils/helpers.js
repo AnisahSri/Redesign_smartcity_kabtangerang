@@ -11,7 +11,13 @@ export const formatDate = (date) => {
 
 // API utility functions
 export const api = axios.create({
-  baseURL: '/api/v1',
+  baseURL:  import.meta.env.VITE_API_BASE_URL,
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});
+export const apii = axios.create({
+  baseURL:  import.meta.env.VITE_MENU_API_URL,
   headers: {
     'Content-Type': 'application/json',
   },
@@ -20,6 +26,11 @@ export const api = axios.create({
 // Add request interceptor for authentication if needed
 api.interceptors.request.use(
   (config) => {
+    // Skip auth for public endpoints
+    if (config.url?.includes('/api/v1/publikasi')) {
+      delete config.headers.Authorization;
+      return config;
+    }
     // Add auth token if available
     const token = localStorage.getItem('token');
     if (token) {
@@ -47,6 +58,10 @@ api.interceptors.response.use(
 
 // API endpoints
 export const apiEndpoints = {
+  menu: {
+    getAll: () => apii.get('/menu'),
+  },
+
   dimensi: {
     getAll: () => api.get('/dimensi'),
     getById: (id) => api.get(`/dimensi/${id}`),
@@ -57,12 +72,12 @@ export const apiEndpoints = {
   events: {
     getAll: () => api.get('/events'),
     getById: (id) => api.get(`/events/${id}`),
-    getAllPublic: () => api.get('/events/public'),
+    getAllPublic: () => api.get('/events'),
   },
   publications: {
     getAll: () => api.get('/publikasi'),
     getById: (id) => api.get(`/publikasi/${id}`),
-    getAllPublic: () => api.get('/publikasi/public'),
+    getAllPublic: () => api.get('/publikasi'),
   },
   images: {
     getAll: () => api.get('/images'),
@@ -89,5 +104,8 @@ export const apiEndpoints = {
     refreshToken: (data) => api.post('/userRefreshToken', data),
   },
 };
+
+// Utility for Publication page API base
+export const getPublikasiBaseUrl = () => import.meta.env.VITE_PUBLIKASI_BASE_URL || 'https://dev.tangerangkab.my.id/smartcity-api';
 
 // Add more utility functions as needed
