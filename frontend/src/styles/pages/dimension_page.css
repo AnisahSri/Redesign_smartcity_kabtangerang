@@ -75,36 +75,51 @@
 /* ================= FITUR UNGGULAN ================= */
 
 .fitur {
-  padding: 100px 120px;
+padding: 80px 20px 300px 20px;
+  background: transparent;
   text-align: center;
+position: relative;
+  z-index: 10;
+  overflow: visible;
 }
 
+/* Judul */
 .fitur h2 {
-  font-size: 40px;
-  margin-bottom: 60px;
-  color: #0b3c66;
+  font-size: 36px;
+  font-weight: 700;
+  color: #0074BA;
+  margin-bottom: 50px;
 }
 
+/* Wrapper sejajar full */
 .fitur-wrapper {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: nowrap; /* supaya tidak turun */
+  gap: 30px;
+
+  width: 100%;
   max-width: 1200px;
   margin: 0 auto;
+  position: relative;
 }
 
-/* Item icon */
+/* Item */
 .fitur-item {
+  width: 160px; /* ukuran tetap */
+  flex-shrink: 0; /* supaya tidak mengecil */
+  text-align: center;
   cursor: pointer;
   transition: 0.3s ease;
-  width: 150px;
+  position: relative;
 }
 
 .fitur-item:hover {
   transform: translateY(-5px);
 }
 
-.fitur-item.active .icon-circle {
+.fitur-item.active .dimensi-icon-circle {
   background-color: #0074BA;
 }
 
@@ -113,108 +128,310 @@
   font-weight: 600;
 }
 
-.icon-circle {
+/* Lingkaran Icon */
+.dimensi-icon-circle {
   width: 100px;
   height: 100px;
-  background-color: #e6f3fb;
+  margin: 0 auto 15px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto 15px auto;
+
+  overflow: hidden; /* penting supaya svg tidak offset */
   transition: 0.3s ease;
+  box-shadow: inset 0 0 0 3px #0074BA;
 }
 
-.icon-circle img {
+/* Icon */
+.dimensi-icon-circle img {
   width: 50px;
   height: auto;
-}
-
-.fitur-item p {
-  font-size: 18px;
-  color: #333;
-}
-
-
-/* ================= POPUP DETAIL FITUR ================= */
-
-.fitur-popup {
-  position: relative;
-  margin-top: 80px;
-  padding: 60px 60px 40px 60px;
-  border: 2px solid #0b5fa5;
-  border-radius: 25px;
-  background-color: #f5f7fa;
-  text-align: left;
-  animation: fadeIn 0.4s ease;
-}
-
-.fitur-popup h2 {
-  font-size: 36px;
-  color: #0b5fa5;
-  margin-bottom: 30px;
-}
-
-.fitur-popup p {
-  font-size: 18px;
-  line-height: 1.8;
-  color: #444;
-}
-
-/* Garis bawah */
-.fitur-popup::after {
-  content: "";
+  object-fit: contain;
   display: block;
-  margin-top: 40px;
-  height: 2px;
-  background-color: #0b5fa5;
-  opacity: 0.5;
 }
 
-/* Tombol close */
-.close-btn {
-  position: absolute;
-  top: 25px;
-  right: 30px;
-  background: none;
-  border: none;
-  font-size: 22px;
-  cursor: pointer;
-  color: #333;
+/* Text */
+.fitur-item p {
+  font-weight: 600;
+  font-size: 14px;
+  color: #0074BA;
+  transition: 0.3s ease;
 }
 
-/* Tombol kunjungan */
-.popup-bottom {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 30px;
+/* ================= HOVER EFFECT ================= */
+
+.fitur-item:hover .dimensi-icon-circle {
+  background: #0074BA;
 }
 
-.btn-kunjungan {
-  padding: 12px 25px;
-  border: 1px solid #0b5fa5;
-  border-radius: 12px;
+.fitur-item:hover .dimensi-icon-circle img {
+  filter: brightness(0) invert(1);
+}
+
+.fitur-item:hover p {
+  color: #0074BA;
+}
+
+/* ================= ACTIVE (CLICK) ================= */
+
+.fitur-item.active .dimensi-icon-circle {
+  background: #0074BA;
+}
+
+.fitur-item.active .dimensi-icon-circle img {
+  filter: brightness(0) invert(1);
+}
+
+.fitur-item.active p {
+  color: #0074BA;
+}
+
+/* ================= BUTTON DETAIL ================= */
+
+.btn-detail {
+  margin-top: 50px;
+  padding: 12px 35px;
+  border-radius: 30px;
+  border: 2px solid #0074BA;
   background: white;
-  color: #0b5fa5;
-  font-weight: 500;
+  color: #0074BA;
+  font-weight: 600;
   cursor: pointer;
   transition: 0.3s ease;
 }
 
-.btn-kunjungan:hover {
-  background-color: #0b5fa5;
+/* Hover tombol */
+.btn-detail:hover {
+  background: #0074BA;
   color: white;
 }
 
+/* Active (click) tombol */
+.btn-detail:active {
+  background: #0074BA;
+  color: white;
+}
 
-/* Animasi muncul halus */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(15px);
+/* ================= POPUP FITUR ================= */
+
+.fitur-item{
+  position: relative;
+}
+
+/* popup */
+.fitur-popup{
+  position: absolute;
+  top: 140px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 420px;
+  max-width: 90vw;
+  pointer-events: auto;
+
+  background: #f6f9ff;
+  border: 2px solid #0074BA;
+  border-radius: 20px;
+  padding: 30px;
+
+  text-align: left;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  z-index: 100;
+  animation: fadeIn 0.25s ease;
+}
+
+.fitur-item:first-child .fitur-popup{
+  left: 0;
+  transform: translateX(0);
+}
+
+.fitur-item:last-child .fitur-popup{
+  left: auto;
+  right: 0;
+  transform: translateX(0);
+}
+
+/* segitiga */
+.popup-arrow{
+  position: absolute;
+  top: -4px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+
+  width: 20px;
+  height: 20px;
+  background: #f6f9ff;
+  border-left: 2px solid #0074BA;
+  border-top: 2px solid #0074BA;
+}
+
+.fitur-item:first-child .popup-arrow{
+  left: 40px;
+  transform: rotate(45deg);
+}
+
+.fitur-item:last-child .popup-arrow{
+  left: auto;
+  right: 40px;
+  transform: rotate(45deg);
+}
+
+/* judul */
+.fitur-popup h2{
+  font-size: 22px;
+  color: #0074BA;
+  margin-bottom: 15px;
+}
+
+/* text */
+.fitur-popup p{
+  font-size: 14px;
+  line-height: 1.7;
+  color: #444;
+}
+
+/* close button */
+.close-btn{
+  position: absolute;
+  top: 10px;
+  right: 15px;
+
+  border: none;
+  background: none;
+
+  font-size: 18px;
+  cursor: pointer;
+}
+
+/* tombol bawah */
+.popup-bottom{
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+/* animasi */
+@keyframes fadeIn{
+  from{
+    opacity:0;
+    margin-top:15px;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+  to{
+    opacity:1;
+    margin-top:0;
   }
 }
+
+
+/* =====================================
+   RESPONSIVE - Mobile Rapi
+===================================== */
+
+@media (max-width:992px){
+.fitur-wrapper{
+  flex-wrap:wrap;
+  justify-content:center;
+  gap: 20px;
+}
+.fitur-item{
+  width:30%;
+  min-width:140px;
+}
+.dimensi-info {
+  margin: 200px 40px 0 40px;
+  padding: 50px 30px;
+}
+.dimensi-info-container {
+  flex-direction: column;
+  text-align: center;
+}
+.dimensi-info-icon {
+  width: 200px;
+}
+.dimensi-info-text h2 {
+  font-size: 28px;
+}
+.dimensi-info-text p {
+  font-size: 16px;
+}
+}
+
+@media (max-width:576px){
+.fitur-wrapper{
+  flex-wrap:wrap;
+  gap: 15px;
+}
+.fitur-item{
+  width:45%;
+  max-width:150px;
+}
+.dimensi-hero {
+  height: 300px;
+  padding: 50px 15px 0 15px;
+}
+.hero-text h1 {
+  font-size: 32px;
+  margin-bottom: 30px;
+}
+.dimensi-center-image {
+  width: 100%;
+}
+.dimensi-info {
+  margin: 150px 15px 0 15px;
+  padding: 40px 20px;
+  border-radius: 20px;
+}
+.dimensi-info-icon {
+  width: 150px;
+}
+.dimensi-info-text h2 {
+  font-size: 24px;
+}
+.dimensi-info-text p {
+  font-size: 14px;
+}
+.fitur {
+padding: 50px 15px 400px 15px;
+}
+.fitur h2 {
+  font-size: 24px;
+  margin-bottom: 30px;
+}
+.dimensi-icon-circle {
+  width: 70px;
+  height: 70px;
+}
+.dimensi-icon-circle img {
+  width: 35px;
+}
+.fitur-item p {
+  font-size: 11px;
+}
+.fitur-popup {
+  width: 280px;
+  padding: 20px;
+  left: 50% !important;
+  right: auto !important;
+  transform: translateX(-50%) !important;
+}
+.fitur-item:first-child .fitur-popup,
+.fitur-item:last-child .fitur-popup {
+  left: 50% !important;
+  right: auto !important;
+  transform: translateX(-50%) !important;
+}
+.popup-arrow {
+  left: 50% !important;
+  right: auto !important;
+}
+.fitur-item:first-child .popup-arrow,
+.fitur-item:last-child .popup-arrow {
+  left: 50% !important;
+  right: auto !important;
+}
+.btn-detail {
+  padding: 10px 25px;
+  font-size: 14px;
+}
+}
+

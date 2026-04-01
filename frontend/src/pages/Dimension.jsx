@@ -1,5 +1,8 @@
-import React, { useState, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useRef, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useLanguage } from "../utils/LanguageContext";
+import { apiEndpoints } from "../utils/helpers.js";
+
 import iconsDimensi from "../assets/icons/icondimensi.svg";
 import backgroundDimensi from "../assets/images/background_dimensi.svg";
 
@@ -11,62 +14,75 @@ import smartEconomy from "../assets/icons/smarteconomy.svg";
 import smartEnvironment from "../assets/icons/smartenvironment.svg";
 import smartBranding from "../assets/icons/smartbranding.svg";
 
-import "../styles/pages/home_page.css";
 import "../styles/pages/dimension_page.css";
-import "../styles/components/Home.css";
+import "../styles/pages/home_page.css";
 
 function Dimension() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const { language } = useLanguage();
+
   const [active, setActive] = useState(null);
+  const [fiturDetail, setFiturDetail] = useState([]);
+  const [loading, setLoading] = useState(true);
   const detailRef = useRef(null);
 
-  const fiturDetail = [
-    {
-      title: "Smart Governance",
-      desc: "Smart Governance adalah sistem tata kelola pemerintahan berbasis teknologi yang transparan dan efisien.",
-      path: "/SmartGovernance",
-    },
-    {
-      title: "Smart Living",
-      desc: "Smart Living meningkatkan kualitas hidup masyarakat melalui layanan digital dan infrastruktur cerdas.",
-      path: "/SmartLiving",
-    },
-    {
-      title: "Smart Society",
-      desc: "Smart Society membangun masyarakat yang aktif, inklusif, dan melek teknologi.",
-      path: "/SmartSociety",
-    },
-    {
-      title: "Smart Economy",
-      desc: "Smart Economy mendorong pertumbuhan ekonomi berbasis inovasi dan digitalisasi.",
-      path: "/SmartEconomy",
-    },
-    {
-      title: "Smart Environment",
-      desc: "Smart Environment berfokus pada pengelolaan lingkungan yang berkelanjutan.",
-      path: "/SmartEnvironment",
-    },
-    {
-      title: "Smart Branding",
-      desc: "Smart Branding meningkatkan citra daerah melalui strategi komunikasi dan digital branding.",
-      path: "/SmartBranding",
-    },
-  ];
+  useEffect(() => {
+    const fetchDimensi = async () => {
+      try {
+        const response = await apiEndpoints.dimensi.getAll();
+        const jsonData = response.data;
+        const dimensiList = jsonData.data.data.map(item => ({
+          title: item.name,
+          desc: item.description,
+          path: `/${item.name.replace(/ /g, '')}`
+        }));
+        setFiturDetail(dimensiList);
+      } catch (err) {
+        console.error('API Error:', err);
+        setLoading(false);
+        // Fallback static data
+        setFiturDetail([
+          { title: "Smart Governance", desc: language === "ID" ? "Fallback: Smart Governance adalah sistem tata kelola pemerintahan berbasis teknologi." : "Fallback: Smart Governance system.", path: "/SmartGovernance" },
+          { title: "Smart Living", desc: language === "ID" ? "Fallback: Smart Living meningkatkan kualitas hidup." : "Fallback: Smart Living improves life quality.", path: "/SmartLiving" },
+          { title: "Smart Society", desc: language === "ID" ? "Fallback: Smart Society membangun masyarakat pintar." : "Fallback: Smart Society builds smart community.", path: "/SmartSociety" },
+          { title: "Smart Economy", desc: language === "ID" ? "Fallback: Smart Economy untuk pertumbuhan ekonomi." : "Fallback: Smart Economy for growth.", path: "/SmartEconomy" },
+          { title: "Smart Environment", desc: language === "ID" ? "Fallback: Smart Environment berkelanjutan." : "Fallback: Smart Environment sustainable.", path: "/SmartEnvironment" },
+          { title: "Smart Branding", desc: language === "ID" ? "Fallback: Smart Branding citra daerah." : "Fallback: Smart Branding for region image.", path: "/SmartBranding" }
+        ]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchDimensi();
+  }, [location.key]);
+
+  useEffect(() => {
+    setActive(null);
+  }, [location.key]);
 
   const handleClick = (index) => {
     setActive(index);
+
     setTimeout(() => {
-      detailRef.current?.scrollIntoView({ behavior: "smooth" });
+      detailRef.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+      });
     }, 100);
   };
 
   return (
     <section id="dimensi" className="dimensi-section">
 
-      {/* ================= HERO ATAS ================= */}
       <div className="dimensi-hero">
         <div className="hero-text">
-          <h1>Dimensi Smart City</h1>
+          <h1>
+            {language === "ID"
+              ? "Dimensi Smart City"
+              : "Smart City Dimensions"}
+          </h1>
         </div>
 
         <img
@@ -76,117 +92,116 @@ function Dimension() {
         />
       </div>
 
-      {/* ================= SECTION BAWAH ================= */}
       <div className="dimensi-info">
         <div className="dimensi-info-container">
 
-          <img 
-            src={iconsDimensi} 
-            alt="Icon Dimensi" 
+          <img
+            src={iconsDimensi}
+            alt="Icon Dimensi"
             className="dimensi-info-icon"
           />
 
           <div className="dimensi-info-text">
-            <h2>Dimensi Smart City</h2>
+            <h2>
+              {language === "ID"
+                ? "Dimensi Smart City"
+                : "Smart City Dimensions"}
+            </h2>
+
             <p>
-              Mendefinisikan pilar-pilar penting untuk mewujudkan
-              Kabupaten Tangerang sebagai kota pintar yang
-              terintegrasi dan berkelanjutan.
+              {language === "ID"
+                ? "Mendefinisikan pilar-pilar penting untuk mewujudkan Kabupaten Tangerang sebagai kota pintar yang terintegrasi dan berkelanjutan."
+                : "Defines the important pillars to realize Tangerang Regency as an integrated and sustainable smart city."}
             </p>
           </div>
 
         </div>
       </div>
 
-      {/* ================= FITUR UNGGULAN ================= */}
       <section className="fitur">
-        <h2>Fitur Unggulan Smart City</h2>
 
-        <div className="fitur-wrapper">
+        <h2>
+          {language === "ID"
+            ? "Fitur Unggulan Smart City"
+            : "Smart City Featured Features"}
+        </h2>
 
-          <div className={`fitur-item ${active === 0 ? "active" : ""}`}
-            onClick={() => handleClick(0)}>
-            <div className="icon-circle">
-              <img src={smartGovernance} alt="" />
-            </div>
-            <p>Smart Governance</p>
-          </div>
+        {loading ? (
+          <div className="loading">Loading dimensi...</div>
+        ) : (
+          <div className="fitur-wrapper">
+            {fiturDetail.map((detail, index) => {
+              const icons = {
+                'Smart Governance': smartGovernance,
+                'Smart Living': smartLiving,
+                'Smart Society': smartSociety,
+                'Smart Economy': smartEconomy,
+                'Smart Environment': smartEnvironment,
+                'Smart Branding': smartBranding
+              };
+              const icon = icons[detail.title];
+              return (
+                <div
+                  key={index}
+                  className={`fitur-item ${active === index ? "active" : ""}`}
+                  onClick={() => handleClick(index)}
+                >
+                  <div className="dimensi-icon-circle">
+                    <img src={icon} alt={detail.title} />
+                  </div>
+                  <p>{detail.title}</p>
 
-          <div className={`fitur-item ${active === 1 ? "active" : ""}`}
-            onClick={() => handleClick(1)}>
-            <div className="icon-circle">
-              <img src={smartLiving} alt="" />
-            </div>
-            <p>Smart Living</p>
-          </div>
+                  {active === index && (
+                    <div className="fitur-popup" ref={detailRef}>
 
-          <div className={`fitur-item ${active === 2 ? "active" : ""}`}
-            onClick={() => handleClick(2)}>
-            <div className="icon-circle">
-              <img src={smartSociety} alt="" />
-            </div>
-            <p>Smart Society</p>
-          </div>
+                      <div className="popup-arrow"></div>
 
-          <div className={`fitur-item ${active === 3 ? "active" : ""}`}
-            onClick={() => handleClick(3)}>
-            <div className="icon-circle">
-              <img src={smartEconomy} alt="" />
-            </div>
-            <p>Smart Economy</p>
-          </div>
+                      <button
+                        className="close-btn"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setActive(null);
+                        }}
+                      >
+                        ×
+                      </button>
 
-          <div className={`fitur-item ${active === 4 ? "active" : ""}`}
-            onClick={() => handleClick(4)}>
-            <div className="icon-circle">
-              <img src={smartEnvironment} alt="" />
-            </div>
-            <p>Smart Environment</p>
-          </div>
+                      <h2>{detail.title}</h2>
 
-          <div className={`fitur-item ${active === 5 ? "active" : ""}`}
-            onClick={() => handleClick(5)}>
-            <div className="icon-circle">
-              <img src={smartBranding} alt="" />
-            </div>
-            <p>Smart Branding</p>
-          </div>
+                      <p>{detail.desc}</p>
 
-        </div>
+                      <div className="popup-bottom">
+                        <button
+                          className="btn-kunjungan"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            navigate(detail.path);
+                          }}
+                        >
+                          {language === "ID"
+                            ? "Kunjungi Halaman →"
+                            : "Visit Page →"}
+                        </button>
+                      </div>
 
-        {/* ===== POPUP DETAIL ===== */}
-        {active !== null && (
-          <div className="fitur-popup" ref={detailRef}>
+                    </div>
+                  )}
 
-            <button 
-              className="close-btn"
-              onClick={() => setActive(null)}
-            >
-              ✕
-            </button>
-
-            <h2>{fiturDetail[active].title}</h2>
-
-            <p>{fiturDetail[active].desc}</p>
-
-            <div className="popup-bottom">
-              <button
-                className="btn-kunjungan"
-                onClick={() => navigate(fiturDetail[active].path)}
-              >
-                Kunjungi Halaman →
-              </button>
-            </div>
-
+                </div>
+              );
+            })}
           </div>
         )}
-
-        {/* ===== BUTTON DETAIL DIMENSI ===== */}
-        <button 
+        <button
           className="btn-detail"
-          onClick={() => navigate("/dimensi")}
+          onClick={() => {
+            setActive(null);
+            navigate("/dimensi");
+          }}
         >
-          Detail Dimensi →
+          {language === "ID"
+            ? "Detail Dimensi →"
+            : "Dimension Details →"}
         </button>
 
       </section>

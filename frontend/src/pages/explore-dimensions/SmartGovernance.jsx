@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import backgroundKunjungan from "../../assets/images/background_kunjungan.svg";
 import backgroundBerita from "../../assets/images/background_berita.svg";
@@ -17,11 +17,38 @@ function SmartGovernance() {
   const [selectedCategory, setSelectedCategory] = useState("berita");
   const [activeIndex, setActiveIndex] = useState(0);
   const [selectedInnovation, setSelectedInnovation] = useState(null);
+  const [inovasiData, setInovasiData] = useState([]);
 
   const navigate = useNavigate();
   const scrollRef = useRef(null);
 
   const totalSlide = 3;
+
+  useEffect(() => {
+    const fetchInovasi = async () => {
+
+try {
+  const response = await fetch('/api/v1/inovasi');
+  const jsonData = await response.json();
+
+        setInovasiData(jsonData.data.data || []);
+      } catch (err) {
+        console.error('Error fetching inovasi:', err);
+      }
+    };
+    fetchInovasi();
+  }, []);
+
+  /* ===== FIX AGAR TIDAK PERLU REFRESH ===== */
+  useEffect(() => {
+    if (scrollRef.current) {
+      const container = scrollRef.current;
+      container.scrollTo({
+        left: 0,
+        behavior: "instant",
+      });
+    }
+  }, []);
 
   const scrollToIndex = (index) => {
     const container = scrollRef.current;
@@ -57,7 +84,7 @@ function SmartGovernance() {
             className="kunjungan-image"
           />
 
-          {/* ===== BREADCRUMB (POSISI BARU) ===== */}
+          {/* ===== BREADCRUMB ===== */}
           <div className="smart-breadcrumb">
             <span onClick={() => navigate("/")}>Beranda</span>
             <span className="dot">•</span>
@@ -186,15 +213,15 @@ function SmartGovernance() {
       {selectedCategory === "inovasi" && (
         <section className="inovasi-section">
           <div className="inovasi-grid">
-            {[1, 2, 3].map((item) => (
+            {inovasiData.map((item) => (
               <div
-                key={item}
+                key={item.id}
                 className="inovasi-card"
-                onClick={() => setSelectedInnovation(backgroundBerita)}
+                onClick={() => setSelectedInnovation(`/files/${item.imageName}`)}
               >
-                <img src={backgroundBerita} alt="Inovasi" />
+                <img src={`/files/${item.imageName}`} alt={item.name} />
                 <div className="inovasi-overlay">
-                  <h3>Digitalisasi Layanan Publik</h3>
+                  <h3>{item.name}</h3>
                 </div>
               </div>
             ))}

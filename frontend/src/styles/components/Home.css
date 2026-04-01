@@ -1,10 +1,18 @@
 /* ================= RESET ================= */
+html {
+  overflow-y: scroll;
+}
+
 body {
   margin: 0;
   font-family: "Poppins", sans-serif;
 }
 
 /* ================= HERO ================= */
+.home {
+  background: #f5f5f5;
+}
+
 .hero {
   text-align: center;
   padding: 120px 20px 0;
@@ -12,15 +20,14 @@ body {
     to bottom,
     #0074BA 0%,
     #0074BA 60%,
-    #ffffff 60%,
-    #ffffff 100%
+    transparent 60%
   );
   position: relative;
 }
 
 /* Judul */
 .hero h1 {
-  font-size: 42px;
+  font-size: clamp(26px,4vw,42px);
   margin-bottom: 60px;
   color: #ffffff;
   line-height: 1.4;
@@ -40,15 +47,44 @@ body {
   box-shadow: 0 20px 50px rgba(0,0,0,0.15);
 }
 
+.social-vertical {
+  position: absolute;
+  left: 30px;
+  top: 40%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.social-vertical a {
+  width: 42px;
+  height: 42px;
+  border: 2px solid white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  background: transparent;
+  transition: all 0.3s ease;
+}
+
+.social-vertical a:hover {
+  background: white;
+  color: #0c6ea8;
+}
+
 /* ================= FITUR UNGGULAN ================= */
 
 .fitur {
-  padding: 80px 20px;
-  background: #f8f9fa;
+  padding: 80px 20px 300px 20px; /* tambah ruang bawah */
+  background: transparent;
   text-align: center;
+  position: relative;
+  overflow: visible;
 }
 
-/* Judul */
 .fitur h2 {
   font-size: 36px;
   font-weight: 700;
@@ -56,56 +92,75 @@ body {
   margin-bottom: 50px;
 }
 
-/* Wrapper sejajar full */
 .fitur-wrapper {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
+  flex-wrap: nowrap; 
+  gap: 30px;
+
   width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
 }
 
-/* Item */
 .fitur-item {
-  width: calc(100% / 6);
+  width: 160px;
+  flex-shrink: 0;
   text-align: center;
   cursor: pointer;
   transition: 0.3s ease;
+  position: relative;
+  min-width: 160px;
 }
 
-/* Lingkaran Icon */
-.icon-circle {
-  width: 90px;
-  height: 90px;
+.fitur-item:hover {
+  transform: translateY(-5px);
+}
+
+.fitur-item.active .dimensi-icon-circle {
+  background-color: #0074BA;
+}
+
+.fitur-item.active p {
+  color: #0074BA;
+  font-weight: 600;
+}
+
+.dimensi-icon-circle {
+  width: 100px;
+  height: 100px;
   margin: 0 auto 15px;
   border-radius: 50%;
-  border: 2px solid #0074BA;
   display: flex;
   align-items: center;
   justify-content: center;
+
+  overflow: hidden;
   transition: 0.3s ease;
+  box-shadow: inset 0 0 0 3px #0074BA;
 }
 
-/* Icon */
-.icon-circle img {
-  width: 40px;
-  transition: 0.3s ease;
+.dimensi-icon-circle img {
+  width: 50px;
+  height: auto;
+  object-fit: contain;
+  display: block;
 }
 
-/* Text */
 .fitur-item p {
   font-weight: 600;
   font-size: 14px;
-  color: #1a1a2e;
+  color: #0074BA;
   transition: 0.3s ease;
 }
 
-/* ================= HOVER EFFECT ================= */
-
-.fitur-item:hover .icon-circle {
+.fitur-item:hover .dimensi-icon-circle {
   background: #0074BA;
 }
 
-.fitur-item:hover .icon-circle img {
+.fitur-item:hover .dimensi-icon-circle img {
   filter: brightness(0) invert(1);
 }
 
@@ -113,13 +168,11 @@ body {
   color: #0074BA;
 }
 
-/* ================= ACTIVE (CLICK) ================= */
-
-.fitur-item.active .icon-circle {
+.fitur-item.active .dimensi-icon-circle {
   background: #0074BA;
 }
 
-.fitur-item.active .icon-circle img {
+.fitur-item.active .dimensi-icon-circle img {
   filter: brightness(0) invert(1);
 }
 
@@ -127,8 +180,143 @@ body {
   color: #0074BA;
 }
 
-/* ================= BUTTON DETAIL ================= */
+/* tombol kunjungan */
+.btn-kunjungan{
+  padding: 10px 24px;
+  border-radius: 25px;
+  border: 2px solid #0074BA;
 
+  background: white;
+  color: #0074BA;
+
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+
+  transition: all 0.3s ease;
+}
+
+/* hover effect */
+.btn-kunjungan:hover{
+  background: #0074BA !important;
+  color: white !important;
+}
+
+/* ================= GEMILANG ================= */
+
+.gemilang {
+  padding: 60px 10%;
+  background: #0074BA;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 50px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 0;   /* hilangkan radius */
+  margin: 0;
+}
+
+.gemilang-content {
+  max-width: 550px;
+}
+
+.gemilang h2 {
+  font-size: 40px;
+  margin: 20px 0;
+}
+
+.gemilang-icons {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  height: 420px; /* tambah tinggi supaya hp tidak kepotong */
+  margin: auto;
+}
+
+/* icon lampu */
+.gemilang-icons img {
+  position: absolute;
+  width: 70px;
+  height: auto;
+}
+
+/* lampu biru */
+.gemilang-icons img:nth-child(1){
+  top: 10px;
+  left: 20px;
+}
+
+/* lampu kuning */
+.gemilang-icons img:nth-child(2){
+  top: 20px;
+  right: 28px;
+}
+
+/* lampu ungu */
+.gemilang-icons img:nth-child(3){
+  bottom: 40px;
+  left: 30px;
+}
+
+/* HP (paling besar & di tengah) */
+.gemilang-icons img:last-child{
+  position: absolute;
+  width: 260px;   /* HP lebih besar */
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+}
+
+/* ================= VIRTUAL TOUR ================= */
+
+.virtual {
+  padding: 120px 20px;
+  text-align: center;
+  background: #f5f5f5;
+}
+
+.virtual h2 {
+  font-size: 40px;
+  margin-bottom: 50px;
+  color: #0074BA;
+}
+
+/* ===== VIDEO BARU (TAMBAHAN) ===== */
+.virtual-box {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  border-radius: 30px;
+  overflow: hidden;
+}
+
+.virtual-box video {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  display: block;
+  object-fit: contain;
+}
+
+.virtual-box-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: clamp(16px, 3vw, 28px);
+  font-weight: 700;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+  text-align: center;
+  width: 100%;
+}
+
+/* ===== TEXT ===== */
+
+/* ===== BUTTON DETAIL DIMENSI ===== */
 .btn-detail {
   margin-top: 50px;
   padding: 12px 35px;
@@ -147,208 +335,187 @@ body {
   color: white;
 }
 
-/* ================= GEMILANG ================= */
-.gemilang {
-  padding: 120px 8%;
+/* Active (click) tombol */
+.btn-detail:active {
   background: #0074BA;
   color: white;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 80px;
-  position: relative;
-  overflow: hidden;
 }
 
-.gemilang::before {
-  content: "";
+/* ================= POPUP FITUR ================= */
+
+.fitur-item{
+  position: relative;
+}
+
+/* popup */
+.fitur-popup{
   position: absolute;
-  width: 500px;
-  height: 500px;
-  background: rgba(255, 255, 255, 0.08);
-  border-radius: 50%;
-  top: -150px;
-  right: -150px;
-  filter: blur(80px);
-}
-
-.gemilang-content {
-  max-width: 550px;
-  position: relative;
-  z-index: 2;
-}
-
-.gemilang .produk {
-  font-size: 14px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  opacity: 0.85;
-}
-
-.gemilang h2 {
-  font-size: 40px;
-  margin: 20px 0;
-  line-height: 1.4;
-  font-weight: 700;
-}
-
-.gemilang .desc {
-  font-size: 18px;
-  opacity: 0.9;
-  line-height: 1.6;
-}
-
-.gemilang-icons {
-  position: relative;
-  width: 380px;
-  height: 380px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.gemilang-icons img {
-  position: absolute;
-  width: 75px;
-  transition: all 0.4s ease;
-  filter: drop-shadow(0 10px 20px rgba(0,0,0,0.2));
-}
-
-.gemilang-icons img:hover {
-  transform: translateY(-8px) scale(1.08);
-}
-
-.gemilang-icons img:nth-child(1) {
-  top: 0;
+  top: 140px;
   left: 50%;
   transform: translateX(-50%);
-}
+  width: 420px;
+  max-width: 90vw;
+  pointer-events: auto;
 
-.gemilang-icons img:nth-child(2) {
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.gemilang-icons img:nth-child(3) {
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.gemilang-icons img:nth-child(4) {
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.gemilang-icons img:last-child {
-  position: relative;
-  width: 170px;
-  z-index: 2;
-}
-
-/* ================= VIRTUAL TOUR ================= */
-.virtual {
-  padding: 120px 20px;
-  text-align: center;
-  background: #f5f5f5;
-}
-
-.virtual h2 {
-  font-size: 40px;
-  margin-bottom: 50px;
-  color: #0074BA;
-}
-
-.virtual-box {
-  background: white;
-  padding: 80px 110px;
-  border-radius: 30px;
-  width: 95%;
-  max-width: 1100px;
-  margin: 0 auto;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.virtual-box img {
-  width: 100%;
-  max-width: 800px;
-  border-radius: 0px;
-}
-
-/* ===== TEXT BERJALAN ===== */
-.running-text {
-  margin-top: 30px;
-  width: 100%;
-  overflow: hidden;
-  position: relative;
-  height: 40px;
-}
-
-.running-text p {
-  position: absolute;
-  white-space: nowrap;
-  font-size: 30px;
-  font-weight: 800;
-  color: #BC90BA;
-  animation: runningText 10s linear infinite;
-}
-
-@keyframes runningText {
-  from {
-    left: 100%;
-  }
-  to {
-    left: -100%;
-  }
-}
-
-/* ================= FOOTER ================= */
-.footer {
-  padding: 30px;
-  text-align: center;
-  background: #F5F5F5;
-  color: white;
-  font-size: 14px;
-}
-
-/* ================= TAMBAHAN ================= */
-
-/* hilangkan box putih dan besarkan gambar */
-.virtual-box{
-  position: relative;
-  background: transparent;
-  box-shadow: none;
-  padding: 0;
-  width: 100%;
-  max-width: 1200px;
-}
-
-/* gambar lebih besar */
-.virtual-box img{
-  width: 100%;
-  max-width: 1100px;
+  background: #f6f9ff;
+  border: 2px solid #0074BA;
   border-radius: 20px;
+  padding: 30px;
+
+  text-align: left;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  z-index: 100;
+  animation: fadeIn 0.25s ease;
 }
 
-/* running text di atas gambar */
-.running-text{
-  position: absolute;
-  bottom: -50px;
+.fitur-item:first-child .fitur-popup{
   left: 0;
-  width: 100%;
-  height: 120px;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
+  transform: translateX(0);
 }
 
-/* teks besar tapi tidak kepotong */
-.running-text p{
-  font-size: 70px;
-  line-height: 1.2;
+.fitur-item:last-child .fitur-popup{
+  left: auto;
+  right: 0;
+  transform: translateX(0);
+}
+
+/* segitiga */
+.popup-arrow{
+  position: absolute;
+  top: -4px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+
+  width: 20px;
+  height: 20px;
+  background: #f6f9ff;
+  border-left: 2px solid #0074BA;
+  border-top: 2px solid #0074BA;
+}
+
+.fitur-item:first-child .popup-arrow{
+  left: 40px;
+  transform: rotate(45deg);
+}
+
+.fitur-item:last-child .popup-arrow{
+  left: auto;
+  right: 40px;
+  transform: rotate(45deg);
+}
+
+/* judul */
+.fitur-popup h2{
+  font-size: 22px;
+  color: #0074BA;
+  margin-bottom: 15px;
+}
+
+/* text */
+.fitur-popup p{
+  font-size: 14px;
+  line-height: 1.7;
+  color: #444;
+}
+
+/* close button */
+.close-btn{
+  position: absolute;
+  top: 10px;
+  right: 15px;
+
+  border: none;
+  background: none;
+
+  font-size: 18px;
+  cursor: pointer;
+}
+
+/* tombol bawah */
+.popup-bottom{
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+/* animasi */
+@keyframes fadeIn{
+  from{
+    opacity:0;
+    margin-top:15px;
+  }
+  to{
+    opacity:1;
+    margin-top:0;
+  }
+}
+
+/* =====================================
+   RESPONSIVE
+===================================== */
+
+@media (max-width:992px){
+.fitur-wrapper{
+  flex-wrap:wrap;
+  justify-content:center;
+}
+.fitur-item{
+  width:30%;
+  min-width:140px;
+}
+.fitur-popup {
+  width: 280px;
+  padding: 20px;
+  left: 50% !important;
+  right: auto !important;
+  transform: translateX(-50%) !important;
+}
+.fitur-item:first-child .fitur-popup,
+.fitur-item:last-child .fitur-popup {
+  left: 50% !important;
+  right: auto !important;
+  transform: translateX(-50%) !important;
+}
+.popup-arrow {
+  left: 50% !important;
+  right: auto !important;
+}
+.fitur-item:first-child .popup-arrow,
+.fitur-item:last-child .popup-arrow {
+  left: 50% !important;
+  right: auto !important;
+}
+}
+
+@media (max-width:576px){
+.fitur-wrapper{
+  flex-wrap:wrap;
+  gap: 15px;
+}
+.fitur-item{
+  width:45%;
+  max-width:150px;
+}
+.fitur-popup {
+  width: 280px;
+  padding: 20px;
+  left: 50% !important;
+  right: auto !important;
+  transform: translateX(-50%) !important;
+}
+.fitur-item:first-child .fitur-popup,
+.fitur-item:last-child .fitur-popup {
+  left: 50% !important;
+  right: auto !important;
+  transform: translateX(-50%) !important;
+}
+.popup-arrow {
+  left: 50% !important;
+  right: auto !important;
+}
+.fitur-item:first-child .popup-arrow,
+.fitur-item:last-child .popup-arrow {
+  left: 50% !important;
+  right: auto !important;
+}
 }

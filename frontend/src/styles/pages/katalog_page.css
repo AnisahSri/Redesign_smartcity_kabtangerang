@@ -1,15 +1,18 @@
 .section-katalog {
-  background: transparent;
-  padding: 120px 0 80px 0;
+  background: #F5F5F5;
+  padding: 0 0 80px 0;  /* hilangkan jarak atas */
+
+  width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center; /* bikin semua isi section center */
+  align-items: center;
 }
 
 /* WRAPPER FOTO (ikut ukuran gambar) */
 .hero-wrapper {
   position: relative;
-  display: inline-block; 
+  display: inline-block;
+  overflow: hidden;
 }
 .hero-center {
   display: flex;
@@ -18,8 +21,8 @@
 
 /* FOTO */
 .hero-wrapper img {
-  width: 900px;
-  max-width: 95vw; /* supaya tetap center di layar kecil */
+  width: 100vw;
+  height: auto;
   display: block;
   position: relative;
   z-index: 2;
@@ -160,4 +163,60 @@
     text-align: center;
     gap: 20px;
   }
+}
+
+@media (max-width: 576px) {
+
+  /* HERO IMAGE */
+  .hero-wrapper img {
+    width: 100%;
+    height: auto;
+  }
+
+  /* LIST KATALOG */
+  .katalog-list {
+    width: 92%;
+    margin-top: 40px;
+    gap: 20px;
+  }
+
+  /* CARD */
+  .katalog-item {
+    padding: 25px 20px;
+    gap: 15px;
+  }
+
+  /* IMAGE ICON */
+  .item-image img {
+    width: 80px;
+  }
+
+  /* TEXT */
+  .item-content h3 {
+    font-size: 18px;
+  }
+
+  .item-content p {
+    font-size: 13px;
+  }
+
+  /* BUTTON */
+  .item-button a {
+    padding: 10px 20px;
+    font-size: 13px;
+  }
+
+  /* GEOMAPS */
+  .geomaps-item {
+    padding: 30px 20px;
+  }
+
+  .geomaps-item h3 {
+    font-size: 22px;
+  }
+
+  .geomaps-item p {
+    font-size: 14px;
+  }
+
 }
