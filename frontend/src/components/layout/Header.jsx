@@ -4,10 +4,14 @@ import { Link, useLocation } from 'react-router-dom';
 import '../../styles/components/header.css';
 
 import logoImg from "../../assets/images/smartcity.svg";
+import { useLanguage } from '../../utils/LanguageContext';
+import { useDynamicMenu } from "../../hooks/useDynamicMenu";
+import { STATIC_MENU_FALLBACK } from '../../data/staticMenuFallback.js';
 
 const Header = () => {
   const location = useLocation();
   const pathname = location.pathname;
+  const { language, toggleLanguage } = useLanguage();
 
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -15,7 +19,6 @@ const Header = () => {
   const [isSearchExpanded, setIsSearchExpanded] = useState(false);
   const [isSearchHovered, setIsSearchHovered] = useState(false);
   const [openDropdown, setOpenDropdown] = useState(null);
-  const [language, setLanguage] = useState("ID");
 
   const searchInputRef = useRef(null);
 
@@ -60,9 +63,10 @@ const Header = () => {
     setOpenDropdown(openDropdown === menu ? null : menu);
   };
 
-  const toggleLanguage = (lang) => {
-    setLanguage(lang);
-  };
+  const { menuItems, loading } = useDynamicMenu();
+
+  // Gunakan fallback jika loading/error
+  const finalMenuItems = loading || !menuItems.length ? STATIC_MENU_FALLBACK : menuItems;
 
   return (
     <>
@@ -80,49 +84,35 @@ const Header = () => {
             </Link>
           </div>
 
-          {/* DESKTOP NAV */}
+          {/* DESKTOP NAV - DYNAMIC */}
           <nav className="desktop-nav">
             <ul>
-
-              <li className="dropdown">
-                <span>
-                  Tentang <ChevronDown size={16} />
-                </span>
-                <div className="dropdown-content">
-                  <Link to="/profile">Profil</Link>
-                  <Link to="/sejarah">Sejarah</Link>
-                </div>
-              </li>
-
-              <li>
-                <Link to="/dimensi">Dimensi</Link>
-              </li>
-
-              <li>
-                <Link to="/event">Agenda</Link>
-              </li>
-
-              <li>
-                <Link to="/katalog">Katalog</Link>
-              </li>
-
-              <li className="dropdown">
-                <span>
-                  Fasilitas Publik <ChevronDown size={16} />
-                </span>
-                <div className="dropdown-content">
-                  <Link to="/">Sekolah</Link>
-                  <Link to="/">Perpustakaan</Link>
-                  <Link to="/">Beasiswa</Link>
-                  <Link to="/">WiFi Publik</Link>
-                  <Link to="/">Fasilitas Kesehatan</Link>
-                </div>
-              </li>
-
-              <li>
-                <Link to="/publication">Publikasi</Link>
-              </li>
-
+              {finalMenuItems.map((item, index) => (
+                item.children && item.children.length ? (
+                  <li key={index} className="dropdown">
+                    <span onClick={() => toggleDropdown(`desktop-${index}`)}>
+                      {language === "ID" ? item.titleID : item.titleEN} <ChevronDown size={16} />
+                    </span>
+                    <div className="dropdown-content">
+                      {item.children.map((child, cIndex) => (
+                        <Link 
+                          key={cIndex} 
+                          to={child.path}
+                          onClick={handleNavClick}
+                        >
+                          {language === "ID" ? child.titleID : child.titleEN}
+                        </Link>
+                      ))}
+                    </div>
+                  </li>
+                ) : (
+                  <li key={index}>
+                    <Link to={item.path} onClick={handleNavClick}>
+                      {language === "ID" ? item.titleID : item.titleEN}
+                    </Link>
+                  </li>
+                )
+              ))}
             </ul>
           </nav>
 
@@ -182,57 +172,36 @@ const Header = () => {
         </div>
       </header>
 
-      {/* MOBILE NAV */}
+      {/* MOBILE NAV - DYNAMIC */}
       <nav className={`mobile-nav ${isMobileMenuOpen ? 'open' : ''}`}>
         <ul>
-
-          <li className={`mobile-dropdown ${openDropdown === 'tentang' ? 'active' : ''}`}>
-            <div
-              className="mobile-dropdown-title"
-              onClick={() => toggleDropdown('tentang')}
-            >
-              Tentang <span>▾</span>
-            </div>
-
-            <ul className="mobile-submenu">
-              <li><Link to="/profile" onClick={handleNavClick}>Profil</Link></li>
-              <li><Link to="/about" onClick={handleNavClick}>Sejarah</Link></li>
-            </ul>
-          </li>
-
-          <li>
-            <Link to="/dimensi" onClick={handleNavClick}>Dimensi</Link>
-          </li>
-
-          <li>
-            <Link to="/event" onClick={handleNavClick}>Agenda</Link>
-          </li>
-
-          <li>
-            <Link to="/katalog" onClick={handleNavClick}>Katalog</Link>
-          </li>
-
-          <li className={`mobile-dropdown ${openDropdown === 'fasilitas' ? 'active' : ''}`}>
-            <div
-              className="mobile-dropdown-title"
-              onClick={() => toggleDropdown('fasilitas')}
-            >
-              Fasilitas Publik <span>▾</span>
-            </div>
-
-            <ul className="mobile-submenu">
-              <li><Link to="/">Sekolah</Link></li>
-              <li><Link to="/">Perpustakaan</Link></li>
-              <li><Link to="/">Beasiswa</Link></li>
-              <li><Link to="/">WiFi Publik</Link></li>
-              <li><Link to="/">Fasilitas Kesehatan</Link></li>
-            </ul>
-          </li>
-
-          <li>
-            <Link to="/publication" onClick={handleNavClick}>Publikasi</Link>
-          </li>
-
+          {finalMenuItems.map((item, index) => (
+            item.children && item.children.length ? (
+              <li key={`mobile-${index}`} className={`mobile-dropdown ${openDropdown === `mobile-${index}` ? 'active' : ''}`}>
+                <div
+                  className="mobile-dropdown-title"
+                  onClick={() => toggleDropdown(`mobile-${index}`)}
+                >
+                  {language === "ID" ? item.titleID : item.titleEN} <span>▾</span>
+                </div>
+                <ul className="mobile-submenu">
+                  {item.children.map((child, cIndex) => (
+                    <li key={cIndex}>
+                      <Link to={child.path} onClick={handleNavClick}>
+                        {language === "ID" ? child.titleID : child.titleEN}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            ) : (
+              <li key={`mobile-${index}`}>
+                <Link to={item.path} onClick={handleNavClick}>
+                  {language === "ID" ? item.titleID : item.titleEN}
+                </Link>
+              </li>
+            )
+          ))}
         </ul>
       </nav>
 

@@ -4,6 +4,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
+import { useLanguage } from "../utils/LanguageContext";
 
 /* IMPORT GAMBAR DARI ASSETS */
 import websiteImg from "../assets/images/website.svg";
@@ -11,6 +12,8 @@ import smartImg from "../assets/images/smart.svg";
 import lineImg from "../assets/images/line.svg";
 
 export default function Sejarah() {
+  const { language } = useLanguage();
+
   return (
     <main className="sejarah-main">
 
@@ -22,7 +25,7 @@ export default function Sejarah() {
           className="sejarah-center-image"
         />
         <div className="hero-text">
-          <h1>Sejarah</h1>
+          <h1>{language === "ID" ? "Sejarah" : "History"}</h1>
         </div>
       </div>
 
@@ -30,15 +33,15 @@ export default function Sejarah() {
       <section className="kalimat-awal">
         <div className="container">
           <p>
-            Smart City Kabupaten Tangerang hadir untuk mendukung transformasi digital daerah. 
-            Kami memanfaatkan teknologi agar pelayanan publik jadi lebih mudah, cepat, dan transparan, 
-            serta mendukung pembangunan daerah yang modern dan inovatif.
+            {language === "ID" 
+              ? "Smart City Kabupaten Tangerang hadir untuk mendukung transformasi digital daerah. Kami memanfaatkan teknologi agar pelayanan publik jadi lebih mudah, cepat, dan transparan, serta mendukung pembangunan daerah yang modern dan inovatif."
+              : "Tangerang Regency Smart City is here to support regional digital transformation. We leverage technology to make public services easier, faster, and more transparent, as well as supporting modern and innovative regional development."}
           </p>
         </div>
       </section>
 
       <div className="intro-card">
-        <h2>Sejarah Smart City Kabupaten Tangerang</h2>
+        <h2>{language === "ID" ? "Sejarah Smart City Kabupaten Tangerang" : "History of Tangerang Regency Smart City"}</h2>
 
         <div className="intro-content">
           <div className="sejarah-image">
@@ -46,10 +49,9 @@ export default function Sejarah() {
           </div>
 
           <p>
-            Smart City Kabupaten Tangerang merupakan bagian dari program nasional 
-            Gerakan Menuju 100 Smart City. Pemerintah daerah mengembangkan layanan 
-            digital seperti e-Government untuk meningkatkan pelayanan publik agar 
-            lebih cepat, transparan, dan terintegrasi.
+            {language === "ID" 
+              ? "Smart City Kabupaten Tangerang merupakan bagian dari program nasional Gerakan Menuju 100 Smart City. Pemerintah daerah mengembangkan layanan digital seperti e-Government untuk meningkatkan pelayanan publik agar lebih cepat, transparan, dan terintegrasi."
+              : "Tangerang Regency Smart City is part of the national program Movement Towards 100 Smart Cities. The local government develops digital services such as e-Government to improve public services to be faster, transparent, and integrated."}
           </p>
         </div>
       </div>
@@ -58,26 +60,26 @@ export default function Sejarah() {
       <section className="vision-mission-section">
         <div className="container">
           <div className="vm-wrapper">
-            <h2>Visi dan Misi Smart City Kabupaten Tangerang</h2>
+            <h2>{language === "ID" ? "Visi dan Misi Smart City Kabupaten Tangerang" : "Vision and Mission of Tangerang Regency Smart City"}</h2>
 
             <div className="vm-grid">
               <div className="vm-card">
-                <h3>Visi</h3>
+                <h3>{language === "ID" ? "Visi" : "Vision"}</h3>
                 <p>
-                  Terwujudnya Kabupaten Tangerang sebagai Smart City yang 
-                  terintegrasi, inovatif, dan berkelanjutan menuju masyarakat 
-                  sejahtera dan berdaya saing global.
+                  {language === "ID" 
+                    ? "Terwujudnya Kabupaten Tangerang sebagai Smart City yang terintegrasi, inovatif, dan berkelanjutan menuju masyarakat sejahtera dan berdaya saing global."
+                    : "Realization of Tangerang Regency as an integrated, innovative, and sustainable Smart City towards a prosperous society and globally competitive."}
                 </p>
               </div>
 
               <div className="vm-card">
-                <h3>Misi</h3>
+                <h3>{language === "ID" ? "Misi" : "Mission"}</h3>
                 <ol>
-                  <li>Mengembangkan tata kelola pemerintahan yang cerdas.</li>
-                  <li>Meningkatkan kualitas pelayanan publik digital.</li>
-                  <li>Mendorong pertumbuhan ekonomi kreatif.</li>
-                  <li>Mewujudkan lingkungan berkelanjutan.</li>
-                  <li>Meningkatkan partisipasi masyarakat.</li>
+                  <li>{language === "ID" ? "Mengembangkan tata kelola pemerintahan yang cerdas." : "Develop smart governance."}</li>
+                  <li>{language === "ID" ? "Meningkatkan kualitas pelayanan publik digital." : "Improve quality of digital public services."}</li>
+                  <li>{language === "ID" ? "Mendorong pertumbuhan ekonomi kreatif." : "Drive creative economy growth."}</li>
+                  <li>{language === "ID" ? "Mewujudkan lingkungan berkelanjutan." : "Realize sustainable environment."}</li>
+                  <li>{language === "ID" ? "Meningkatkan partisipasi masyarakat." : "Increase community participation."}</li>
                 </ol>
               </div>
             </div>
@@ -89,7 +91,7 @@ export default function Sejarah() {
       <section className="roadmap-section">
         <div className="roadmap-wrapper">
           <h2 className="roadmap-title">
-            Tangerang Smart City dari tahun ke tahun
+            {language === "ID" ? "Tangerang Smart City dari tahun ke tahun" : "Tangerang Smart City Over the Years"}
           </h2>
 
           <Swiper
@@ -111,32 +113,42 @@ export default function Sejarah() {
               {
                 year: "2022",
                 image: smartImg,
-                title: "Perencanaan",
-                desc: "Fase Perencanaan Studi kelayakan dan penyusunan masterplan SmartCity"
+                title: language === "ID" ? "Perencanaan" : "Planning",
+                desc: language === "ID" 
+                  ? "Fase Perencanaan Studi kelayakan dan penyusunan masterplan SmartCity"
+                  : "Planning Phase Feasibility study and SmartCity masterplan preparation"
               },
               {
                 year: "2023",
                 image: smartImg,
-                title: "Pengembangan",
-                desc: "Fase Pengembangan Pengembangan platform digital dan sistem informasi"
+                title: language === "ID" ? "Pengembangan" : "Development",
+                desc: language === "ID" 
+                  ? "Fase Pengembangan Pengembangan platform digital dan sistem informasi"
+                  : "Development Phase Development of digital platforms and information systems"
               },
               {
                 year: "2024",
                 image: smartImg,
-                title: "Implementasi",
-                desc: "Fase Implementasi Peluncuran aplikasi layanan publik dan sistem monitoring kota"
+                title: language === "ID" ? "Implementasi" : "Implementation",
+                desc: language === "ID" 
+                  ? "Fase Implementasi Peluncuran aplikasi layanan publik dan sistem monitoring kota"
+                  : "Implementation Phase Launch of public service applications and city monitoring systems"
               },
               {
                 year: "2025",
                 image: smartImg,
-                title: "Integrasi",
-                desc: "Fase Integrasi Integrasi penuh semua dimensi SmartCity dan evaluasi komprehensif"
+                title: language === "ID" ? "Integrasi" : "Integration",
+                desc: language === "ID" 
+                  ? "Fase Integrasi Integrasi penuh semua dimensi SmartCity dan evaluasi komprehensif"
+                  : "Integration Phase Full integration of all SmartCity dimensions and comprehensive evaluation"
               },
               {
                 year: "2026",
                 image: smartImg,
-                title: "Optimalisasi",
-                desc: "Fase Optimalisasi Studi kelayakan dan penyusunan masterplan SmartCity"
+                title: language === "ID" ? "Optimalisasi" : "Optimization",
+                desc: language === "ID" 
+                  ? "Fase Optimalisasi Studi kelayakan dan penyusunan masterplan SmartCity"
+                  : "Optimization Phase Feasibility study and SmartCity masterplan preparation"
               }
             ].map((item, i) => (
               <SwiperSlide key={i}>

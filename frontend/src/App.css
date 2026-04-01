@@ -9,9 +9,8 @@ body {
     font-family: 'Arial', sans-serif;
     line-height: 1.6;
     
-    /* Kunci: Hapus SEMUA BACKGROUND GAMBAR GLOBAL */
-    color: #333; /* Warna teks default gelap */
-    background-color: #fff; /* Background default putih */
+    color: #333;
+    background-color: #fff;
     background-image: none;
     background-attachment: initial;
     background-position: initial;
@@ -36,4 +35,11 @@ html {
     padding-top: 0; 
 }
 
-/* ... (Kode CSS lainnya tetap sama) ... */
+body{
+    min-width: 320px;
+}
+
+img{
+    max-width:100%;
+    height:auto;
+}
