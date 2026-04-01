@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import backgroundKunjungan from "../../assets/images/background_kunjungan.svg";
 import backgroundBerita from "../../assets/images/background_berita.svg";
@@ -11,17 +11,35 @@ import smartEconomy from "../../assets/icons/smarteconomy.svg";
 import smartEnvironment from "../../assets/icons/smartenvironment.svg";
 import smartBranding from "../../assets/icons/smartbranding.svg";
 
+import { apiEndpoints, api } from '../../utils/helpers.js';
 import "../../styles/pages/smartgovernance_page.css";
 
 function SmartBranding() {
   const [selectedCategory, setSelectedCategory] = useState("berita");
   const [activeIndex, setActiveIndex] = useState(0);
   const [selectedInnovation, setSelectedInnovation] = useState(null);
+  const [inovasiData, setInovasiData] = useState([]);
 
   const navigate = useNavigate();
   const scrollRef = useRef(null);
 
   const totalSlide = 3;
+
+  useEffect(() => {
+    const fetchInovasi = async () => {
+      try {
+        const data = response.data.data || response.data || [];
+        const mappedData = data.map(item => ({
+          ...item,
+          imageUrl: item.imageName ? `${api.defaults.baseURL.replace('/api/v1/', '')}${item.imageName}` : null,
+        }));
+        setInovasiData(mappedData);
+      } catch (err) {
+        console.error('Error fetching inovasi:', err);
+      }
+    };
+    fetchInovasi();
+  }, []);
 
   const scrollToIndex = (index) => {
     const container = scrollRef.current;
@@ -188,15 +206,15 @@ function SmartBranding() {
       {selectedCategory === "inovasi" && (
         <section className="inovasi-section">
           <div className="inovasi-grid">
-            {[1, 2, 3].map((item) => (
+            {inovasiData.map((item) => (
               <div
-                key={item}
+                key={item.id}
                 className="inovasi-card"
-                onClick={() => setSelectedInnovation(backgroundBerita)}
+                onClick={() => setSelectedInnovation(item.imageUrl)}
               >
-                <img src={backgroundBerita} alt="Inovasi" />
+                <img src={item.imageUrl} alt={item.name} />
                 <div className="inovasi-overlay">
-                  <h3>Digitalisasi Layanan Publik</h3>
+                  <h3>{item.name}</h3>
                 </div>
               </div>
             ))}
@@ -207,7 +225,7 @@ function SmartBranding() {
               className="inovasi-modal"
               onClick={() => setSelectedInnovation(null)}
             >
-              <img src={selectedInnovation} alt="Preview" />
+              <img src={selectedInnovation || ''} alt="Preview" />
             </div>
           )}
         </section>

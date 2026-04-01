@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Search, Calendar, Download, FileText } from 'lucide-react';
-import { apiEndpoints } from '../utils/helpers';
+
+import { useLanguage } from '../utils/LanguageContext';
+import { apiEndpoints, api } from '../utils/helpers.js';
 import '../styles/pages/publication_page.css';
 
 export default function Publikasi() {
+  const { language } = useLanguage();
   const [searchTerm, setSearchTerm] = useState('');
   const [publikasiData, setPublikasiData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -14,25 +17,28 @@ export default function Publikasi() {
   }, []);
 
   const fetchPublikasi = async () => {
-      try {
-        const response = await apiEndpoints.publications.getAllPublic();
-        const data = response.data.data || [];
-        // Map API data to component format
-        const mappedData = data.map(item => ({
-          id: item.id,
-          title: item.title,
-          description: 'UNDUH PDF',
-          date: item.year,
-          fileUrl: item.file ? `/files/${item.file.name}` : null, // Use proxied path
-        }));
-        setPublikasiData(mappedData);
-      } catch (err) {
-        setError('Failed to load publications');
-        console.error('Error fetching publications:', err);
-      } finally {
-        setLoading(false);
-      }
-    };
+    try {
+      const response = await apiEndpoints.publications.getAllPublic();
+      const jsonData = response.data;
+      const data = jsonData.data?.data || [];
+      // Map API data to component format
+      const mappedData = data.map(item => ({
+        id: item.id,
+        title: item.title || item.name || 'Untitled',
+        description: language === "ID" ? "UNDUH PDF" : "DOWNLOAD PDF",
+        date: item.year || item.created_at?.slice(0,4) || 'N/A',
+        fileUrl: item.fileName ? `${api.defaults.baseURL.replace('/api/v1/', '')}${item.fileName}` : null,
+      }));
+
+      console.log('Data:', mappedData)
+      setPublikasiData(mappedData);
+    } catch (err) {
+      setError('Failed to load publications');
+      console.error('Error fetching publications:', err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const filteredPublikasi = publikasiData.filter(item => {
     const matchesSearch = item.title.toLowerCase().includes(searchTerm.toLowerCase());
@@ -49,7 +55,6 @@ export default function Publikasi() {
   };
 
   const handleReview = (fileUrl) => {
-    
     window.open(fileUrl, '_blank');
   };
 
@@ -58,7 +63,7 @@ export default function Publikasi() {
       {/* Hero Section */}
       <section className="publikasi-hero">
         <div className="publikasi-hero-content">
-          <h1 className="publikasi-hero-title">Publikasi SmartCity</h1>
+          <h1 className="publikasi-hero-title">{language === "ID" ? "Publikasi SmartCity" : "SmartCity Publications"}</h1>
         </div>
       </section>
 
@@ -68,14 +73,14 @@ export default function Publikasi() {
           {/* Document List Card */}
           <div className="publikasi-document-card">
             <div className="publikasi-document-header">
-              <h2 className="publikasi-document-title">Daftar Dokumen</h2>
+              <h2 className="publikasi-document-title">{language === "ID" ? "Daftar Dokumen" : "Document List"}</h2>
               
               {/* Search Box */}
               <div className="publikasi-search-box">
                 <Search className="publikasi-search-icon" size={18} />
                 <input
                   type="text"
-                  placeholder="Search"
+                  placeholder={language === "ID" ? "Cari" : "Search"}
                   className="publikasi-search-input"
                   value={searchTerm}
                   onChange={handleSearch}
@@ -88,16 +93,16 @@ export default function Publikasi() {
               <table className="publikasi-table">
                 <thead>
                   <tr>
-                    <th>Judul</th>
-                    <th>Deskripsi</th>
-                    <th>Date</th>
+                    <th>{language === "ID" ? "Judul" : "Title"}</th>
+                    <th>{language === "ID" ? "Deskripsi" : "Description"}</th>
+                    <th>{language === "ID" ? "Tanggal" : "Date"}</th>
                   </tr>
                 </thead>
                 <tbody>
                   {loading ? (
                     <tr>
                       <td colSpan="3" className="publikasi-empty-row">
-                        Memuat data...
+                        {language === "ID" ? "Memuat data..." : "Loading data..."}
                       </td>
                     </tr>
                   ) : error ? (
@@ -141,7 +146,7 @@ export default function Publikasi() {
                   ) : (
                     <tr>
                       <td colSpan="3" className="publikasi-empty-row">
-                        Tidak ada dokumen yang sesuai dengan pencarian Anda.
+                        {language === "ID" ? "Tidak ada dokumen yang sesuai dengan pencarian Anda." : "No documents match your search."}
                       </td>
                     </tr>
                   )}
