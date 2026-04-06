@@ -1,3 +1,4 @@
+
 * {
   margin: 0;
   padding: 0;
@@ -28,7 +29,7 @@ html {
 
 .publikasi-hero {
   background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-              url('/src/assets/images/cityscape_background.jpg') center/cover;
+              url('../assets/images/cityscape_background.jpg') center/cover;
   background-attachment: fixed;
   padding: 80px 20px 60px;
   text-align: center;

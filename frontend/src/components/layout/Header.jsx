@@ -5,6 +5,8 @@ import '../../styles/components/header.css';
 
 import logoImg from "../../assets/images/smartcity.svg";
 import { useLanguage } from '../../utils/LanguageContext';
+import { useDynamicMenu } from "../../hooks/useDynamicMenu";
+import { STATIC_MENU_FALLBACK } from '../../data/staticMenuFallback.js';
 
 const Header = () => {
   const location = useLocation();
@@ -61,6 +63,11 @@ const Header = () => {
     setOpenDropdown(openDropdown === menu ? null : menu);
   };
 
+  const { menuItems, loading } = useDynamicMenu();
+
+  // Gunakan fallback jika loading/error
+  const finalMenuItems = loading || !menuItems.length ? STATIC_MENU_FALLBACK : menuItems;
+
   return (
     <>
       <header className={`main-header ${isScrolled ? 'scrolled' : ''}`}>
@@ -77,76 +84,35 @@ const Header = () => {
             </Link>
           </div>
 
-          {/* DESKTOP NAV */}
+          {/* DESKTOP NAV - DYNAMIC */}
           <nav className="desktop-nav">
             <ul>
-
-              <li className="dropdown">
-                <span>
-                  {language === "ID" ? "Tentang" : "About"} <ChevronDown size={16} />
-                </span>
-                <div className="dropdown-content">
-                  <Link to="/profile">
-                    {language === "ID" ? "Profil" : "Profile"}
-                  </Link>
-                  <Link to="/sejarah">
-                    {language === "ID" ? "Sejarah" : "History"}
-                  </Link>
-                </div>
-              </li>
-
-              <li>
-                <Link to="/dimensi">
-                  {language === "ID" ? "Dimensi" : "Dimensions"}
-                </Link>
-              </li>
-
-              <li>
-                <Link to="/event">
-                  {language === "ID" ? "Agenda" : "Events"}
-                </Link>
-              </li>
-
-              <li>
-                <Link to="/katalog">
-                  {language === "ID" ? "Katalog" : "Catalog"}
-                </Link>
-              </li>
-
-              <li className="dropdown">
-                <span>
-                  {language === "ID" ? "Fasilitas Publik" : "Public Facilities"} <ChevronDown size={16} />
-                </span>
-                <div className="dropdown-content">
-                    <a href="https://geomaps.tangerangkab.go.id/#/" target="_blank" rel="noopener noreferrer">
-                      {language === "ID" ? "Sekolah" : "Schools"}
-                    </a>
-
-                    <a href="https://geomaps.tangerangkab.go.id/#/" target="_blank" rel="noopener noreferrer">
-                      {language === "ID" ? "Perpustakaan" : "Libraries"}
-                    </a>
-
-                    <a href="https://geomaps.tangerangkab.go.id/#/" target="_blank" rel="noopener noreferrer">
-                      {language === "ID" ? "Beasiswa" : "Scholarships"}
-                    </a>
-
-                    <a href="https://geomaps.tangerangkab.go.id/#/" target="_blank" rel="noopener noreferrer">
-                      {language === "ID" ? "WiFi Publik" : "Public WiFi"}
-                    </a>
-
-                    <a href="https://geomaps.tangerangkab.go.id/#/" target="_blank" rel="noopener noreferrer">
-                      {language === "ID" ? "Fasilitas Kesehatan" : "Health Facilities"}
-                    </a>
-
-                  </div>
-              </li>
-
-              <li>
-                <Link to="/publication">
-                  {language === "ID" ? "Publikasi" : "Publications"}
-                </Link>
-              </li>
-
+              {finalMenuItems.map((item, index) => (
+                item.children && item.children.length ? (
+                  <li key={index} className="dropdown">
+                    <span onClick={() => toggleDropdown(`desktop-${index}`)}>
+                      {language === "ID" ? item.titleID : item.titleEN} <ChevronDown size={16} />
+                    </span>
+                    <div className="dropdown-content">
+                      {item.children.map((child, cIndex) => (
+                        <Link 
+                          key={cIndex} 
+                          to={child.path}
+                          onClick={handleNavClick}
+                        >
+                          {language === "ID" ? child.titleID : child.titleEN}
+                        </Link>
+                      ))}
+                    </div>
+                  </li>
+                ) : (
+                  <li key={index}>
+                    <Link to={item.path} onClick={handleNavClick}>
+                      {language === "ID" ? item.titleID : item.titleEN}
+                    </Link>
+                  </li>
+                )
+              ))}
             </ul>
           </nav>
 
@@ -206,98 +172,36 @@ const Header = () => {
         </div>
       </header>
 
-      {/* MOBILE NAV */}
+      {/* MOBILE NAV - DYNAMIC */}
       <nav className={`mobile-nav ${isMobileMenuOpen ? 'open' : ''}`}>
         <ul>
-
-          <li className={`mobile-dropdown ${openDropdown === 'tentang' ? 'active' : ''}`}>
-            <div
-              className="mobile-dropdown-title"
-              onClick={() => toggleDropdown('tentang')}
-            >
-              {language === "ID" ? "Tentang" : "About"} <span>▾</span>
-            </div>
-
-            <ul className="mobile-submenu">
-              <li>
-                <Link to="/profile" onClick={handleNavClick}>
-                  {language === "ID" ? "Profil" : "Profile"}
+          {finalMenuItems.map((item, index) => (
+            item.children && item.children.length ? (
+              <li key={`mobile-${index}`} className={`mobile-dropdown ${openDropdown === `mobile-${index}` ? 'active' : ''}`}>
+                <div
+                  className="mobile-dropdown-title"
+                  onClick={() => toggleDropdown(`mobile-${index}`)}
+                >
+                  {language === "ID" ? item.titleID : item.titleEN} <span>▾</span>
+                </div>
+                <ul className="mobile-submenu">
+                  {item.children.map((child, cIndex) => (
+                    <li key={cIndex}>
+                      <Link to={child.path} onClick={handleNavClick}>
+                        {language === "ID" ? child.titleID : child.titleEN}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            ) : (
+              <li key={`mobile-${index}`}>
+                <Link to={item.path} onClick={handleNavClick}>
+                  {language === "ID" ? item.titleID : item.titleEN}
                 </Link>
               </li>
-              <li>
-                <Link to="/sejarah" onClick={handleNavClick}>
-                  {language === "ID" ? "Sejarah" : "History"}
-                </Link>
-              </li>
-            </ul>
-          </li>
-
-          <li>
-            <Link to="/dimensi" onClick={handleNavClick}>
-              {language === "ID" ? "Dimensi" : "Dimensions"}
-            </Link>
-          </li>
-
-          <li>
-            <Link to="/event" onClick={handleNavClick}>
-              {language === "ID" ? "Agenda" : "Events"}
-            </Link>
-          </li>
-
-          <li>
-            <Link to="/katalog" onClick={handleNavClick}>
-              {language === "ID" ? "Katalog" : "Catalog"}
-            </Link>
-          </li>
-
-          <li className={`mobile-dropdown ${openDropdown === 'fasilitas' ? 'active' : ''}`}>
-            <div
-              className="mobile-dropdown-title"
-              onClick={() => toggleDropdown('fasilitas')}
-            >
-              {language === "ID" ? "Fasilitas Publik" : "Public Facilities"} <span>▾</span>
-            </div>
-
-            <ul className="mobile-submenu">
-
-              <li>
-                <a href="https://geomaps.tangerangkab.go.id/#/" target="_blank" rel="noopener noreferrer">
-                  {language === "ID" ? "Sekolah" : "Schools"}
-                </a>
-              </li>
-
-              <li>
-                <a href="https://geomaps.tangerangkab.go.id/#/" target="_blank" rel="noopener noreferrer">
-                  {language === "ID" ? "Perpustakaan" : "Libraries"}
-                </a>
-              </li>
-
-              <li>
-                <a href="https://geomaps.tangerangkab.go.id/#/" target="_blank" rel="noopener noreferrer">
-                  {language === "ID" ? "Beasiswa" : "Scholarships"}
-                </a>
-              </li>
-
-              <li>
-                <a href="https://geomaps.tangerangkab.go.id/#/" target="_blank" rel="noopener noreferrer">
-                  {language === "ID" ? "WiFi Publik" : "Public WiFi"}
-                </a>
-              </li>
-
-              <li>
-                <a href="https://geomaps.tangerangkab.go.id/#/" target="_blank" rel="noopener noreferrer">
-                  {language === "ID" ? "Fasilitas Kesehatan" : "Health Facilities"}
-                </a>
-              </li>
-            </ul>
-          </li>
-
-          <li>
-            <Link to="/publication" onClick={handleNavClick}>
-              {language === "ID" ? "Publikasi" : "Publications"}
-            </Link>
-          </li>
-
+            )
+          ))}
         </ul>
       </nav>
 

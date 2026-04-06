@@ -6,7 +6,6 @@ html {
 body {
   margin: 0;
   font-family: "Poppins", sans-serif;
-  background: #f5f5f5;
 }
 
 /* ================= HERO ================= */
@@ -118,7 +117,7 @@ body {
 
 .fitur-item:hover {
   transform: translateY(-5px);
-}z
+}
 
 .fitur-item.active .dimensi-icon-circle {
   background-color: #0074BA;
@@ -216,7 +215,7 @@ body {
   position: relative;
   overflow: hidden;
   border-radius: 0;   /* hilangkan radius */
-  margin-top: 4%;
+  margin: 0;
 }
 
 .gemilang-content {
@@ -315,7 +314,7 @@ body {
   width: 100%;
 }
 
-
+/* ===== TEXT ===== */
 
 /* ===== BUTTON DETAIL DIMENSI ===== */
 .btn-detail {
