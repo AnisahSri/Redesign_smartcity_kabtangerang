@@ -10,6 +10,7 @@ const Header = () => {
   const location = useLocation();
   const pathname = location.pathname;
   const { language, toggleLanguage } = useLanguage();
+  const { language, toggleLanguage } = useLanguage();
 
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -77,7 +78,7 @@ const Header = () => {
             </Link>
           </div>
 
-          {/* DESKTOP NAV */}
+          {/* DESKTOP NAV - DYNAMIC */}
           <nav className="desktop-nav">
             <ul>
 
@@ -206,7 +207,7 @@ const Header = () => {
         </div>
       </header>
 
-      {/* MOBILE NAV */}
+      {/* MOBILE NAV - DYNAMIC */}
       <nav className={`mobile-nav ${isMobileMenuOpen ? 'open' : ''}`}>
         <ul>
 

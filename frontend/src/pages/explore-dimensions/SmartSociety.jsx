@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import backgroundKunjungan from "../../assets/images/background_kunjungan.svg";
 import backgroundBerita from "../../assets/images/background_berita.svg";
@@ -18,6 +19,7 @@ function SmartSociety() {
   const [selectedCategory, setSelectedCategory] = useState("berita");
   const [activeIndex, setActiveIndex] = useState(0);
   const [selectedInnovation, setSelectedInnovation] = useState(null);
+  const [inovasiData, setInovasiData] = useState([]);
   const [inovasiData, setInovasiData] = useState([]);
 
   const navigate = useNavigate();
@@ -207,13 +209,16 @@ function SmartSociety() {
         <section className="inovasi-section">
           <div className="inovasi-grid">
             {inovasiData.map((item) => (
+            {inovasiData.map((item) => (
               <div
+                key={item.id}
                 key={item.id}
                 className="inovasi-card"
                 onClick={() => setSelectedInnovation(item.imageUrl)}
               >
                 <img src={item.imageUrl} alt={item.name} />
                 <div className="inovasi-overlay">
+                  <h3>{item.name}</h3>
                   <h3>{item.name}</h3>
                 </div>
               </div>
