@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect } from "react";
-import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import backgroundKunjungan from "../../assets/images/background_kunjungan.svg";
 import backgroundBerita from "../../assets/images/background_berita.svg";
@@ -12,14 +11,12 @@ import smartEconomy from "../../assets/icons/smarteconomy.svg";
 import smartEnvironment from "../../assets/icons/smartenvironment.svg";
 import smartBranding from "../../assets/icons/smartbranding.svg";
 
-import { apiEndpoints, api } from '../../utils/helpers.js';
 import "../../styles/pages/smartgovernance_page.css";
 
 function SmartBranding() {
   const [selectedCategory, setSelectedCategory] = useState("berita");
   const [activeIndex, setActiveIndex] = useState(0);
   const [selectedInnovation, setSelectedInnovation] = useState(null);
-  const [inovasiData, setInovasiData] = useState([]);
   const [inovasiData, setInovasiData] = useState([]);
 
   const navigate = useNavigate();
@@ -29,13 +26,12 @@ function SmartBranding() {
 
   useEffect(() => {
     const fetchInovasi = async () => {
-      try {
-        const data = response.data.data || response.data || [];
-        const mappedData = data.map(item => ({
-          ...item,
-          imageUrl: item.imageName ? `${api.defaults.baseURL.replace('/api/v1/', '')}${item.imageName}` : null,
-        }));
-        setInovasiData(mappedData);
+
+try {
+  const response = await fetch('/api/v1/inovasi');
+  const jsonData = await response.json();
+
+        setInovasiData(jsonData.data.data || []);
       } catch (err) {
         console.error('Error fetching inovasi:', err);
       }
@@ -209,16 +205,13 @@ function SmartBranding() {
         <section className="inovasi-section">
           <div className="inovasi-grid">
             {inovasiData.map((item) => (
-            {inovasiData.map((item) => (
               <div
                 key={item.id}
-                key={item.id}
                 className="inovasi-card"
-                onClick={() => setSelectedInnovation(item.imageUrl)}
+                onClick={() => setSelectedInnovation(`/files/${item.imageName}`)}
               >
-                <img src={item.imageUrl} alt={item.name} />
+                <img src={`/files/${item.imageName}`} alt={item.name} />
                 <div className="inovasi-overlay">
-                  <h3>{item.name}</h3>
                   <h3>{item.name}</h3>
                 </div>
               </div>
@@ -230,7 +223,7 @@ function SmartBranding() {
               className="inovasi-modal"
               onClick={() => setSelectedInnovation(null)}
             >
-              <img src={selectedInnovation || ''} alt="Preview" />
+              <img src={selectedInnovation} alt="Preview" />
             </div>
           )}
         </section>

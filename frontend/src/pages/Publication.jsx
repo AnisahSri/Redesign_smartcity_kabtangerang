@@ -7,7 +7,6 @@ import '../styles/pages/publication_page.css';
 
 export default function Publikasi() {
   const { language } = useLanguage();
-  const { language } = useLanguage();
   const [searchTerm, setSearchTerm] = useState('');
   const [publikasiData, setPublikasiData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -90,7 +89,6 @@ export default function Publikasi() {
                 <input
                   type="text"
                   placeholder={language === "ID" ? "Cari" : "Search"}
-                  placeholder={language === "ID" ? "Cari" : "Search"}
                   className="publikasi-search-input"
                   value={searchTerm}
                   onChange={handleSearch}
@@ -105,16 +103,12 @@ export default function Publikasi() {
                     <th>{language === "ID" ? "Judul" : "Title"}</th>
                     <th>{language === "ID" ? "Deskripsi" : "Description"}</th>
                     <th>{language === "ID" ? "Tanggal" : "Date"}</th>
-                    <th>{language === "ID" ? "Judul" : "Title"}</th>
-                    <th>{language === "ID" ? "Deskripsi" : "Description"}</th>
-                    <th>{language === "ID" ? "Tanggal" : "Date"}</th>
                   </tr>
                 </thead>
                 <tbody>
                   {loading ? (
                     <tr>
                       <td colSpan="3" className="publikasi-empty-row">
-                        {language === "ID" ? "Memuat data..." : "Loading data..."}
                         {language === "ID" ? "Memuat data..." : "Loading data..."}
                       </td>
                     </tr>
@@ -159,7 +153,6 @@ export default function Publikasi() {
                   ) : (
                     <tr>
                       <td colSpan="3" className="publikasi-empty-row">
-                        {language === "ID" ? "Tidak ada dokumen yang sesuai dengan pencarian Anda." : "No documents match your search."}
                         {language === "ID" ? "Tidak ada dokumen yang sesuai dengan pencarian Anda." : "No documents match your search."}
                       </td>
                     </tr>

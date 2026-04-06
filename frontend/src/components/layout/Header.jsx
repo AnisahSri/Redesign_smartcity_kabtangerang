@@ -10,7 +10,6 @@ const Header = () => {
   const location = useLocation();
   const pathname = location.pathname;
   const { language, toggleLanguage } = useLanguage();
-  const { language, toggleLanguage } = useLanguage();
 
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
