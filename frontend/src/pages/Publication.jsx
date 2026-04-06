@@ -40,18 +40,29 @@ export default function Publikasi() {
     }
   };
 
-  const filteredPublikasi = publikasiData.filter(item => {
-    const matchesSearch = item.title.toLowerCase().includes(searchTerm.toLowerCase());
-    return matchesSearch;
-  });
+  const filteredPublikasi = publikasiData.filter(item => 
+    item.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   const handleSearch = (e) => {
     setSearchTerm(e.target.value);
   };
 
-  const handleDownload = (fileUrl) => {
-    // Handle file download
-    window.open(fileUrl, '_blank');
+  const handleDownload = async (fileUrl) => {
+    try {
+      const response = await fetch(fileUrl);
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = fileUrl.split('/').pop() || 'download.pdf';
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(url);
+      document.body.removeChild(a);
+    } catch (err) {
+      window.open(fileUrl, '_blank');
+    }
   };
 
   const handleReview = (fileUrl) => {
@@ -60,17 +71,14 @@ export default function Publikasi() {
 
   return (
     <div className="publikasi-container">
-      {/* Hero Section */}
       <section className="publikasi-hero">
         <div className="publikasi-hero-content">
           <h1 className="publikasi-hero-title">{language === "ID" ? "Publikasi SmartCity" : "SmartCity Publications"}</h1>
         </div>
       </section>
 
-      {/* Main Content */}
       <section className="publikasi-main">
         <div className="publikasi-content-wrapper">
-          {/* Document List Card */}
           <div className="publikasi-document-card">
             <div className="publikasi-document-header">
               <h2 className="publikasi-document-title">{language === "ID" ? "Daftar Dokumen" : "Document List"}</h2>
@@ -88,7 +96,6 @@ export default function Publikasi() {
               </div>
             </div>
 
-            {/* Table */}
             <div className="publikasi-table-container">
               <table className="publikasi-table">
                 <thead>
@@ -159,3 +166,4 @@ export default function Publikasi() {
     </div>
   );
 }
+

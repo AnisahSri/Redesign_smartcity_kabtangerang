@@ -6,15 +6,19 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'http://localhost:9000',
+        target: 'https://dev.tangerangkab.my.id/smartcity-api',
         changeOrigin: true,
         secure: false,
       },
       '/files': {
-        target: 'http://localhost:9000',
+        target: 'https://dev.tangerangkab.my.id/smartcity-api',
         changeOrigin: true,
         secure: false,
       },
     },
   },
+  define: {
+    'process.env.API_BASE': JSON.stringify('https://dev.tangerangkab.my.id/smartcity-api')
+  },
 })
+
