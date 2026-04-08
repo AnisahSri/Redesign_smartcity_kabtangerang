@@ -1,27 +1,29 @@
-export const STATIC_MENU_FALLBACK = [
-  {
-    titleID: "Tentang",
-    titleEN: "About", 
-    path: "#",
-    children: [
-      { titleID: "Profil", titleEN: "Profile", path: "/profile" },
-      { titleID: "Sejarah", titleEN: "History", path: "/sejarah" }
-    ]
-  },
-  { titleID: "Dimensi", titleEN: "Dimensions", path: "/dimensi" },
-  { titleID: "Agenda", titleEN: "Events", path: "/event" },
-  { titleID: "Katalog", titleEN: "Catalog", path: "/katalog" },
-  {
-    titleID: "Fasilitas Publik", 
-    titleEN: "Public Facilities",
-    path: "#",
-    children: [
-      { titleID: "Sekolah", titleEN: "Schools", path: "/" },
-      { titleID: "Perpustakaan", titleEN: "Libraries", path: "/" },
-      { titleID: "Beasiswa", titleEN: "Scholarships", path: "/" },
-      { titleID: "WiFi Publik", titleEN: "Public WiFi", path: "/" },
-      { titleID: "Fasilitas Kesehatan", titleEN: "Health Facilities", path: "/" }
-    ]
-  },
-  { titleID: "Publikasi", titleEN: "Publications", path: "/publication" }
-];
+import { useState, useEffect } from 'react';
+import fetchMenuFromCMS from '../data/menuConfig';
+
+export const useDynamicMenu = () => {
+  const [menuItems, setMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const loadMenu = async () => {
+      try {
+        setLoading(true);
+        const data = await fetchMenuFromCMS();
+        // Karena API dummy salah format, force fallback sementara
+        // Nanti sesuaikan dengan real CMS response structure
+        setMenuItems(data || []);
+      } catch (err) {
+        setError(err.message);
+        setMenuItems([]); // Akan trigger fallback di Header
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadMenu();
+  }, []);
+
+  return { menuItems, loading, error };
+};
