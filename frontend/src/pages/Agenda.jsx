@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/pages/agenda_page.css';
 import { useLanguage } from '../utils/LanguageContext';
+import { apiEndpoints } from '../utils/helpers';
 
 const Agenda = () => {
     const languageContext = useLanguage();
@@ -13,18 +14,47 @@ const Agenda = () => {
     const [imageLoaded, setImageLoaded] = useState({});
 
     useEffect(() => {
-        const fetchAgendas = async () => {
+        const loadAgendas = async () => {
             try {
-                const response = await fetch('https://dev.tangerangkab.my.id/smartcity-api/api/v1/events');
-                const jsonData = await response.json();
-                console.log('API Response:', jsonData);
-                const dataArray = (jsonData.data?.data || []).map(agenda => ({
-                    ...agenda,
-                    imageUrl: agenda.imageName
-                }));
-                setPageTitle(jsonData.data?.data?.[0]?.title || (language === "ID" ? "City of Event: Kalender Acara Kabupaten Tangerang" : "City of Event: Tangerang Regency Event Calendar"));
-                console.log('Processed agendas:', dataArray);
-                setAgendas(Array.isArray(dataArray) ? dataArray : []);
+                // 1. Ambil daftar semua agenda menggunakan helpers apiEndpoints
+                const response = await apiEndpoints.agenda.getAll();
+                const responseData = response.data;
+                const rawData = responseData.data?.data || responseData.data || [];
+                
+                // 2. Karena image harus dirender dan S3 url berbentuk JSON lewat endpoint getfile,
+                // kita perlu mengambil S3 URL untuk tiap agenda secara concurrent
+                const agendasWithUrls = await Promise.all(
+                    rawData.map(async (agenda) => {
+                        let imageUrl = agenda.imageName; // fallback awal
+                        
+                        try {
+                            if (agenda.id) {
+                                const fileRes = await apiEndpoints.agenda.getfile(agenda.id);
+                                const s3Url = fileRes.data?.data?.url;
+                                if (s3Url) {
+                                    imageUrl = s3Url;
+                                }
+                            }
+                        } catch (err) {
+                            console.error(`Gagal mendapatkan url gambar untuk agenda ${agenda.id}:`, err);
+                        }
+                        
+                        return {
+                            ...agenda,
+                            imageUrl: imageUrl,
+                            imageName: imageUrl // menimpa nama lama dengan s3 url agar src berjalan lancar
+                        };
+                    })
+                );
+
+                console.log('Processed agendas:', agendasWithUrls);
+
+                setPageTitle(
+                    responseData.data?.data?.[0]?.title || 
+                    (language === "ID" ? "City of Event: Kalender Acara Kabupaten Tangerang" : "City of Event: Tangerang Regency Event Calendar")
+                );
+                
+                setAgendas(Array.isArray(agendasWithUrls) ? agendasWithUrls : []);
             } catch (err) {
                 setError('Failed to load agendas');
                 console.error('Error fetching agendas:', err);
@@ -35,8 +65,8 @@ const Agenda = () => {
             }
         };
 
-        fetchAgendas();
-    }, []);
+        loadAgendas();
+    }, [language]);
 
     const openPreview = (imageUrl) => {
         setPreviewImage(imageUrl);
