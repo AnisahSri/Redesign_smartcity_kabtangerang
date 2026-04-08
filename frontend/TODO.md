@@ -1,11 +1,14 @@
-# Fix Inovasi API di Smart Dimensi Pages
+# TODO: Fix Gambar Tidak Tampil di Localhost
 
-- [x] 1. Buat plan & konfirmasi user
-- [x] 2. Edit 6 file Smart*.jsx: Replace fetch('/api/v1/inovasi') → apiEndpoints.inovasi.getAll()
-  - Import apiEndpoints
-  - Update fetchInovasi logic & error handling
-- [x] 3. Test: npm run dev → buka /SmartGovernance/Inovasi tab → data muncul, no error
-  (Dev server running)
-- [ ] 4. Fix images /files/ jika broken (construct full URL seperti Publication)
-- [ ] 5. Optional: Filter inovasi per dimensi ID
-- [ ] 6. Complete
+## Status: 🔄 ONGOING
+
+### Steps:
+- [x] 1. Analisis kode & identifikasi masalah CSS path (persona_page.css, publication_page.css)
+- [ ] 2. Edit persona_page.css (fix background meeting)
+- [ ] 3. Edit publication_page.css (fix cityscape background)
+- [ ] 4. Restart dev server (`npm run dev`)
+- [ ] 5. Test /persona & /publication → gambar muncul
+- [ ] 6. Mark COMPLETE
+
+**Estimated time: 5 menit**
+

@@ -11,7 +11,6 @@ import smartEconomy from "../../assets/icons/smarteconomy.svg";
 import smartEnvironment from "../../assets/icons/smartenvironment.svg";
 import smartBranding from "../../assets/icons/smartbranding.svg";
 
-import { apiEndpoints, api } from '../../utils/helpers.js';
 import "../../styles/pages/smartgovernance_page.css";
 
 function SmartLiving() {
@@ -27,13 +26,12 @@ function SmartLiving() {
 
   useEffect(() => {
     const fetchInovasi = async () => {
-      try {
-        const data = response.data.data || response.data || [];
-        const mappedData = data.map(item => ({
-          ...item,
-          imageUrl: item.imageName ? `${api.defaults.baseURL.replace('/api/v1/', '')}${item.imageName}` : null,
-        }));
-        setInovasiData(mappedData);
+
+try {
+  const response = await fetch('/api/v1/inovasi');
+  const jsonData = await response.json();
+
+        setInovasiData(jsonData.data.data || []);
       } catch (err) {
         console.error('Error fetching inovasi:', err);
       }
