@@ -4,7 +4,9 @@ export const STATIC_MENU_FALLBACK = [
     titleEN: "About", 
     path: "#",
     children: [
-      { titleID: "Profil", titleEN: "Profile", path: "/profile" },
+      { titleID: "Profil Daerah", titleEN: "Regional Profile", path: "/profile" },
+      { titleID: "Profil Bupati", titleEN: "Regent Profile", path: "/bupati/profil" },
+      { titleID: "Wakil Bupati", titleEN: "Vice Regent Profile", path: "/bupati/wakil" },
       { titleID: "Sejarah", titleEN: "History", path: "/sejarah" }
     ]
   },
@@ -16,11 +18,11 @@ export const STATIC_MENU_FALLBACK = [
     titleEN: "Public Facilities",
     path: "#",
     children: [
-      { titleID: "Sekolah", titleEN: "Schools", path: "/" },
-      { titleID: "Perpustakaan", titleEN: "Libraries", path: "/" },
-      { titleID: "Beasiswa", titleEN: "Scholarships", path: "/" },
-      { titleID: "WiFi Publik", titleEN: "Public WiFi", path: "/" },
-      { titleID: "Fasilitas Kesehatan", titleEN: "Health Facilities", path: "/" }
+      { titleID: "Sekolah", titleEN: "Schools", path: "/fasilitaspublik/sekolah" },
+      { titleID: "Perpustakaan", titleEN: "Libraries", path: "/fasilitaspublik/perpustakaan" },
+      { titleID: "Beasiswa", titleEN: "Scholarships", path: "/fasilitaspublik/beasiswa" },
+      { titleID: "WiFi Publik", titleEN: "Public WiFi", path: "/fasilitaspublik/wifi" },
+      { titleID: "Fasilitas Kesehatan", titleEN: "Health Facilities", path: "/fasilitaspublik/kesehatan" }
     ]
   },
   { titleID: "Publikasi", titleEN: "Publications", path: "/publication" }

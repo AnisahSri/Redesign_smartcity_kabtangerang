@@ -22,12 +22,6 @@ export const api = axios.create({
     'Content-Type': 'application/json',
   },
 });
-export const apii = axios.create({
-  baseURL: getCleanBaseUrl(import.meta.env.VITE_MENU_API_URL),
-  headers: {
-    'Content-Type': 'application/json',
-  },
-});
 
 
 // Add response interceptor for error handling
@@ -45,10 +39,6 @@ api.interceptors.response.use(
 
 // API endpoints
 export const apiEndpoints = {
-  menu: {
-    getAll: () => apii.get('/menu'),
-  },
-
   dimensi: {
     getAll: () => api.get('/dimensi'),
     getById: (id) => api.get(`/dimensi/${id}`),
@@ -68,6 +58,12 @@ export const apiEndpoints = {
     getAllPublic: () => api.get('/publikasi'),
     getfile: (id) => api.get(`/publikasi/${id}/file`),
   },
+  menu: {
+    getAll: () => axios.get('https://dev.tangerangkab.my.id/smartcity-cms/menusetting/menu'),
+    getById: (id) => axios.get(`https://dev.tangerangkab.my.id/smartcity-cms/menusetting/menu/${id}`),
+    getAllPublic: () => axios.get('https://dev.tangerangkab.my.id/smartcity-cms/menusetting/menu'),
+  },
+  
   images: {
     getAll: () => api.get('/images'),
     upload: (data) => api.post('/images', data, {

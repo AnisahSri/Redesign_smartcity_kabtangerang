@@ -8,6 +8,7 @@ import PageLoader from "../components/common/PageLoader.jsx";
 // Lazy imports untuk semua halaman
 const Home = lazy(() => import("../pages/Home.jsx"));
 const Profile = lazy(() => import("../pages/Profile.jsx"));
+const Bupati = lazy(() => import("../pages/Bupati.jsx"));
 const Persona = lazy(() => import("../pages/Persona.jsx"));
 const Event = lazy(() => import("../pages/Agenda.jsx"));
 const Dimensi = lazy(() => import("../pages/Dimension.jsx"));
@@ -40,6 +41,9 @@ function AppRouter() {
           <Route path="/dimensi" element={<Dimensi />} />
           <Route path="/katalog" element={<Katalog />} />
           <Route path="/fasilitaspublik" element={<FasilitasPublik />} />
+          <Route path="/fasilitaspublik/:subPage" element={<FasilitasPublik />} />
+          <Route path="/bupati" element={<Bupati />} />
+          <Route path="/bupati/:subPage" element={<Bupati />} />
           <Route path="/SmartGovernance" element={<SmartGovernance />} />
           <Route path="/publication" element={<Publication />} />
           <Route path="/SmartLiving" element={<SmartLiving />} />

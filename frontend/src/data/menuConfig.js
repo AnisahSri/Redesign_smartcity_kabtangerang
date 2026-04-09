@@ -1,11 +1,12 @@
 import { STATIC_MENU_FALLBACK } from './staticMenuFallback';
+import { apiEndpoints } from '../utils/helpers';
 
-// Fetch menu dari API dummy (nanti ganti ke CMS real)
+// Fetch menu dari API CMS
 export const fetchMenuFromCMS = async () => {
   try {
-    const response = await fetch('https://mocki.io/v1/e8a995c3-3bd7-4541-9fc9-af15a020eda2');
-    if (!response.ok) throw new Error('API failed');
-    const menuData = await response.json();
+    const response = await apiEndpoints.menu.getAll();
+    // Menyesuaikan dengan format bungkus "data" dari Axios
+    const menuData = response.data?.data || response.data;
     console.log('Menu dari API:', menuData);
     return menuData;
   } catch (error) {
