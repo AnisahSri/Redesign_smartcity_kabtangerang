@@ -10,9 +10,9 @@ import googlePlayImg from "../assets/images/googleplay.svg";
 import appStoreImg from "../assets/images/appstore.svg";
 import logoImg from "../assets/images/logoo.svg";
 
-import iconLayanan from "../assets/icon/iconlayanan.svg";
-import iconLaporan from "../assets/icon/iconlaporan.svg";
-import iconUnduh from "../assets/icon/iconunduh.svg";
+import iconLayanan from "../assets/icons/iconlayanan.svg";
+import iconLaporan from "../assets/icons/iconlaporan.svg";
+import iconUnduh from "../assets/icons/iconunduh.svg";
 
 export default function Profile() {
   const { language } = useLanguage();

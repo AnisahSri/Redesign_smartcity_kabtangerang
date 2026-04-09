@@ -103,6 +103,7 @@ position: relative;
   max-width: 1200px;
   margin: 0 auto;
   position: relative;
+  position: relative;
 }
 
 /* Item */
@@ -113,12 +114,14 @@ position: relative;
   cursor: pointer;
   transition: 0.3s ease;
   position: relative;
+  position: relative;
 }
 
 .fitur-item:hover {
   transform: translateY(-5px);
 }
 
+.fitur-item.active .dimensi-icon-circle {
 .fitur-item.active .dimensi-icon-circle {
   background-color: #0074BA;
 }
@@ -130,8 +133,11 @@ position: relative;
 
 /* Lingkaran Icon */
 .dimensi-icon-circle {
+/* Lingkaran Icon */
+.dimensi-icon-circle {
   width: 100px;
   height: 100px;
+  margin: 0 auto 15px;
   margin: 0 auto 15px;
   border-radius: 50%;
   display: flex;
@@ -141,18 +147,28 @@ position: relative;
   overflow: hidden; /* penting supaya svg tidak offset */
   transition: 0.3s ease;
   box-shadow: inset 0 0 0 3px #0074BA;
+  box-shadow: inset 0 0 0 3px #0074BA;
 }
 
+/* Icon */
+.dimensi-icon-circle img {
 /* Icon */
 .dimensi-icon-circle img {
   width: 50px;
   height: auto;
   object-fit: contain;
   display: block;
+  object-fit: contain;
+  display: block;
 }
 
 /* Text */
+/* Text */
 .fitur-item p {
+  font-weight: 600;
+  font-size: 14px;
+  color: #0074BA;
+  transition: 0.3s ease;
   font-weight: 600;
   font-size: 14px;
   color: #0074BA;
@@ -235,6 +251,9 @@ position: relative;
   padding: 30px;
 
   text-align: left;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  z-index: 100;
+  animation: fadeIn 0.25s ease;
   box-shadow: 0 10px 30px rgba(0,0,0,0.15);
   z-index: 100;
   animation: fadeIn 0.25s ease;
@@ -434,4 +453,3 @@ padding: 50px 15px 400px 15px;
   font-size: 14px;
 }
 }
-

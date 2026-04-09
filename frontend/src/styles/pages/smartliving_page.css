@@ -22,59 +22,102 @@
 
 .kunjungan-content {
   margin-top: -100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .kunjungan-image {
   width: 850px;
   max-width: 90%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+
   border-radius: 20px;
-  margin-bottom: 60px;
+  margin-bottom: 40px;
+  display: block;
 }
 
 /* ================= FITUR ================= */
 
 .kunjungan-fitur {
   padding-bottom: 60px;
-}
-
-.kunjungan-icons {
-  display: flex;
-  justify-content: center;
-  gap: 25px;
-  flex-wrap: wrap;
-  margin-bottom: 30px;
-}
-
-.fitur-item {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.kunjungan-icons {
+  display: grid;
+  grid-template-columns: repeat(6, 130px);
+  justify-content: center;
+  align-items: start;
+  gap: 25px;
+  margin-bottom: 30px;
+}
+
+
+.fitur-item {
+  width: 110px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
   cursor: pointer;
 }
+/* ICON CIRCLE */
 
 .icon-circle {
   width: 50px;
   height: 50px;
+
   border-radius: 50%;
   border: 2px solid #0b5fa5;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 8px;
+
+  margin-bottom: 10px;
+
+  flex-shrink: 0;
 }
+
+
+/* ICON IMAGE */
 
 .icon-circle img {
   width: 32px;
   height: 32px;
+  display: block;
 }
+
+
+/* ACTIVE ICON */
 
 .fitur-item.active .icon-circle {
   background-color: #0b5fa5;
 }
 
+.fitur-item.active .icon-circle img {
+  filter: brightness(0) invert(1);
+}
+
+/* TEXT */
+
 .fitur-item span {
   font-size: 13px;
   color: #0b5fa5;
+  text-align: center;
+  line-height: 1.3;
+
+  white-space: nowrap;
+  min-height: 34px;   /* ini yang bikin stabil */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* ================= TAB ================= */
@@ -100,10 +143,6 @@
 
 /* ================= BERITA ================= */
 
-.berita-section {
-  width: 100%;
-}
-
 .berita-row {
   display: flex;
   align-items: center;
@@ -113,6 +152,7 @@
 }
 
 /* 🔵 BIRU */
+
 .biru-row {
   background: #0b5fa5;
   color: white;
@@ -120,6 +160,7 @@
 }
 
 /* ⚪ PUTIH */
+
 .putih-row {
   background: white;
   color: #0b5fa5;
@@ -129,6 +170,7 @@
 .berita-image img {
   width: 420px;
   max-width: 100%;
+  display: block;
 }
 
 .berita-content {
@@ -145,63 +187,6 @@
   margin-bottom: 25px;
 }
 
-/* SCROLL */
-.berita-scroll-wrapper {
-  display: flex;
-  overflow-x: hidden;
-  scroll-behavior: smooth;
-}
-
-.berita-row {
-  min-width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 100px 120px;
-  gap: 80px;
-}
-
-/* WARNA */
-.biru-row {
-  background: #0b5fa5;
-  color: white;
-  flex-direction: row-reverse;
-}
-
-.putih-row {
-  background: white;
-  color: #0b5fa5;
-  flex-direction: row;
-}
-
-/* PAGINATION */
-.berita-pagination {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  margin: 50px 0 80px 0;
-}
-
-.berita-pagination button {
-  width: 45px;
-  height: 45px;
-  border-radius: 50%;
-  border: 2px solid #0b5fa5;
-  background: white;
-  color: #0b5fa5;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.berita-pagination button.active {
-  background: #0b5fa5;
-  color: white;
-}
-
-.berita-pagination button:hover {
-  background: #0b5fa5;
-  color: white;
-}
 /* ================= BERITA SLIDER ================= */
 
 .berita-section {
@@ -218,29 +203,8 @@
   min-width: 100%;
 }
 
-/* BERITA ROW */
-.berita-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 100px 120px;
-  gap: 80px;
-}
-
-/* WARNA SELANG SELING */
-.biru-row {
-  background: #0b5fa5;
-  color: white;
-  flex-direction: row-reverse;
-}
-
-.putih-row {
-  background: white;
-  color: #0b5fa5;
-  flex-direction: row;
-}
-
 /* PAGINATION */
+
 .berita-pagination {
   display: flex;
   justify-content: center;
@@ -271,35 +235,17 @@
   padding: 60px 0;
 }
 
-.inovasi-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 350px);
-  gap: 40px;
-  justify-content: center;
-}
-
-/* Card ke-3 benar-benar di tengah */
-.inovasi-card:nth-child(3) {
-  grid-column: 1 / -1;
-  margin: 0 auto;
-}
-
-.inovasi-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 350px);
-  gap: 40px;
-  justify-content: center;
-}
-
-/* Card ke-3 benar-benar di tengah */
-.inovasi-card:nth-child(3) {
-  grid-column: 1 / -1;
-  margin: 0 auto;
+.inovasi-grid{
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(110px,1fr));
+  max-width:900px;
+  gap:40px;
+  margin:auto;
 }
 
 .inovasi-card {
   position: relative;
-  width: 350px;
+  width: 100%;
   height: 220px;
   border-radius: 20px;
   overflow: hidden;
@@ -316,13 +262,15 @@
   height: 100%;
   object-fit: cover;
   transition: 0.6s ease;
+  display: block;
 }
 
 .inovasi-card:hover img {
   transform: scale(1.1);
 }
 
-/* OVERLAY GRADIENT + BLUR */
+/* OVERLAY */
+
 .inovasi-card::before {
   content: "";
   position: absolute;
@@ -365,7 +313,6 @@
   bottom: 0;
 }
 
-/* TEXT */
 .inovasi-overlay {
   position: absolute;
   top: 50%;
@@ -386,6 +333,7 @@
 }
 
 /* MODAL */
+
 .inovasi-modal {
   position: fixed;
   top: 0;
@@ -406,10 +354,16 @@
   box-shadow: 0 20px 50px rgba(0,0,0,0.5);
 }
 
-/* ===== BREADCRUMB ===== */
+/* ================= BREADCRUMB ================= */
+
 .smart-breadcrumb {
-  text-align: center;
-  padding: 20px 0 10px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  margin-bottom: 25px;
+
   font-size: 16px;
   font-weight: 500;
   color: #0b63a9;
@@ -432,4 +386,24 @@
 .smart-breadcrumb .active {
   font-weight: 600;
   cursor: default;
+}
+
+/* =====================================
+   RESPONSIVE
+===================================== */
+
+@media (max-width:992px){
+
+.kunjungan-icons{
+  grid-template-columns: repeat(3,130px);
+}
+
+}
+
+@media (max-width:576px){
+
+.kunjungan-icons{
+  grid-template-columns: repeat(2,130px);
+}
+
 }
