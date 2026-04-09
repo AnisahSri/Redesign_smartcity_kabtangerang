@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react';
 import fetchMenuFromCMS from '../data/menuConfig';
 
+const CACHE_KEY = 'smartcity_menu_cache_v2';
+const CACHE_DURATION = 5 * 60 * 1000; // 5 menit
+
 export const useDynamicMenu = () => {
   const [menuItems, setMenuItems] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -10,13 +13,29 @@ export const useDynamicMenu = () => {
     const loadMenu = async () => {
       try {
         setLoading(true);
+
+        // Cek cache dulu
+        const cached = localStorage.getItem(CACHE_KEY);
+        if (cached) {
+          const { data, timestamp } = JSON.parse(cached);
+          if (Date.now() - timestamp < CACHE_DURATION) {
+            setMenuItems(data);
+            setLoading(false);
+            return;
+          }
+        }
+
         const data = await fetchMenuFromCMS();
-        // Karena API dummy salah format, force fallback sementara
-        // Nanti sesuaikan dengan real CMS response structure
-        setMenuItems(data || []);
+        setMenuItems(data);
+
+        // Simpan ke cache
+        localStorage.setItem(CACHE_KEY, JSON.stringify({
+          data,
+          timestamp: Date.now()
+        }));
       } catch (err) {
         setError(err.message);
-        setMenuItems([]); // Akan trigger fallback di Header
+        setMenuItems([]);
       } finally {
         setLoading(false);
       }
