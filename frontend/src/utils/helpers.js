@@ -50,7 +50,7 @@ export const apiEndpoints = {
     getAll: () => api.get('/events'),
     getById: (id) => api.get(`/events/${id}`),
     getAllPublic: () => api.get('/events'),
-    getfile: (id) => api.get(`/events/${id}/file`),
+getfile: (id) => api.get(`/events/${id}/image`),
   },
   publications: {
     getAll: () => api.get('/publikasi'),
@@ -82,6 +82,7 @@ export const apiEndpoints = {
       return api.get('/inovasi', { params });
     },
     getById: (id) => api.get(`/inovasi/${id}`),
+    getfile: (id) => api.get(`/inovasi/${id}/image`),
   },
   auth: {
     login: (data) => api.post('/auth/signin', data),
