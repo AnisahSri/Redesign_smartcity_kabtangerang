@@ -119,47 +119,6 @@ const Header = () => {
           {/* RIGHT CONTROLS */}
           <div className="header-controls">
 
-            {/* SEARCH */}
-            <div
-              className={`search-container ${(isSearchExpanded || isSearchHovered) ? 'expanded' : ''}`}
-              onMouseEnter={() => setIsSearchHovered(true)}
-              onMouseLeave={() => setIsSearchHovered(false)}
-            >
-              <input
-                ref={searchInputRef}
-                type="text"
-                className="search-input"
-                placeholder={language === "ID" ? "Cari..." : "Search..."}
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                onKeyDown={handleSearch}
-              />
-
-              <button
-                type="button"
-                className="search-icon"
-                onClick={toggleSearch}
-              >
-                <Search size={20} />
-              </button>
-            </div>
-
-            {/* LANGUAGE SWITCH */}
-            <div className="lang-switch">
-              <button
-                className={language === "ID" ? "active" : ""}
-                onClick={() => toggleLanguage("ID")}
-              >
-                ID
-              </button>
-
-              <button
-                className={language === "EN" ? "active" : ""}
-                onClick={() => toggleLanguage("EN")}
-              >
-                EN
-              </button>
-            </div>
 
             <button
               className="mobile-menu-btn"
