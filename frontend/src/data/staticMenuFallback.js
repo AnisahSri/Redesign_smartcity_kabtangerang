@@ -4,7 +4,9 @@ export const STATIC_MENU_FALLBACK = [
     titleEN: "About", 
     path: "#",
     children: [
-      { titleID: "Profile", titleEN: "Regional Profile", path: "/profile" },
+      { titleID: "Profil Daerah", titleEN: "Regional Profile", path: "/profile" },
+      { titleID: "Profil Bupati", titleEN: "Regent Profile", path: "/bupati/profil" },
+      { titleID: "Wakil Bupati", titleEN: "Vice Regent Profile", path: "/bupati/wakil" },
       { titleID: "Sejarah", titleEN: "History", path: "/sejarah" }
     ]
   },
@@ -24,6 +26,5 @@ export const STATIC_MENU_FALLBACK = [
     ]
   },
   { titleID: "Publikasi", titleEN: "Publications", path: "/publication" }
-
 ];
 
