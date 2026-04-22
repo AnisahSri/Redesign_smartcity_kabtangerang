@@ -15,7 +15,6 @@ import smartEnvironment from "../assets/icons/smartenvironment.svg";
 import smartBranding from "../assets/icons/smartbranding.svg";
 
 import "../styles/pages/dimension_page.css";
-import "../styles/pages/home_page.css";
 
 function Dimension() {
   const navigate = useNavigate();
@@ -60,10 +59,15 @@ function Dimension() {
 
   useEffect(() => {
     setActive(null);
+    window.scrollTo(0, 0);
   }, [location.key]);
 
   const handleClick = (index) => {
-    setActive(index);
+    if (active === index) {
+      setActive(null);
+    } else {
+      setActive(index);
+    }
 
     setTimeout(() => {
       detailRef.current?.scrollIntoView({
@@ -118,7 +122,7 @@ function Dimension() {
         </div>
       </div>
 
-      <section className="fitur">
+      <section className="fitur" ref={detailRef}>
 
         <h2>
           {language === "ID"
@@ -152,7 +156,7 @@ function Dimension() {
                   <p>{detail.title}</p>
 
                   {active === index && (
-                    <div className="fitur-popup" ref={detailRef}>
+                    <div className="fitur-popup">
 
                       <div className="popup-arrow"></div>
 

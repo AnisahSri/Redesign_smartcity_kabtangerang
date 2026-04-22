@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { apiEndpoints, getCleanBaseUrl } from "../../utils/helpers";
 import backgroundKunjungan from "../../assets/images/background_kunjungan.svg";
 import backgroundBerita from "../../assets/images/background_berita.svg";
 
@@ -25,19 +26,56 @@ function SmartBranding() {
   const totalSlide = 3;
 
   useEffect(() => {
-    const fetchInovasi = async () => {
-
-try {
-  const response = await fetch('/api/v1/inovasi');
-  const jsonData = await response.json();
-
-        setInovasiData(jsonData.data.data || []);
-      } catch (err) {
-        console.error('Error fetching inovasi:', err);
-      }
-    };
-    fetchInovasi();
-  }, []);
+    if (selectedCategory === "inovasi") {
+      const fetchInovasi = async () => {
+        try {
+          const res = await apiEndpoints.inovasi.getAll();
+          const raw = res.data;
+  
+          let list = [];
+          if (Array.isArray(raw)) {
+            list = raw;
+          } else if (raw && raw.data && Array.isArray(raw.data.data)) {
+            list = raw.data.data;
+          } else if (raw && Array.isArray(raw.data)) {
+            list = raw.data;
+          } else if (raw && Array.isArray(raw.content)) {
+            list = raw.content;
+          }
+  
+          // 🔥 WAJIB: FILTER DI SINI
+          list = list.filter(item => item.dimensiId === "c14c03de-a250-432f-86d6-167bfcfc38a9");
+  
+          // Fetch image
+          const listWithImages = await Promise.all(
+            list.map(async (item) => {
+              let imageUrl = `${getCleanBaseUrl(import.meta.env.VITE_API_BASE_URL)}/files/${item.imageName}`;
+  
+              try {
+                if (item.id) {
+                  const fileRes = await apiEndpoints.inovasi.getfile(item.id);
+                  const s3Url = fileRes.data?.data?.url;
+                  if (s3Url) imageUrl = s3Url;
+                }
+              } catch (err) {
+                console.error(`Gagal gambar ${item.id}`, err);
+              }
+  
+              return { ...item, parsedImageUrl: imageUrl };
+            })
+          );
+  
+          setInovasiData(listWithImages);
+  
+        } catch (err) {
+          console.error("Error fetching inovasi:", err);
+          setInovasiData([]);
+        }
+      };
+  
+      fetchInovasi();
+    }
+  }, [selectedCategory]);
 
   const scrollToIndex = (index) => {
     const container = scrollRef.current;
@@ -92,18 +130,11 @@ try {
                 <span>Smart Governance</span>
               </div>
 
-              <div className="fitur-item" onClick={() => navigate("/SmartLiving")}>
+              <div className="fitur-item active">
                 <div className="icon-circle">
-                  <img src={smartLiving} alt="" />
+                  <img src={smartBranding} alt="" />
                 </div>
-                <span>Smart Living</span>
-              </div>
-
-              <div className="fitur-item" onClick={() => navigate("/SmartSociety")}>
-                <div className="icon-circle">
-                  <img src={smartSociety} alt="" />
-                </div>
-                <span>Smart Society</span>
+                <span>Smart Branding</span>
               </div>
 
               <div className="fitur-item" onClick={() => navigate("/SmartEconomy")}>
@@ -113,20 +144,26 @@ try {
                 <span>Smart Economy</span>
               </div>
 
+              <div className="fitur-item" onClick={() => navigate("/SmartSociety")}>
+                <div className="icon-circle">
+                  <img src={smartSociety} alt="" />
+                </div>
+                <span>Smart Society</span>
+              </div>
+
+              <div className="fitur-item" onClick={() => navigate("/SmartLiving")}>
+                <div className="icon-circle">
+                  <img src={smartLiving} alt="" />
+                </div>
+                <span>Smart Living</span>
+              </div>
+
               <div className="fitur-item" onClick={() => navigate("/SmartEnvironment")}>
                 <div className="icon-circle">
                   <img src={smartEnvironment} alt="" />
                 </div>
                 <span>Smart Environment</span>
               </div>
-
-              <div className="fitur-item active">
-                <div className="icon-circle">
-                  <img src={smartBranding} alt="" />
-                </div>
-                <span>Smart Branding</span>
-              </div>
-
             </div>
 
             <div className="kunjungan-tab">
@@ -208,9 +245,10 @@ try {
               <div
                 key={item.id}
                 className="inovasi-card"
-                onClick={() => setSelectedInnovation(`/files/${item.imageName}`)}
+                onClick={() => setSelectedInnovation(item.parsedImageUrl)}
               >
-                <img src={`/files/${item.imageName}`} alt={item.name} />
+                <img src={item.parsedImageUrl} alt={item.name} />
+
                 <div className="inovasi-overlay">
                   <h3>{item.name}</h3>
                 </div>
