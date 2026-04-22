@@ -22,6 +22,12 @@ export const api = axios.create({
     'Content-Type': 'application/json',
   },
 });
+export const apii = axios.create({
+  baseURL: getCleanBaseUrl(import.meta.env.VITE_MENU_API_URL),
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});
 
 
 // Add response interceptor for error handling
@@ -39,6 +45,10 @@ api.interceptors.response.use(
 
 // API endpoints
 export const apiEndpoints = {
+  menu: {
+    getAll: () => apii.get('/menu'),
+  },
+
   dimensi: {
     getAll: () => api.get('/dimensi'),
     getById: (id) => api.get(`/dimensi/${id}`),
@@ -50,7 +60,7 @@ export const apiEndpoints = {
     getAll: () => api.get('/events'),
     getById: (id) => api.get(`/events/${id}`),
     getAllPublic: () => api.get('/events'),
-getfile: (id) => api.get(`/events/${id}/image`),
+    getfile: (id) => api.get(`/events/${id}/file`),
   },
   publications: {
     getAll: () => api.get('/publikasi'),
@@ -58,12 +68,6 @@ getfile: (id) => api.get(`/events/${id}/image`),
     getAllPublic: () => api.get('/publikasi'),
     getfile: (id) => api.get(`/publikasi/${id}/file`),
   },
-  menu: {
-    getAll: () => axios.get('https://dev.tangerangkab.my.id/smartcity-cms/menusetting/menu'),
-    getById: (id) => axios.get(`https://dev.tangerangkab.my.id/smartcity-cms/menusetting/menu/${id}`),
-    getAllPublic: () => axios.get('https://dev.tangerangkab.my.id/smartcity-cms/menusetting/menu'),
-  },
-  
   images: {
     getAll: () => api.get('/images'),
     upload: (data) => api.post('/images', data, {
@@ -82,7 +86,6 @@ getfile: (id) => api.get(`/events/${id}/image`),
       return api.get('/inovasi', { params });
     },
     getById: (id) => api.get(`/inovasi/${id}`),
-    getfile: (id) => api.get(`/inovasi/${id}/image`),
   },
   auth: {
     login: (data) => api.post('/auth/signin', data),
