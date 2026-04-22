@@ -45,7 +45,7 @@ export default function Publikasi() {
       const mappedData = data.map(item => ({
         id: item.id,
         title: item.title || item.name || 'Untitled',
-        description: language === "ID" ? "LIHAT PDF" : "VIEW PDF",
+        description: "LIHAT PDF",
         date: item.year || item.created_at?.slice(0, 4) || 'N/A',
         fileUrl: `${baseUrl}/api/v1/publikasi/${item.id}/file`
 
@@ -77,7 +77,7 @@ export default function Publikasi() {
       <section className="publikasi-hero">
         <div className="publikasi-hero-content">
           <h1 className="publikasi-hero-title">
-            {language === "ID" ? "Publikasi SmartCity" : "SmartCity Publications"}
+            Publikasi SmartCity
           </h1>
         </div>
       </section>
@@ -87,13 +87,13 @@ export default function Publikasi() {
           <div className="publikasi-document-card">
             <div className="publikasi-document-header">
               <h2 className="publikasi-document-title">
-                {language === "ID" ? "Daftar Dokumen" : "Document List"}
+                  Daftar Dokumen
               </h2>
               <div className="publikasi-search-box">
                 <Search className="publikasi-search-icon" size={18} />
                 <input
                   type="text"
-                  placeholder={language === "ID" ? "Cari" : "Search"}
+                  placeholder="Cari"
                   className="publikasi-search-input"
                   value={searchTerm}
                   onChange={handleSearch}
@@ -105,16 +105,16 @@ export default function Publikasi() {
               <table className="publikasi-table">
                 <thead>
                   <tr>
-                    <th>{language === "ID" ? "Judul" : "Title"}</th>
-                    <th>{language === "ID" ? "Deskripsi" : "Description"}</th>
-                    <th>{language === "ID" ? "Tanggal" : "Date"}</th>
+                    <th>Judul</th>
+                    <th>Deskripsi</th>
+                    <th>Tanggal</th>
                   </tr>
                 </thead>
                 <tbody>
                   {loading ? (
                     <tr>
                       <td colSpan="3" className="publikasi-empty-row">
-                        {language === "ID" ? "Memuat data..." : "Loading data..."}
+                        Memuat data...
                       </td>
                     </tr>
                   ) : error ? (
@@ -158,7 +158,7 @@ export default function Publikasi() {
                   ) : (
                     <tr>
                       <td colSpan="3" className="publikasi-empty-row">
-                        {language === "ID" ? "Tidak ada dokumen yang sesuai dengan pencarian Anda." : "No documents match your search."}
+                        Tidak ada dokumen yang sesuai dengan pencarian Anda.
                       </td>
                     </tr>
                   )}

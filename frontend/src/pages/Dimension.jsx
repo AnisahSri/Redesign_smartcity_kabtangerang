@@ -122,8 +122,8 @@ function Dimension() {
 
         <h2>
           {language === "ID"
-            ? "Fitur Unggulan Smart City"
-            : "Smart City Featured Features"}
+            ? "Dimensi Smartcity"
+            : "Smartcity Dimensions"}
         </h2>
 
         {loading ? (

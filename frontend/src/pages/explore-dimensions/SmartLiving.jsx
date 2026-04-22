@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { apiEndpoints, getCleanBaseUrl } from "../../utils/helpers";
 import backgroundKunjungan from "../../assets/images/background_kunjungan.svg";
 import backgroundBerita from "../../assets/images/background_berita.svg";
 
@@ -25,19 +26,47 @@ function SmartLiving() {
   const totalSlide = 3;
 
   useEffect(() => {
-    const fetchInovasi = async () => {
+    if (selectedCategory === "inovasi") {
+      const fetchInovasi = async () => {
+        try {
+          const res = await apiEndpoints.inovasi.getAll();
+          const raw = res.data;
+          let list = [];
+          if (Array.isArray(raw)) {
+            list = raw;
+          } else if (raw && raw.data && Array.isArray(raw.data.data)) {
+            list = raw.data.data;
+          } else if (raw && Array.isArray(raw.data)) {
+            list = raw.data;
+          } else if (raw && Array.isArray(raw.content)) {
+            list = raw.content;
+          }
 
-try {
-  const response = await fetch('/api/v1/inovasi');
-  const jsonData = await response.json();
+          const listWithImages = await Promise.all(
+            list.map(async (item) => {
+              let imageUrl = `${getCleanBaseUrl(import.meta.env.VITE_API_BASE_URL)}/files/${item.imageName}`;
+              try {
+                if (item.id) {
+                  const fileRes = await apiEndpoints.inovasi.getfile(item.id);
+                  const s3Url = fileRes.data?.data?.url;
+                  if (s3Url) imageUrl = s3Url;
+                }
+              } catch (err) {
+                console.error(`Gagal mendapatkan url gambar untuk inovasi ${item.id}:`, err);
+              }
+              return { ...item, parsedImageUrl: imageUrl };
+            })
+          );
 
-        setInovasiData(jsonData.data.data || []);
-      } catch (err) {
-        console.error('Error fetching inovasi:', err);
-      }
-    };
-    fetchInovasi();
-  }, []);
+          setInovasiData(listWithImages);
+        } catch (err) {
+          console.error('Error fetching inovasi:', err);
+          setInovasiData([]);
+        }
+      };
+      fetchInovasi();
+    }
+  }, [selectedCategory]);
 
   const scrollToIndex = (index) => {
     const container = scrollRef.current;
@@ -208,9 +237,9 @@ try {
               <div
                 key={item.id}
                 className="inovasi-card"
-                onClick={() => setSelectedInnovation(`/files/${item.imageName}`)}
+                onClick={() => setSelectedInnovation(item.parsedImageUrl)}
               >
-                <img src={`/files/${item.imageName}`} alt={item.name} />
+                <img src={item.parsedImageUrl} alt={item.name} />
                 <div className="inovasi-overlay">
                   <h3>{item.name}</h3>
                 </div>
