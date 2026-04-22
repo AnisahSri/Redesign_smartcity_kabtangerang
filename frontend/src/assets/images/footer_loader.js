@@ -37,12 +37,7 @@ function loadFooter() {
                                aria-label="Instagram Kabupaten Tangerang">
                                 Instagram
                             </a>
-                            <a href="https://x.com/tangerangkab" 
-                               target="_blank" 
-                               rel="noopener noreferrer"
-                               aria-label="Twitter/X Kabupaten Tangerang">
-                                X/Twitter
-                            </a>
+                            
                             <a href="https://tiktok.com/@tangerangkab" 
                                target="_blank" 
                                rel="noopener noreferrer"
