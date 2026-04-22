@@ -50,7 +50,7 @@ body {
 .social-vertical {
   position: absolute;
   left: 30px;
-  top: 40%;
+  top: 50%;
   transform: translateY(-50%);
   display: flex;
   flex-direction: column;
@@ -78,11 +78,16 @@ body {
 /* ================= FITUR UNGGULAN ================= */
 
 .fitur {
-  padding: 80px 20px 300px 20px; /* tambah ruang bawah */
+  padding: 80px 20px 280px 20px;
   background: transparent;
   text-align: center;
   position: relative;
   overflow: visible;
+}
+
+/* Saat ada popup aktif, section otomatis diperluas agar tidak nabrak background biru */
+.fitur:has(.fitur-item.active) {
+  padding-bottom: 520px;
 }
 
 .fitur h2 {
@@ -347,8 +352,8 @@ body {
   position: relative;
 }
 
-/* popup */
-.fitur-popup{
+/* popup - muncul di bawah icon yang diklik */
+.fitur-popup {
   position: absolute;
   top: 140px;
   left: 50%;
@@ -368,24 +373,23 @@ body {
   animation: fadeIn 0.25s ease;
 }
 
-.fitur-item:first-child .fitur-popup{
+.fitur-item:first-child .fitur-popup {
   left: 0;
   transform: translateX(0);
 }
 
-.fitur-item:last-child .fitur-popup{
+.fitur-item:last-child .fitur-popup {
   left: auto;
   right: 0;
   transform: translateX(0);
 }
 
-/* segitiga */
-.popup-arrow{
+/* segitiga panah */
+.popup-arrow {
   position: absolute;
   top: -4px;
   left: 50%;
   transform: translateX(-50%) rotate(45deg);
-
   width: 20px;
   height: 20px;
   background: #f6f9ff;
@@ -393,12 +397,12 @@ body {
   border-top: 2px solid #0074BA;
 }
 
-.fitur-item:first-child .popup-arrow{
+.fitur-item:first-child .popup-arrow {
   left: 40px;
   transform: rotate(45deg);
 }
 
-.fitur-item:last-child .popup-arrow{
+.fitur-item:last-child .popup-arrow {
   left: auto;
   right: 40px;
   transform: rotate(45deg);
@@ -411,11 +415,11 @@ body {
   margin-bottom: 15px;
 }
 
-/* text */
-.fitur-popup p{
+/* text deskripsi */
+.fitur-popup p {
   font-size: 14px;
   line-height: 1.7;
-  color: #444;
+  color: #0074BA;
 }
 
 /* close button */

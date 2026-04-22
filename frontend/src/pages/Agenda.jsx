@@ -49,17 +49,14 @@ const Agenda = () => {
 
                 console.log('Processed agendas:', agendasWithUrls);
 
-                setPageTitle(
-                    responseData.data?.data?.[0]?.title || 
-                    (language === "ID" ? "City of Event: Kalender Acara Kabupaten Tangerang" : "City of Event: Tangerang Regency Event Calendar")
-                );
+                setPageTitle("City of Event: Kalender Acara Kabupaten Tangerang");
                 
                 setAgendas(Array.isArray(agendasWithUrls) ? agendasWithUrls : []);
             } catch (err) {
                 setError('Failed to load agendas');
                 console.error('Error fetching agendas:', err);
                 setAgendas([]);
-                setPageTitle(language === "ID" ? "City of Event: Kalender Acara Kabupaten Tangerang" : "City of Event: Tangerang Regency Event Calendar");
+                setPageTitle("City of Event: Kalender Acara Kabupaten Tangerang");
             } finally {
                 setLoading(false);
             }
@@ -103,14 +100,14 @@ const Agenda = () => {
             <div className="event-page">
                 <section className="event-hero-section image-background">
                     <div className="hero-content">
-                        <h1>{pageTitle || (language === "ID" ? "City of Event: Kalender Acara Kabupaten Tangerang" : "City of Event: Tangerang Regency Event Calendar")}</h1>
+                        <h1>{pageTitle || "City of Event: Kalender Acara Kabupaten Tangerang"}</h1>
                     </div>
                 </section>
 
                 <section className="event-calendar-container">
                     <div className="loading-placeholder">
                         <div className="spinner"></div>
-                        <p>{language === "ID" ? "Memuat Agenda..." : "Loading Agenda..."}</p>
+                        <p>Memuat Agenda...</p>
                     </div>
                 </section>
             </div>
@@ -139,21 +136,24 @@ const Agenda = () => {
         <div className="event-page">
             <section className="event-hero-section image-background">
                 <div className="hero-content">
-                    <h1>{pageTitle || (language === "ID" ? "City of Event: Kalender Acara Kabupaten Tangerang" : "City of Event: Tangerang Regency Event Calendar")}</h1>
+                    <h1>{pageTitle || "City of Event: Kalender Acara Kabupaten Tangerang"}</h1>
                 </div>
             </section>
 
             <section className="event-calendar-container">
-                <h2 className="section-title">{language === "ID" ? "Kalender Resmi Acara Publik" : "Official Public Event Calendar"}</h2>
 
                 {agendas.length === 0 ? (
                     <div className="no-events">
-                        <p>{language === "ID" ? "Tidak ada agenda yang tersedia saat ini" : "No agendas available at the moment"}</p>
+                        <p>Tidak ada agenda yang tersedia saat ini</p>
                     </div>
                 ) : (
                     <div className="events-list">
                         {agendas.map((agenda) => (
                             <div key={agenda.id} className="calendar-wrapper">
+                                <div className="agenda-info">
+                                    {agenda.title && <h3 className="agenda-title">{agenda.title}</h3>}
+                                    {agenda.year && <span className="agenda-year">{agenda.year}</span>}
+                                </div>
                                 {agenda.imageName && (
                                     <>
                                         {!imageLoaded[agenda.id] && (
@@ -165,7 +165,7 @@ const Agenda = () => {
 
                                         <img
                                             src={agenda.imageName}
-                                            alt={`Kalender Agenda ${agenda.year || ''}`}
+                                            alt={`${agenda.title || ''} ${agenda.year || ''}`}
                                             className={`calendar-image ${imageLoaded[agenda.id] ? 'loaded' : ''}`}
                                             loading="lazy"
                                             onClick={() => openPreview(agenda.imageName)}

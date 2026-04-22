@@ -50,7 +50,7 @@ body {
 .social-vertical {
   position: absolute;
   left: 30px;
-  top: 40%;
+  top: 50%;
   transform: translateY(-50%);
   display: flex;
   flex-direction: column;
@@ -78,11 +78,16 @@ body {
 /* ================= FITUR UNGGULAN ================= */
 
 .fitur {
-  padding: 80px 20px 300px 20px; /* tambah ruang bawah */
+  padding: 80px 20px 80px 20px; /* margin dasar */
   background: transparent;
   text-align: center;
   position: relative;
   overflow: visible;
+  transition: padding-bottom 0.4s ease;
+}
+
+.fitur:has(.fitur-item.active) {
+  padding-bottom: 550px; /* tambah ruang bawah agar popup tidak menabrak saat aktif */
 }
 
 .fitur h2 {
