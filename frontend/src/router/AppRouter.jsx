@@ -8,7 +8,6 @@ import PageLoader from "../components/common/PageLoader.jsx";
 // Lazy imports untuk semua halaman
 const Home = lazy(() => import("../pages/Home.jsx"));
 const Profile = lazy(() => import("../pages/Profile.jsx"));
-const Bupati = lazy(() => import("../pages/Bupati.jsx"));
 const Persona = lazy(() => import("../pages/Persona.jsx"));
 const Event = lazy(() => import("../pages/Agenda.jsx"));
 const Dimensi = lazy(() => import("../pages/Dimension.jsx"));
