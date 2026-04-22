@@ -248,7 +248,6 @@ function SmartSociety() {
                 onClick={() => setSelectedInnovation(item.parsedImageUrl)}
               >
                 <img src={item.parsedImageUrl} alt={item.name} />
-
                 <div className="inovasi-overlay">
                   <h3>{item.name}</h3>
                 </div>

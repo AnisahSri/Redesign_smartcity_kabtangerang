@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { Twitter, Facebook, Instagram, Youtube } from "lucide-react";
+import { Instagram, Youtube } from "lucide-react";
 import { useLanguage } from "../utils/LanguageContext";
 import { apiEndpoints } from "../utils/helpers.js";
 import "../styles/pages/home_page.css";
@@ -46,17 +46,10 @@ const Home = () => {
         }));
         setFiturDetail(dimensiList);
       } catch (err) {
-        console.error('API Error fitur unggulan:', err);
+        console.error('API Error dimensi smartcity:', err);
         setLoadingFitur(false);
-        // Fallback static data
-        setFiturDetail([
-          { title: "Smart Governance", desc: language === "ID" ? "Smart Governance adalah sistem tata kelola pemerintahan berbasis teknologi." : "Smart Governance system.", path: "/SmartGovernance" },
-          { title: "Smart Living", desc: language === "ID" ? "Smart Living meningkatkan kualitas hidup." : "Smart Living improves life quality.", path: "/SmartLiving" },
-          { title: "Smart Society", desc: language === "ID" ? "Smart Society membangun masyarakat pintar." : "Smart Society builds smart community.", path: "/SmartSociety" },
-          { title: "Smart Economy", desc: language === "ID" ? "Smart Economy untuk pertumbuhan ekonomi." : "Smart Economy for growth.", path: "/SmartEconomy" },
-          { title: "Smart Environment", desc: language === "ID" ? "Smart Environment berkelanjutan." : "Smart Environment sustainable.", path: "/SmartEnvironment" },
-          { title: "Smart Branding", desc: language === "ID" ? "Smart Branding citra daerah." : "Smart Branding for region image.", path: "/SmartBranding" }
-        ]);
+        // Fallback dihapus agar tidak tampil data palsu
+        setFiturDetail([]);
       } finally {
         setLoadingFitur(false);
       }
@@ -70,19 +63,20 @@ const Home = () => {
     window.scrollTo(0, 0);
   }, [location.key]);
 
+
   const handleClick = (index) => {
     if (active === index) {
       setActive(null);
     } else {
       setActive(index);
+      // Scroll ke popup setelah render agar terlihat tanpa harus geser manual
+      setTimeout(() => {
+        const popup = document.querySelector('.fitur-popup');
+        if (popup) {
+          popup.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+      }, 100);
     }
-
-    setTimeout(() => {
-      detailRef.current?.scrollIntoView({
-        behavior: "smooth",
-        block: "center"
-      });
-    }, 100);
   };
 
   return (
@@ -90,9 +84,7 @@ const Home = () => {
 
       <section className="hero">
         <h1>
-          {language === "ID"
-            ? "Selamat Datang di Kabupaten Tangerang"
-            : "Welcome to Tangerang Regency"} <br />
+          Selamat Datang di Kabupaten Tangerang <br />
           Smart City
         </h1>
 
@@ -101,14 +93,6 @@ const Home = () => {
         </div>
 
         <div className="social-vertical">
-
-          <a href="https://x.com/pemkabtangerang" target="_blank" rel="noopener noreferrer">
-            <Twitter size={22} />
-          </a>
-
-          <a href="https://facebook.com/pemkabtangerang" target="_blank" rel="noopener noreferrer">
-            <Facebook size={22} />
-          </a>
 
           <a href="https://www.tiktok.com/@pemkabtangerang" target="_blank" rel="noopener noreferrer">
             <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
@@ -129,16 +113,13 @@ const Home = () => {
 
       <section className="fitur" ref={detailRef}>
         <h2>
-          {language === "ID"
-            ? "Fitur Unggulan Smart City"
-            : "Smart City Featured Features"}
+          Dimensi Smartcity
         </h2>
 
         {loadingFitur ? (
-          <div className="loading">Loading fitur unggulan...</div>
+          <div className="loading">Memuat dimensi smartcity...</div>
         ) : (
           <div className="fitur-wrapper">
-
             {fiturDetail.map((detail, index) => {
               const icons = {
                 'Smart Governance': smartGovernance,
@@ -155,18 +136,14 @@ const Home = () => {
                   className={`fitur-item ${active === index ? "active" : ""}`}
                   onClick={() => handleClick(index)}
                 >
-
                   <div className="dimensi-icon-circle">
                     <img src={icon} alt="" />
                   </div>
-
                   <p>{detail.title}</p>
 
                   {active === index && (
                     <div className="fitur-popup">
-
                       <div className="popup-arrow"></div>
-
                       <button
                         className="close-btn"
                         onClick={(e) => {
@@ -176,11 +153,8 @@ const Home = () => {
                       >
                         ×
                       </button>
-
                       <h2>{detail.title}</h2>
-
                       <p>{detail.desc}</p>
-
                       <div className="popup-bottom">
                         <button
                           className="btn-kunjungan"
@@ -189,25 +163,19 @@ const Home = () => {
                             navigate(detail.path);
                           }}
                         >
-                          {language === "ID"
-                            ? "Kunjungi Halaman →"
-                            : "Visit Page →"}
+                          Kunjungi Halaman →
                         </button>
                       </div>
-
                     </div>
                   )}
                 </div>
               );
             })}
-
           </div>
         )}
 
         <button className="btn-detail" onClick={() => navigate("/dimensi")}>
-          {language === "ID"
-            ? "Detail Dimensi →"
-            : "Dimensions Details →"}
+          Detail Dimensi →
         </button>
 
       </section>
@@ -215,25 +183,17 @@ const Home = () => {
       <section className="gemilang">
         <div className="gemilang-content">
           <p className="produk">
-            {language === "ID"
-              ? "Produk Unggulan Kami"
-              : "Our Featured Products"}
+            Produk Unggulan Kami
           </p>
 
           <h2>
-            {language === "ID"
-              ? "Tangerang Gemilang # Membantu"
-              : "Tangerang Gemilang # Helping"} <br />
+            Tangerang Gemilang # Membantu <br />
 
-            {language === "ID"
-              ? "Masyarakat Kabupaten Tangerang"
-              : "Communities of Tangerang Regency"}
+            Masyarakat Kabupaten Tangerang
           </h2>
 
           <p className="desc">
-            {language === "ID"
-              ? "Mewujudkan Tangerang masa depan dengan layanan digital terpadu dan teknologi modern"
-              : "Realizing the future of Tangerang with integrated digital services and modern technology"}
+            Mewujudkan Tangerang masa depan dengan layanan digital terpadu dan teknologi modern
           </p>
         </div>
 
@@ -247,9 +207,7 @@ const Home = () => {
 
       <section className="virtual">
         <h2>
-          {language === "ID"
-            ? "Jelajahi Kabupaten Tangerang Secara Virtual"
-            : "Explore Tangerang Regency Virtually"}
+          Jelajahi Kabupaten Tangerang Secara Virtual
         </h2>
 
         <div className="virtual-box">

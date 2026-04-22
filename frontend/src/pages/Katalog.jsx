@@ -14,8 +14,8 @@ export default function KatalogSection() {
 
   const katalogData = [
     {
-      title: language === "ID" ? "Sistem Kunjungan Tamu" : "Guest Visit System",
-      desc: language === "ID" ? "Pendataan dan Monitoring Tamu Instansi" : "Data Collection and Monitoring of Guest Institution",
+      title: "Sistem Kunjungan Tamu",
+      desc: "Pendataan dan Monitoring Tamu Instansi",
       img: smartImg,
       link: "https://e-tamu.tangerangkab.my.id/"
     },
@@ -98,7 +98,7 @@ export default function KatalogSection() {
 
               <div className="item-button">
                 <a href={item.link} target="_blank" rel="noopener noreferrer">
-                  {language === "ID" ? "Lihat Selengkapnya →" : "View More →"}
+                  Lihat Selengkapnya →
                 </a>
               </div>
 

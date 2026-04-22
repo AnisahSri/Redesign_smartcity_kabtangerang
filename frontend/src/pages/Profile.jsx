@@ -150,7 +150,7 @@ export default function Profile() {
           className="profile-center-image"
         />
         <div className="hero-text">
-          <h1>{language === "ID" ? "Tentang Kami" : "About Us"}</h1>
+          <h1>Tentang Kami</h1>
         </div>
       </div>
 
@@ -160,20 +160,16 @@ export default function Profile() {
           <div className="overview-grid">
             <div className="overview-content">
               <h2>
-                {language === "ID" 
-                  ? "Jejak Transformasi Kabupaten Tangerang Tentang Smart City"
-                  : "Transformation Journey of Tangerang Regency Smart City"}
+                Jejak Transformasi Kabupaten Tangerang Tentang Smart City
               </h2>
 
               <p>
-                {language === "ID" 
-                  ? "Kabupaten Tangerang Smart City hadir untuk mendukung transformasi digital daerah. Kami memanfaatkan teknologi agar pelayanan publik jadi lebih mudah, cepat, dan transparan, serta mendukung pembangunan daerah yang modern dan inovatif."
-                  : "Tangerang Regency Smart City is here to support regional digital transformation. We leverage technology to make public services easier, faster, and more transparent, as well as supporting modern and innovative regional development."}
+                Kabupaten Tangerang Smart City hadir untuk mendukung transformasi digital daerah. Kami memanfaatkan teknologi agar pelayanan publik jadi lebih mudah, cepat, dan transparan, serta mendukung pembangunan daerah yang modern dan inovatif.
               </p>
 
               <Link to="/sejarah">
                 <button className="btn-sejarah">
-                  {language === "ID" ? "Sejarah KTSC →" : "KTSC History →"}
+                  Sejarah KTSC →
                 </button>
               </Link>
             </div>
@@ -186,27 +182,27 @@ export default function Profile() {
         <div className="container highlight-grid">
 
           <div className="highlight-content">
-            <h3>{language === "ID" ? "Hai Hai Hai..." : "Hi Hi Hi..."}</h3>
-            <h2>{language === "ID" ? "Kenalin Nih SuperApp nya Kabupaten Tangerang!" : "Introducing Tangerang Regency's SuperApp!"}</h2>
+            <h3>Hai Hai Hai...</h3>
+            <h2>Kenalin Nih SuperApp nya Kabupaten Tangerang!</h2>
 
             <div className="highlight-stats">
 
               <div className="highlight-item">
                 <img src={iconLayanan} alt="Layanan" className="highlight-icon" />
                 <span className="highlight-number">17</span>
-                <p>{language === "ID" ? "Layanan" : "Services"}</p>
+                <p>Layanan</p>
               </div>
 
               <div className="highlight-item">
                 <img src={iconLaporan} alt="Laporan" className="highlight-icon" />
                 <span className="highlight-number">26+</span>
-                <p>{language === "ID" ? "Laporan Dari Masyarakat" : "Reports from Community"}</p>
+                <p>Laporan Dari Masyarakat</p>
               </div>
 
               <div className="highlight-item">
                 <img src={iconUnduh} alt="Unduh" className="highlight-icon" />
                 <span className="highlight-number">50rb+</span>
-                <p>{language === "ID" ? "Masyarakat Mengunduh" : "Downloads by Citizens"}</p>
+                <p>Masyarakat Mengunduh</p>
               </div>
 
             </div>
@@ -215,8 +211,8 @@ export default function Profile() {
           <div className="highlight-image">
             <img src={hpImg} alt="App Preview" />
 
-            <h4>#{language === "ID" ? "Kabupaten Tangerang Membantu" : "Tangerang Regency Helps"}</h4>
-            <h4>{language === "ID" ? "Unduh Tangerang Gemilang :" : "Download Tangerang Gemilang :"}</h4>
+            <h4>#Kabupaten Tangerang Membantu</h4>
+            <h4>Unduh Tangerang Gemilang :</h4>
 
             <div className="store-buttons">
               <img src={googlePlayImg} alt="Google Play" />
@@ -237,9 +233,7 @@ export default function Profile() {
         <div className="container">
 
           <h2 className="section-title">
-            {language === "ID" 
-              ? "Cakupan Data Kabupaten Tangerang Smart City"
-              : "Tangerang Regency Smart City Data Coverage"}
+            Cakupan Data Kabupaten Tangerang Smart City
           </h2>
 
           <div className="coverage-grid">
@@ -251,22 +245,22 @@ export default function Profile() {
               className="coverage-card"
             >
               <div className="stat-number">959 KM²</div>
-              <div className="stat-label">{language === "ID" ? "Luas Wilayah" : "Area"}</div>
+              <div className="stat-label">Luas Wilayah</div>
             </a>
 
             <div className="coverage-card">
               <div className="stat-number">1.5JT+</div>
-              <div className="stat-label">{language === "ID" ? "Penduduk" : "Population"}</div>
+              <div className="stat-label">Penduduk</div>
             </div>
 
             <div className="coverage-card">
               <div className="stat-number">29</div>
-              <div className="stat-label">{language === "ID" ? "Kecamatan" : "Districts"}</div>
+              <div className="stat-label">Kecamatan</div>
             </div>
 
             <div className="coverage-card">
               <div className="stat-number">246</div>
-              <div className="stat-label">{language === "ID" ? "Kelurahan / Desa" : "Villages"}</div>
+              <div className="stat-label">Kelurahan / Desa</div>
             </div>
 
           </div>

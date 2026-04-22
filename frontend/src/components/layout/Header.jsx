@@ -91,7 +91,7 @@ const Header = () => {
                 item.children && item.children.length ? (
                   <li key={index} className="dropdown">
                     <span onClick={() => toggleDropdown(`desktop-${index}`)}>
-                      {language === "ID" ? item.titleID : item.titleEN} <ChevronDown size={16} />
+                      {item.titleID} <ChevronDown size={16} />
                     </span>
                     <div className="dropdown-content">
                       {item.children.map((child, cIndex) => (
@@ -100,7 +100,7 @@ const Header = () => {
                           to={child.path}
                           onClick={handleNavClick}
                         >
-                          {language === "ID" ? child.titleID : child.titleEN}
+                          {child.titleID}
                         </Link>
                       ))}
                     </div>
@@ -108,7 +108,7 @@ const Header = () => {
                 ) : (
                   <li key={index}>
                     <Link to={item.path} onClick={handleNavClick}>
-                      {language === "ID" ? item.titleID : item.titleEN}
+                      {item.titleID}
                     </Link>
                   </li>
                 )
@@ -141,13 +141,13 @@ const Header = () => {
                   className="mobile-dropdown-title"
                   onClick={() => toggleDropdown(`mobile-${index}`)}
                 >
-                  {language === "ID" ? item.titleID : item.titleEN} <span>▾</span>
+                  {item.titleID} <span>▾</span>
                 </div>
                 <ul className="mobile-submenu">
                   {item.children.map((child, cIndex) => (
                     <li key={cIndex}>
                       <Link to={child.path} onClick={handleNavClick}>
-                        {language === "ID" ? child.titleID : child.titleEN}
+                        {child.titleID}
                       </Link>
                     </li>
                   ))}
@@ -156,7 +156,7 @@ const Header = () => {
             ) : (
               <li key={`mobile-${index}`}>
                 <Link to={item.path} onClick={handleNavClick}>
-                  {language === "ID" ? item.titleID : item.titleEN}
+                  {item.titleID}
                 </Link>
               </li>
             )
