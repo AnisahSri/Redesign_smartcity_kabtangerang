@@ -3,7 +3,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { Instagram, Youtube } from "lucide-react";
 import { useLanguage } from "../utils/LanguageContext";
 import { apiEndpoints } from "../utils/helpers.js";
-import "../styles/pages/home_page.css";
+import "../styles/pages/home_page.css"; 
 
 import heroImage from "../assets/images/background_meeting.jpeg";
 
@@ -84,7 +84,7 @@ const Home = () => {
 
       <section className="hero">
         <h1>
-          Selamat Datang di Kabupaten Tangerang <br />
+          Selamat Tadang di Kabupaten Tangerang <br />
           Smart City
         </h1>
 
