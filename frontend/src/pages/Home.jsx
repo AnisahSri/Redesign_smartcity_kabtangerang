@@ -84,7 +84,7 @@ const Home = () => {
 
       <section className="hero">
         <h1>
-          Selamat Tadang di Kabupaten Tangerang <br />
+          Selamat Datang di Kabupaten Tangerang <br />
           Smart City
         </h1>
 
