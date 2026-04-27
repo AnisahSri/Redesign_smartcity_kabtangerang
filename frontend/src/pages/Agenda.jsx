@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/pages/agenda_page.css';
-import { useLanguage } from '../utils/LanguageContext';
+
 import { apiEndpoints } from '../utils/helpers';
 
 const Agenda = () => {
-    const languageContext = useLanguage();
-    const language = languageContext ? languageContext.language : 'ID';
+
+
     const [pageTitle, setPageTitle] = useState('');
     const [agendas, setAgendas] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -63,7 +63,7 @@ const Agenda = () => {
         };
 
         loadAgendas();
-    }, [language]);
+    }, []);
 
     const openPreview = (imageUrl) => {
         setPreviewImage(imageUrl);
@@ -119,7 +119,7 @@ const Agenda = () => {
             <div className="event-page">
                 <section className="event-hero-section image-background">
                     <div className="hero-content">
-                        <h1>{pageTitle || (language === "ID" ? "City of Event: Kalender Acara Kabupaten Tangerang" : "City of Event: Tangerang Regency Event Calendar")}</h1>
+                        <h1>{pageTitle || "City of Event: Kalender Acara Kabupaten Tangerang"}</h1>
                     </div>
                 </section>
 

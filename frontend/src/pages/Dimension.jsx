@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { useLanguage } from "../utils/LanguageContext";
+
 import { apiEndpoints } from "../utils/helpers.js";
 
 import iconsDimensi from "../assets/icons/icondimensi.svg";
@@ -19,7 +19,7 @@ import "../styles/pages/dimension_page.css";
 function Dimension() {
   const navigate = useNavigate();
   const location = useLocation();
-  const { language } = useLanguage();
+
 
   const [active, setActive] = useState(null);
   const [fiturDetail, setFiturDetail] = useState([]);
@@ -42,12 +42,12 @@ function Dimension() {
         setLoading(false);
         // Fallback static data
         setFiturDetail([
-          { title: "Smart Governance", desc: language === "ID" ? "Fallback: Smart Governance adalah sistem tata kelola pemerintahan berbasis teknologi." : "Fallback: Smart Governance system.", path: "/SmartGovernance" },
-          { title: "Smart Living", desc: language === "ID" ? "Fallback: Smart Living meningkatkan kualitas hidup." : "Fallback: Smart Living improves life quality.", path: "/SmartLiving" },
-          { title: "Smart Society", desc: language === "ID" ? "Fallback: Smart Society membangun masyarakat pintar." : "Fallback: Smart Society builds smart community.", path: "/SmartSociety" },
-          { title: "Smart Economy", desc: language === "ID" ? "Fallback: Smart Economy untuk pertumbuhan ekonomi." : "Fallback: Smart Economy for growth.", path: "/SmartEconomy" },
-          { title: "Smart Environment", desc: language === "ID" ? "Fallback: Smart Environment berkelanjutan." : "Fallback: Smart Environment sustainable.", path: "/SmartEnvironment" },
-          { title: "Smart Branding", desc: language === "ID" ? "Fallback: Smart Branding citra daerah." : "Fallback: Smart Branding for region image.", path: "/SmartBranding" }
+          { title: "Smart Governance", desc: "Fallback: Smart Governance adalah sistem tata kelola pemerintahan berbasis teknologi.", path: "/SmartGovernance" },
+          { title: "Smart Living", desc: "Fallback: Smart Living meningkatkan kualitas hidup.", path: "/SmartLiving" },
+          { title: "Smart Society", desc: "Fallback: Smart Society membangun masyarakat pintar.", path: "/SmartSociety" },
+          { title: "Smart Economy", desc: "Fallback: Smart Economy untuk pertumbuhan ekonomi.", path: "/SmartEconomy" },
+          { title: "Smart Environment", desc: "Fallback: Smart Environment berkelanjutan.", path: "/SmartEnvironment" },
+          { title: "Smart Branding", desc: "Fallback: Smart Branding citra daerah.", path: "/SmartBranding" }
         ]);
       } finally {
         setLoading(false);
@@ -83,9 +83,7 @@ function Dimension() {
       <div className="dimensi-hero">
         <div className="hero-text">
           <h1>
-            {language === "ID"
-              ? "Dimensi Smart City"
-              : "Smart City Dimensions"}
+            Dimensi Smart City
           </h1>
         </div>
 
@@ -107,15 +105,11 @@ function Dimension() {
 
           <div className="dimensi-info-text">
             <h2>
-              {language === "ID"
-                ? "Dimensi Smart City"
-                : "Smart City Dimensions"}
+              Dimensi Smart City
             </h2>
 
             <p>
-              {language === "ID"
-                ? "Mendefinisikan pilar-pilar penting untuk mewujudkan Kabupaten Tangerang sebagai kota pintar yang terintegrasi dan berkelanjutan."
-                : "Defines the important pillars to realize Tangerang Regency as an integrated and sustainable smart city."}
+              Mendefinisikan pilar-pilar penting untuk mewujudkan Kabupaten Tangerang sebagai kota pintar yang terintegrasi dan berkelanjutan.
             </p>
           </div>
 
@@ -125,9 +119,7 @@ function Dimension() {
       <section className="fitur" ref={detailRef}>
 
         <h2>
-          {language === "ID"
-            ? "Fitur Unggulan Smart City"
-            : "Smart City Featured Features"}
+          Dimensi Smartcity
         </h2>
 
         {loading ? (
@@ -182,9 +174,7 @@ function Dimension() {
                             navigate(detail.path);
                           }}
                         >
-                          {language === "ID"
-                            ? "Kunjungi Halaman →"
-                            : "Visit Page →"}
+                          Kunjungi Halaman →
                         </button>
                       </div>
 
@@ -203,9 +193,7 @@ function Dimension() {
             navigate("/dimensi");
           }}
         >
-          {language === "ID"
-            ? "Detail Dimensi →"
-            : "Dimension Details →"}
+          Detail Dimensi →
         </button>
 
       </section>

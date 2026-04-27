@@ -2,7 +2,7 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import './styles/base/index.css';
 import App from './App.jsx';
-import { LanguageProvider } from './utils/LanguageContext.jsx';
+
 
 
 // --- Performance monitoring dan error handling ---
@@ -64,9 +64,7 @@ const initializeApp = () => {
     try {
         root.render(
             <StrictMode>
-                <LanguageProvider>
-                    <App />
-                </LanguageProvider>
+                <App />
             </StrictMode>
         );
 

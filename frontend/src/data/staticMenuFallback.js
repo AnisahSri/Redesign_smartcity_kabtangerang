@@ -1,30 +1,25 @@
 export const STATIC_MENU_FALLBACK = [
   {
     titleID: "Tentang",
-    titleEN: "About", 
     path: "#",
     children: [
-      { titleID: "Profil Daerah", titleEN: "Regional Profile", path: "/profile" },
-      { titleID: "Profil Bupati", titleEN: "Regent Profile", path: "/bupati/profil" },
-      { titleID: "Wakil Bupati", titleEN: "Vice Regent Profile", path: "/bupati/wakil" },
-      { titleID: "Sejarah", titleEN: "History", path: "/sejarah" }
+      { titleID: "Profil", path: "/profile" },
+      { titleID: "Sejarah", path: "/sejarah" }
     ]
   },
-  { titleID: "Dimensi", titleEN: "Dimensions", path: "/dimensi" },
-  { titleID: "Agenda", titleEN: "Events", path: "/event" },
-  { titleID: "Katalog", titleEN: "Catalog", path: "/katalog" },
+  { titleID: "Dimensi", path: "/dimensi" },
+  { titleID: "Agenda", path: "/event" },
+  { titleID: "Katalog", path: "/katalog" },
   {
-    titleID: "Fasilitas Publik", 
-    titleEN: "Public Facilities",
+    titleID: "Fasilitas Publik",
     path: "#",
     children: [
-      { titleID: "Sekolah", titleEN: "Schools", path: "/fasilitaspublik/sekolah" },
-      { titleID: "Perpustakaan", titleEN: "Libraries", path: "/fasilitaspublik/perpustakaan" },
-      { titleID: "Beasiswa", titleEN: "Scholarships", path: "/fasilitaspublik/beasiswa" },
-      { titleID: "WiFi Publik", titleEN: "Public WiFi", path: "/fasilitaspublik/wifi" },
-      { titleID: "Fasilitas Kesehatan", titleEN: "Health Facilities", path: "/fasilitaspublik/kesehatan" }
+      { titleID: "Sekolah", path: "/fasilitaspublik/sekolah" },
+      { titleID: "Perpustakaan", path: "/fasilitaspublik/perpustakaan" },
+      { titleID: "Beasiswa", path: "/fasilitaspublik/beasiswa" },
+      { titleID: "WiFi Publik", path: "/fasilitaspublik/wifi" },
+      { titleID: "Fasilitas Kesehatan", path: "/fasilitaspublik/kesehatan" }
     ]
   },
-  { titleID: "Publikasi", titleEN: "Publications", path: "/publication" }
+  { titleID: "Publikasi", path: "/publication" }
 ];
-

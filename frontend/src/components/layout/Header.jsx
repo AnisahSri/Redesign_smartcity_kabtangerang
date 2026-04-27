@@ -4,14 +4,14 @@ import { Link, useLocation } from 'react-router-dom';
 import '../../styles/components/header.css';
 
 import logoImg from "../../assets/images/smartcity.svg";
-import { useLanguage } from '../../utils/LanguageContext';
+
 import { useDynamicMenu } from "../../hooks/useDynamicMenu";
 import { STATIC_MENU_FALLBACK } from '../../data/staticMenuFallback.js';
 
 const Header = () => {
   const location = useLocation();
   const pathname = location.pathname;
-  const { language, toggleLanguage } = useLanguage();
+
 
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
