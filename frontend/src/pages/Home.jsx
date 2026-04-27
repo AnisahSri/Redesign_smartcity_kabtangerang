@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Instagram, Youtube } from "lucide-react";
-import { useLanguage } from "../utils/LanguageContext";
+
 import { apiEndpoints } from "../utils/helpers.js";
 import "../styles/pages/home_page.css"; 
 
@@ -27,7 +27,7 @@ import virtualTourVideo from "../assets/video/virtualtour.mp4";
 const Home = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { language } = useLanguage();
+
 
   const [active, setActive] = useState(null);
   const [fiturDetail, setFiturDetail] = useState([]);
@@ -56,7 +56,7 @@ const Home = () => {
     };
 
     fetchFiturUnggulan();
-  }, [location.key, language]);
+  }, [location.key]);
 
   useEffect(() => {
     setActive(null);
@@ -217,7 +217,7 @@ const Home = () => {
           </video>
 
           <div className="virtual-box-text">
-            {language === "ID" ? "Tangerang Smart City" : "Tangerang Smart City"}
+            Tangerang Smart City
           </div>
 
         </div>

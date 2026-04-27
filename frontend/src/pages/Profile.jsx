@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import "../styles/pages/profile_page.css";
 import { Link } from "react-router-dom";
-import { useLanguage } from "../utils/LanguageContext";
+
 
 /* IMPORT GAMBAR */
 import websiteImg from "../assets/images/website.svg";
@@ -15,7 +15,7 @@ import iconLaporan from "../assets/icons/iconlaporan.svg";
 import iconUnduh from "../assets/icons/iconunduh.svg";
 
 export default function Profile() {
-  const { language } = useLanguage();
+
   const observerRef = useRef(null);
 
   useEffect(() => {

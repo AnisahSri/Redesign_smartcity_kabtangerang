@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Search, Calendar, FileText } from 'lucide-react';
 
-import { useLanguage } from '../utils/LanguageContext';
+
 import { apiEndpoints, getPublikasiBaseUrl } from '../utils/helpers';
 import '../styles/pages/publication_page.css';
 
 export default function Publikasi() {
-  const { language } = useLanguage();
+
   const [searchTerm, setSearchTerm] = useState('');
   const [publikasiData, setPublikasiData] = useState([]);
   const [loading, setLoading] = useState(true);

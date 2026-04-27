@@ -4,7 +4,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
-import { useLanguage } from "../utils/LanguageContext";
+
 
 /* IMPORT GAMBAR DARI ASSETS */
 import websiteImg from "../assets/images/website.svg";
@@ -12,7 +12,7 @@ import smartImg from "../assets/images/smart.svg";
 import lineImg from "../assets/images/line.svg";
 
 export default function Sejarah() {
-  const { language } = useLanguage();
+
 
   return (
     <main className="sejarah-main">

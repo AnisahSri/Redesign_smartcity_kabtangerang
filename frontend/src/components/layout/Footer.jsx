@@ -5,10 +5,10 @@ import "../../styles/components/footer.css";
 import logoImg from "../../assets/images/logo.svg";
 import googlePlayImg from "../../assets/images/googleplay.svg";
 import appStoreImg from "../../assets/images/appstore.svg";
-import { useLanguage } from "../../utils/LanguageContext";
+
 
 const Footer = () => {
-  const { language } = useLanguage();
+
 
   return (
     <footer className="footer">

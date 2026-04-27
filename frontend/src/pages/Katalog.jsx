@@ -1,6 +1,6 @@
 import React from "react";
 import "../styles/pages/katalog_page.css";
-import { useLanguage } from "../utils/LanguageContext";
+
 
 import smartImg from "../assets/images/smart.svg";
 import logoImg from "../assets/images/kabtang.png";
@@ -10,7 +10,7 @@ import mataImg from "../assets/images/dishub.png";
 import websiteImg from "../assets/images/website.svg";
 
 export default function KatalogSection() {
-  const { language } = useLanguage();
+
 
   const katalogData = [
     {
@@ -21,25 +21,25 @@ export default function KatalogSection() {
     },
     {
       title: "Tangerang Gemilang",
-      desc: language === "ID" ? "Layanan Cerdas untuk Masyarakat" : "Smart Services for Citizens",
+      desc: "Layanan Cerdas untuk Masyarakat",
       img: logoImg,
       link: "https://gemilang.tangerangkab.go.id/"
     },
     {
       title: "Mata Hub",
-      desc: language === "ID" ? "Smart Monitoring untuk Kabupaten Tangerang" : "Smart Monitoring for Tangerang Regency",
+      desc: "Smart Monitoring untuk Kabupaten Tangerang",
       img: mataImg,
       link: "https://cctv-dishub.tangerangkab.go.id/cctv"
     },
     {
       title: "D'Naker Digi",
-      desc: language === "ID" ? "Digitalisasi Layanan Ketenagakerjaan" : "Digitalization of Employment Services",
+      desc: "Digitalisasi Layanan Ketenagakerjaan",
       img: digiImg,
       link: "https://siapkerja.tangerangkab.go.id/home"
     },
     {
       title: "Geo Maps Kabupaten Tangerang",
-      desc: language === "ID" ? "Peta Geografis Kabupaten Tangerang" : "Geographic Map of Tangerang Regency",
+      desc: "Peta Geografis Kabupaten Tangerang",
       img: petaImg,
       link: "https://geomaps.tangerangkab.go.id/catalogue/#/map/89",
       big: true

@@ -11,7 +11,7 @@ const Profile = lazy(() => import("../pages/Profile.jsx"));
 const Persona = lazy(() => import("../pages/Persona.jsx"));
 const Event = lazy(() => import("../pages/Agenda.jsx"));
 const Dimensi = lazy(() => import("../pages/Dimension.jsx"));
-const Login = lazy(() => import("../pages/Login.jsx"));
+
 const Sejarah = lazy(() => import("../pages/Sejarah.jsx"));
 const Katalog = lazy(() => import("../pages/Katalog.jsx"));
 
@@ -49,8 +49,6 @@ function AppRouter() {
 
         </Route>
 
-        {/* Rute Login tanpa Layout */}
-        <Route path="/login" element={<Login />} />
 
         {/* Rute 404/NotFound tanpa Layout (tanpa Header dan Footer) */}
         <Route path="*" element={<NotFound />} />
