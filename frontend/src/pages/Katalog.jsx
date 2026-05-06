@@ -2,7 +2,7 @@ import React from "react";
 import "../styles/pages/katalog_page.css";
 
 
-import smartImg from "../assets/images/smart.svg";
+import smartImg from "../assets/images/bukutamu.svg";
 import logoImg from "../assets/images/kabtang.png";
 import petaImg from "../assets/images/peta.png";
 import digiImg from "../assets/images/digi.png";

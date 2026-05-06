@@ -8,7 +8,7 @@ import "swiper/css/navigation";
 
 /* IMPORT GAMBAR DARI ASSETS */
 import websiteImg from "../assets/images/website.svg";
-import smartImg from "../assets/images/smart.svg";
+import smartImg from "../assets/images/smartcity.svg";
 import lineImg from "../assets/images/line.svg";
 
 export default function Sejarah() {
