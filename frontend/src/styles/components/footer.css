@@ -2,10 +2,14 @@
    FOOTER MAIN
 ========================= */
 .footer {
-  background: #F5F5F5;
+  background: #f5f5f5;
   color: #0074BA;
   font-family: "Poppins", sans-serif;
-  margin-top: 80px;
+  margin-top: 0;
+}
+
+section:last-of-type {
+  margin-bottom: 0 !important;
 }
 
 /* Garis biru atas */
@@ -109,8 +113,12 @@
 ========================= */
 .social-icons {
   display: flex;
+  justify-content: center;
   gap: 14px;
   margin-top: 25px;
+}
+.social-section h4 {
+  text-align: center;
 }
 
 .social-icons a {
@@ -164,7 +172,7 @@
   text-align: center;
   padding: 25px;
   font-size: 13px;
-  background: #F5F5F5;
+  background: #FFFFFF;
   color: #777;
 }
 

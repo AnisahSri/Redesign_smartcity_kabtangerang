@@ -4,6 +4,7 @@ import './styles/base/index.css';
 import App from './App.jsx';
 
 
+
 // --- Performance monitoring dan error handling ---
 const initializeApp = () => {
     // Ambil container root

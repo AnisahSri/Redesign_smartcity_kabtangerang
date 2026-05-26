@@ -1,0 +1,115 @@
+import React from "react";
+import "../styles/pages/katalog_page.css";
+
+
+import smartImg from "../assets/images/bukutamu.svg";
+import logoImg from "../assets/images/kabtang.png";
+import petaImg from "../assets/images/peta.png";
+import digiImg from "../assets/images/digi.png";
+import mataImg from "../assets/images/dishub.png";
+import websiteImg from "../assets/images/website.svg";
+
+export default function KatalogSection() {
+
+
+  const katalogData = [
+    {
+      title: "Sistem Kunjungan Tamu",
+      desc: "Pendataan dan Monitoring Tamu Instansi",
+      img: smartImg,
+      link: "https://e-tamu.tangerangkab.my.id/"
+    },
+    {
+      title: "Tangerang Gemilang",
+      desc: "Layanan Cerdas untuk Masyarakat",
+      img: logoImg,
+      link: "https://gemilang.tangerangkab.go.id/"
+    },
+    {
+      title: "Mata Hub",
+      desc: "Smart Monitoring untuk Kabupaten Tangerang",
+      img: mataImg,
+      link: "https://cctv-dishub.tangerangkab.go.id/cctv"
+    },
+    {
+      title: "D'Naker Digi",
+      desc: "Digitalisasi Layanan Ketenagakerjaan",
+      img: digiImg,
+      link: "https://siapkerja.tangerangkab.go.id/home"
+    },
+    {
+      title: "Geo Maps Kabupaten Tangerang",
+      desc: "Peta Geografis Kabupaten Tangerang",
+      img: petaImg,
+      link: "https://geomaps.tangerangkab.go.id/catalogue/#/map/89",
+      big: true
+    }
+  ];
+
+  return (
+    <section className="section-katalog">
+
+      {/* HERO */}
+      <div className="hero-wrapper">
+        <div className="rectangle-top"></div>
+
+        <div className="hero-center">
+          <img src={websiteImg} alt="Mockup" />
+        </div>
+
+        <div className="rectangle-bottom"></div>
+      </div>
+
+      {/* LIST */}
+      <div className="katalog-list">
+        {katalogData.map((item, index) => (
+
+          item.big ? (
+
+            /* CARD KHUSUS GEOMAPS */
+            <div className="katalog-item geomaps-item" key={index}>
+
+              <div className="item-content">
+                <h3>{item.title}</h3>
+                <p>{item.desc}</p>
+              </div>
+
+              <div className="item-image">
+                <a href={item.link} target="_blank" rel="noopener noreferrer">
+                  <img src={item.img} alt={item.title} />
+                </a>
+              </div>
+
+            </div>
+
+          ) : (
+
+            /* CARD NORMAL */
+            <div className="katalog-item" key={index}>
+
+              <div className="item-image">
+                <img src={item.img} alt={item.title} />
+              </div>
+
+              <div className="item-content">
+                <h3>{item.title}</h3>
+                <p>{item.desc}</p>
+              </div>
+
+              <div className="item-button">
+                <a href={item.link} target="_blank" rel="noopener noreferrer">
+                  Lihat Selengkapnya →
+                </a>
+              </div>
+
+            </div>
+
+          )
+
+        ))}
+      </div>
+
+    </section>
+  );
+}
+

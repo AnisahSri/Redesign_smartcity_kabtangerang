@@ -3,14 +3,18 @@ import { Routes, Route } from "react-router-dom";
 import Layout from "../components/layout/Layout";
 import PageLoader from "../components/common/PageLoader.jsx";
 
+
+
 // Lazy imports untuk semua halaman
 const Home = lazy(() => import("../pages/Home.jsx"));
-const About = lazy(() => import("../pages/About.jsx"));
 const Profile = lazy(() => import("../pages/Profile.jsx"));
 const Persona = lazy(() => import("../pages/Persona.jsx"));
-const Event = lazy(() => import("../pages/Event.jsx"));
+const Event = lazy(() => import("../pages/Agenda.jsx"));
 const Dimensi = lazy(() => import("../pages/Dimension.jsx"));
-const Login = lazy(() => import("../pages/Login.jsx"));
+
+const Sejarah = lazy(() => import("../pages/Sejarah.jsx"));
+const Katalog = lazy(() => import("../pages/Katalog.jsx"));
+
 const SmartGovernance = lazy(() => import("../pages/explore-dimensions/SmartGovernance.jsx"));
 const SmartLiving = lazy(() => import("../pages/explore-dimensions/SmartLiving.jsx"));
 const SmartSociety = lazy(() => import("../pages/explore-dimensions/SmartSociety.jsx"));
@@ -29,11 +33,12 @@ function AppRouter() {
 
           {/* RUTE ANAK: Hanya panggil komponen Lazy Load */}
           <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/sejarah" element={<Sejarah />} />
           <Route path="/persona" element={<Persona />} />
           <Route path="/event" element={<Event />} />
           <Route path="/dimensi" element={<Dimensi />} />
+          <Route path="/katalog" element={<Katalog />} />
           <Route path="/SmartGovernance" element={<SmartGovernance />} />
           <Route path="/publication" element={<Publication />} />
           <Route path="/SmartLiving" element={<SmartLiving />} />
@@ -44,8 +49,6 @@ function AppRouter() {
 
         </Route>
 
-        {/* Rute Login tanpa Layout */}
-        <Route path="/login" element={<Login />} />
 
         {/* Rute 404/NotFound tanpa Layout (tanpa Header dan Footer) */}
         <Route path="*" element={<NotFound />} />

@@ -1,0 +1,33 @@
+<svg width="70" height="70" viewBox="60 60 392 392" xmlns="http://www.w3.org/2000/svg">
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Garis tipis (penghubung) -->
+    <g stroke="#9EC3DB" stroke-width="16">
+      <line x1="256" y1="80"  x2="416" y2="168"/>
+      <line x1="416" y1="168" x2="416" y2="344"/>
+      <line x1="416" y1="344" x2="256" y2="432"/>
+      <line x1="256" y1="432" x2="96"  y2="344"/>
+      <line x1="96"  y1="344" x2="96"  y2="168"/>
+      <line x1="96"  y1="168" x2="256" y2="80"/>
+      <!-- Garis ke tengah -->
+      <line x1="256" y1="80"  x2="256" y2="256"/>
+      <line x1="416" y1="168" x2="256" y2="256"/>
+      <line x1="416" y1="344" x2="256" y2="256"/>
+      <line x1="256" y1="432" x2="256" y2="256"/>
+      <line x1="96"  y1="344" x2="256" y2="256"/>
+      <line x1="96"  y1="168" x2="256" y2="256"/>
+    </g>
+    <!-- Panah (tebal) -->
+    <g stroke="#0074BA" stroke-width="24">
+      <path d="M256 80 L230 110 M256 80 L282 110"/>
+      <path d="M416 168 L380 168 M416 168 L392 200"/>
+      <path d="M416 344 L392 312 M416 344 L380 344"/>
+      <path d="M256 432 L230 402 M256 432 L282 402"/>
+      <path d="M96 344 L132 344 M96 344 L120 312"/>
+      <path d="M96 168 L120 200 M96 168 L132 168"/>
+      <!-- Tengah -->
+      <path d="M256 256 L256 300"/>
+      <path d="M256 256 L220 232"/>
+      <path d="M256 256 L292 232"/>
+    </g>
+  </g>
+</svg>

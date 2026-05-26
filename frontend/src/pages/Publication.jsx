@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Search, Calendar, Download, FileText } from 'lucide-react';
-import { apiEndpoints } from '../utils/helpers';
+import { Search, Calendar, FileText } from 'lucide-react';
+
+
+import { apiEndpoints, getPublikasiBaseUrl } from '../utils/helpers';
 import '../styles/pages/publication_page.css';
 
 export default function Publikasi() {
+
   const [searchTerm, setSearchTerm] = useState('');
   const [publikasiData, setPublikasiData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -13,69 +16,84 @@ export default function Publikasi() {
     fetchPublikasi();
   }, []);
 
-  const fetchPublikasi = async () => {
-      try {
-        const response = await apiEndpoints.publications.getAllPublic();
-        const data = response.data.data || [];
-        // Map API data to component format
-        const mappedData = data.map(item => ({
-          id: item.id,
-          title: item.title,
-          description: 'UNDUH PDF',
-          date: item.year,
-          fileUrl: item.file ? `/files/${item.file.name}` : null, // Use proxied path
-        }));
-        setPublikasiData(mappedData);
-      } catch (err) {
-        setError('Failed to load publications');
-        console.error('Error fetching publications:', err);
-      } finally {
-        setLoading(false);
+  const fetchFile = async (id) => {
+    try {
+      const response = await apiEndpoints.publications.getfile(id);
+      // Axios menaruh respon ke dalam 'data'. Karena JSON response backend juga memiliki root 'data',
+      // maka jalurnya menjadi response.data.data.url
+      const url = response.data?.data?.url; 
+      
+      // Buka url langsung
+      if (url) {
+        handleReview(url);
+      } else {
+        console.error("URL tidak ditemukan di dalam respon");
       }
-    };
+    } catch (err) {
+      setError('Failed to load file');
+      console.error('Error fetching file:', err);
+    }
+  };
 
-  const filteredPublikasi = publikasiData.filter(item => {
-    const matchesSearch = item.title.toLowerCase().includes(searchTerm.toLowerCase());
-    return matchesSearch;
-  });
+  const fetchPublikasi = async () => {
+    try {
+      const response = await apiEndpoints.publications.getAll();
+      const responseData = response.data;
+      const data = responseData.data?.data || responseData.data || [];
+      const baseUrl = getPublikasiBaseUrl();
+
+      const mappedData = data.map(item => ({
+        id: item.id,
+        title: item.title || item.name || 'Untitled',
+        description: "LIHAT PDF",
+        date: item.year || item.created_at?.slice(0, 4) || 'N/A',
+        fileUrl: `${baseUrl}/api/v1/publikasi/${item.id}/file`
+
+      }));
+      console.log(mappedData);
+      setPublikasiData(mappedData);
+    } catch (err) {
+      setError('Failed to load publications');
+      console.error('Error fetching publications:', err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const filteredPublikasi = publikasiData.filter(item =>
+    item.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   const handleSearch = (e) => {
     setSearchTerm(e.target.value);
   };
 
-  const handleDownload = (fileUrl) => {
-    // Handle file download
-    window.open(fileUrl, '_blank');
-  };
-
   const handleReview = (fileUrl) => {
-    
     window.open(fileUrl, '_blank');
   };
 
   return (
     <div className="publikasi-container">
-      {/* Hero Section */}
       <section className="publikasi-hero">
         <div className="publikasi-hero-content">
-          <h1 className="publikasi-hero-title">Publikasi SmartCity</h1>
+          <h1 className="publikasi-hero-title">
+            Publikasi SmartCity
+          </h1>
         </div>
       </section>
 
-      {/* Main Content */}
       <section className="publikasi-main">
         <div className="publikasi-content-wrapper">
-          {/* Document List Card */}
           <div className="publikasi-document-card">
             <div className="publikasi-document-header">
-              <h2 className="publikasi-document-title">Daftar Dokumen</h2>
-              
-              {/* Search Box */}
+              <h2 className="publikasi-document-title">
+                  Daftar Dokumen
+              </h2>
               <div className="publikasi-search-box">
                 <Search className="publikasi-search-icon" size={18} />
                 <input
                   type="text"
-                  placeholder="Search"
+                  placeholder="Cari"
                   className="publikasi-search-input"
                   value={searchTerm}
                   onChange={handleSearch}
@@ -83,14 +101,13 @@ export default function Publikasi() {
               </div>
             </div>
 
-            {/* Table */}
             <div className="publikasi-table-container">
               <table className="publikasi-table">
                 <thead>
                   <tr>
                     <th>Judul</th>
                     <th>Deskripsi</th>
-                    <th>Date</th>
+                    <th>Tanggal</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -124,7 +141,7 @@ export default function Publikasi() {
                         <td>
                           <button
                             className="publikasi-download-btn"
-                            onClick={() => handleDownload(item.fileUrl)}
+                            onClick={() => fetchFile(item.id)}
                             disabled={!item.fileUrl}
                           >
                             {item.description}
@@ -154,3 +171,4 @@ export default function Publikasi() {
     </div>
   );
 }
+

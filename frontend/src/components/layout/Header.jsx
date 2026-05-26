@@ -3,14 +3,22 @@ import { Search, Menu, X, ChevronDown } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import '../../styles/components/header.css';
 
+import logoImg from "../../assets/images/smartcity.svg";
+
+import { useDynamicMenu } from "../../hooks/useDynamicMenu";
+import { STATIC_MENU_FALLBACK } from '../../data/staticMenuFallback.js';
+
 const Header = () => {
   const location = useLocation();
   const pathname = location.pathname;
+
 
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [isSearchExpanded, setIsSearchExpanded] = useState(false);
+  const [isSearchHovered, setIsSearchHovered] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState(null);
 
   const searchInputRef = useRef(null);
 
@@ -51,6 +59,15 @@ const Header = () => {
     }
   };
 
+  const toggleDropdown = (menu) => {
+    setOpenDropdown(openDropdown === menu ? null : menu);
+  };
+
+  const { menuItems, loading } = useDynamicMenu();
+
+  // Gunakan fallback jika loading/error
+  const finalMenuItems = loading || !menuItems.length ? STATIC_MENU_FALLBACK : menuItems;
+
   return (
     <>
       <header className={`main-header ${isScrolled ? 'scrolled' : ''}`}>
@@ -59,91 +76,49 @@ const Header = () => {
           {/* LOGO */}
           <div className="logo">
             <Link to="/" onClick={handleNavClick}>
-             <img
-             src="/gambar/smartcity.svg"
-             alt="Smart City Logo"
-             className="logo-img"
-             />
+              <img
+                src={logoImg}
+                alt="Smart City Logo"
+                className="logo-img"
+              />
             </Link>
           </div>
 
-          {/* DESKTOP NAV */}
+          {/* DESKTOP NAV - DYNAMIC */}
           <nav className="desktop-nav">
             <ul>
-              {/* Tentang */}
-              <li className="dropdown">
-                <span>
-                  Tentang <ChevronDown size={16} />
-                </span>
-                <div className="dropdown-content">
-                  <Link to="/profile">Profil</Link>
-                  <Link to="/about">Sejarah</Link>
-                </div>
-              </li>
-
-              <li>
-                <Link to="/dimensi">Dimensi</Link>
-              </li>
-
-              <li>
-                <Link to="/event">Agenda</Link>
-              </li>
-
-              {/* Katalog */}
-              <li className="dropdown">
-                <span>
-                  Katalog <ChevronDown size={16} />
-                </span>
-                <div className="dropdown-content">
-                  <Link to="/">Sistem Kunjungan Halaman</Link>
-                  <Link to="/">Tangerang Gemilang</Link>
-                  <Link to="/">Mata Hub</Link>
-                  <Link to="/">D'naker Digi</Link>
-                </div>
-              </li>
-
-              {/* Fasilitas Publik */}
-              <li className="dropdown">
-                <span>
-                  Fasilitas Publik <ChevronDown size={16} />
-                </span>
-                <div className="dropdown-content">
-                  <Link to="/">Sekolah</Link>
-                  <Link to="/">Perpustakaan</Link>
-                  <Link to="/">Beasiswa</Link>
-                  <Link to="/">WiFi Publik</Link>
-                  <Link to="/">Fasilitas Kesehatan</Link>
-                </div>
-              </li>
-
-              <li>
-                <Link to="/publication">Publikasi</Link>
-              </li>
-
+              {finalMenuItems.map((item, index) => (
+                item.children && item.children.length ? (
+                  <li key={index} className="dropdown">
+                    <span onClick={() => toggleDropdown(`desktop-${index}`)}>
+                      {item.titleID} <ChevronDown size={16} />
+                    </span>
+                    <div className="dropdown-content">
+                      {item.children.map((child, cIndex) => (
+                        <Link 
+                          key={cIndex} 
+                          to={child.path}
+                          onClick={handleNavClick}
+                        >
+                          {child.titleID}
+                        </Link>
+                      ))}
+                    </div>
+                  </li>
+                ) : (
+                  <li key={index}>
+                    <Link to={item.path} onClick={handleNavClick}>
+                      {item.titleID}
+                    </Link>
+                  </li>
+                )
+              ))}
             </ul>
           </nav>
 
           {/* RIGHT CONTROLS */}
           <div className="header-controls">
 
-            <div className={`search-container ${isSearchExpanded ? 'expanded' : ''}`}>
-              <input
-                ref={searchInputRef}
-                type="text"
-                className="search-input"
-                placeholder="Cari..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                onKeyDown={handleSearch}
-              />
-              <button
-                type="button"
-                className="search-icon"
-                onClick={isSearchExpanded ? handleSearch : toggleSearch}
-              >
-                <Search size={20} />
-              </button>
-            </div>
 
             <button
               className="mobile-menu-btn"
@@ -156,40 +131,36 @@ const Header = () => {
         </div>
       </header>
 
-      {/* MOBILE NAV */}
+      {/* MOBILE NAV - DYNAMIC */}
       <nav className={`mobile-nav ${isMobileMenuOpen ? 'open' : ''}`}>
         <ul>
-
-          <li><Link to="/" onClick={handleNavClick}>Beranda</Link></li>
-
-          <li>
-            <span className="mobile-section-title">Tentang</span>
-            <Link to="/profile" onClick={handleNavClick}>Profil</Link>
-            <Link to="/about" onClick={handleNavClick}>Sejarah</Link>
-          </li>
-
-          <li><Link to="/dimensi" onClick={handleNavClick}>Dimensi</Link></li>
-          <li><Link to="/event" onClick={handleNavClick}>Agenda</Link></li>
-
-          <li>
-            <span className="mobile-section-title">Katalog</span>
-            <Link to="/">Sistem Kunjungan Halaman</Link>
-            <Link to="/">Tangerang Gemilang</Link>
-            <Link to="/">Mata Hub</Link>
-            <Link to="/">D'naker Digi</Link>
-          </li>
-
-          <li>
-            <span className="mobile-section-title">Fasilitas Publik</span>
-            <Link to="/">Sekolah</Link>
-            <Link to="/">Perpustakaan</Link>
-            <Link to="/">Beasiswa</Link>
-            <Link to="/">WiFi Publik</Link>
-            <Link to="/">Fasilitas Kesehatan</Link>
-          </li>
-
-          <li><Link to="/publication" onClick={handleNavClick}>Publikasi</Link></li>
-
+          {finalMenuItems.map((item, index) => (
+            item.children && item.children.length ? (
+              <li key={`mobile-${index}`} className={`mobile-dropdown ${openDropdown === `mobile-${index}` ? 'active' : ''}`}>
+                <div
+                  className="mobile-dropdown-title"
+                  onClick={() => toggleDropdown(`mobile-${index}`)}
+                >
+                  {item.titleID} <span>▾</span>
+                </div>
+                <ul className="mobile-submenu">
+                  {item.children.map((child, cIndex) => (
+                    <li key={cIndex}>
+                      <Link to={child.path} onClick={handleNavClick}>
+                        {child.titleID}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            ) : (
+              <li key={`mobile-${index}`}>
+                <Link to={item.path} onClick={handleNavClick}>
+                  {item.titleID}
+                </Link>
+              </li>
+            )
+          ))}
         </ul>
       </nav>
 
