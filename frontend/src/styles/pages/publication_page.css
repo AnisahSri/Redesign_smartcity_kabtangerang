@@ -28,9 +28,7 @@ html {
    ============================================ */
 
 .publikasi-hero {
-  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-              url('../assets/images/cityscape_background.jpg') center/cover;
-  background-attachment: fixed;
+  background: linear-gradient(135deg, #0056b3, #007bff);
   padding: 80px 20px 60px;
   text-align: center;
   color: white;

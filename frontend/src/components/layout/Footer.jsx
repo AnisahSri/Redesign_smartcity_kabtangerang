@@ -84,7 +84,9 @@ const Footer = () => {
               />
             </a>
 
-            <a href="#" target="_blank" rel="noopener noreferrer">
+            <a href="https://apps.apple.com/id/app/tangerang-gemilang/id1642259427" 
+            target="_blank" 
+            rel="noopener noreferrer">
               <img
                 src={appStoreImg}
                 alt="Download di App Store"

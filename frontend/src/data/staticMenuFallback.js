@@ -21,5 +21,6 @@ export const STATIC_MENU_FALLBACK = [
       { titleID: "Fasilitas Kesehatan", path: "/fasilitaspublik/kesehatan" }
     ]
   },
-  { titleID: "Publikasi", path: "/publication" }
+  { titleID: "Publikasi", path: "/publication" },
+  { titleID: "Kontak", path: "/kontak" }
 ];

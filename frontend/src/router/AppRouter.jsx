@@ -8,7 +8,7 @@ import PageLoader from "../components/common/PageLoader.jsx";
 // Lazy imports untuk semua halaman
 const Home = lazy(() => import("../pages/Home.jsx"));
 const Profile = lazy(() => import("../pages/Profile.jsx"));
-const Persona = lazy(() => import("../pages/Persona.jsx"));
+
 const Event = lazy(() => import("../pages/Agenda.jsx"));
 const Dimensi = lazy(() => import("../pages/Dimension.jsx"));
 
@@ -22,6 +22,7 @@ const SmartEconomy = lazy(() => import("../pages/explore-dimensions/SmartEconomy
 const SmartEnvironment = lazy(() => import("../pages/explore-dimensions/SmartEnvironment.jsx"));
 const SmartBranding = lazy(() => import("../pages/explore-dimensions/SmartBranding.jsx"));
 const Publication = lazy(() => import("../pages/Publication.jsx"));
+const Kontak = lazy(() => import("../pages/Kontak.jsx"));
 const NotFound = lazy(() => import("../components/common/NotFound.jsx"));
 
 function AppRouter() {
@@ -35,7 +36,7 @@ function AppRouter() {
           <Route path="/" element={<Home />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/sejarah" element={<Sejarah />} />
-          <Route path="/persona" element={<Persona />} />
+
           <Route path="/event" element={<Event />} />
           <Route path="/dimensi" element={<Dimensi />} />
           <Route path="/katalog" element={<Katalog />} />
@@ -46,6 +47,7 @@ function AppRouter() {
           <Route path="/SmartEconomy" element={<SmartEconomy />} />
           <Route path="/SmartEnvironment" element={<SmartEnvironment />} />
           <Route path="/SmartBranding" element={<SmartBranding />} />
+          <Route path="/kontak" element={<Kontak />} />
 
         </Route>
 
