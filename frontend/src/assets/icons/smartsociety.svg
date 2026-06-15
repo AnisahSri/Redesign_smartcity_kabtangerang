@@ -1,0 +1,28 @@
+<svg
+  width="90"
+  height="90"
+  viewBox="0 0 70 70"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  {/* Orang kiri (kecil, di belakang) */}
+  <circle cx="14" cy="26" r="7" fill="#0074BA" />
+  <path
+    d="M14 35c-4.7 0-14 2.3-14 7v6h13v-2c0-3.5 2-6.5 5-8.5-1.3-1.6-2.7-2.5-4-2.5z"
+    fill="#0074BA"
+  />
+
+  {/* Orang kanan (kecil, di belakang) */}
+  <circle cx="56" cy="26" r="7" fill="#0074BA" />
+  <path
+    d="M56 35c4.7 0 14 2.3 14 7v6h-13v-2c0-3.5-2-6.5-5-8.5 1.3-1.6 2.7-2.5 4-2.5z"
+    fill="#0074BA"
+  />
+
+  {/* Orang tengah (utama, besar, di depan) */}
+  <circle cx="35" cy="22" r="10" fill="#0074BA" />
+  <path
+    d="M35 35c-7 0-21 3.5-21 10.5V51h42v-5.5C56 38.5 42 35 35 35z"
+    fill="#0074BA"
+  />
+</svg>

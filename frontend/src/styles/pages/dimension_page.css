@@ -1,546 +1,442 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/* ================= HERO ATAS ================= */
+.dimensi-section {
+  background: #f5f5f5;
 }
 
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    background-color: white;
-    color: #333;
-    font-weight: normal;
+.dimensi-hero {
+  background-color: #0074BA;
+  position: relative; /* penting biar gambar bisa absolute */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  height: 420px;        /* lebih stabil dari padding bawah */
+  padding: 70px 20px 0 20px;  /* atas lega, bawah nol */
+  overflow: visible;
 }
 
-html, body {
-    margin: 0 !important;
-    padding: 0 !important;
-    overflow-x: hidden;
+/* Tulisan di atas */
+.hero-text h1 {
+  color: white;
+  font-size: 55px;
+  margin-bottom: 50px; /* jarak ke gambar */
 }
 
-.dimensi-main {
-    margin: 0 !important;
-    padding: 0 !important;
-    margin-top: 0 !important;
-    padding-top: 0 !important;
+/* Gambar background dimensi (dibesarkan & tidak nabrak) */
+.dimensi-center-image {
+  width: 800px;        /* diperbesar */
+  max-width: 95%;
+  border-radius: 16px;
 }
 
-.dimensi-hero-section {
-    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-                url('/src/assets/images/cityscape_background.jpg') center/cover;
-    background-attachment: fixed;
-    color: white;
-    text-align: center;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    margin: 0 !important;
-    margin-top: 0 !important;
-    padding: 0 !important;
-    padding-top: 0 !important;
-    top: 0;
+/* ================= SECTION BAWAH ================= */
+
+.dimensi-info {
+  background-color: #0074BA;
+  padding: 80px 100px;
+  display: flex;
+  justify-content: center;
+  border-radius: 30px;
+
+  margin: 300px 120px 0 120px; /* 🔥 lebih jauh supaya gak nabrak */
+  position: relative;
+  z-index: 1;
 }
 
-.dimensi-hero-section .container {
-    position: relative;
-    z-index: 1;
-    padding: 140px 20px 80px;
+.dimensi-section {
+  background: #f5f5f5;
 }
 
-.dimensi-hero-section h1 {
-    font-size: 3.5rem;
-    font-weight: 700;
-    margin-bottom: 20px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+/* Container icon + text */
+.dimensi-info-container {
+  display: flex;
+  align-items: center;
+  gap: 60px; /* lebih lega */
+  max-width: 1000px;
+  width: 100%;
 }
 
-.dimensi-hero-section p {
-    font-size: 1.2rem;
-    max-width: 800px;
-    margin: 0 auto;
-    line-height: 1.6;
-    opacity: 0.9;
+/* ICON KIRI */
+.dimensi-info-icon {
+  width: 300px; /* sedikit diperkecil biar balance */
+  height: auto;
+  opacity: 0.95;
 }
 
-.dimensi-content-section {
-    padding: 80px 0;
-    background-color: #f8f9fa;
+/* TEXT KANAN */
+.dimensi-info-text h2 {
+  color: white;
+  font-size: 38px;
+  margin-bottom: 15px;
 }
 
-.dimensi-content-section h2 {
-    text-align: center;
-    font-size: 2.5rem;
-    color: var(--primary-200);
-    margin-bottom: 20px;
-    font-weight: 600;
+.dimensi-info-text p {
+  color: #e3f2fd;
+  font-size: 22px;
+  line-height: 1.7;
+  max-width: 520px;
 }
 
-.dimensi-content-section > .container > p {
-    text-align: center;
-    color: #666;
-    font-size: 1rem;
-    max-width: 600px;
-    margin: 0 auto 60px;
-    line-height: 1.6;
+/* ================= FITUR UNGGULAN ================= */
+
+.fitur {
+padding: 80px 20px 300px 20px;
+  background: transparent;
+  text-align: center;
+position: relative;
+  z-index: 10;
+  overflow: visible;
 }
 
-.dimensi-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
+/* Judul */
+.fitur h2 {
+  font-size: 36px;
+  font-weight: 700;
+  color: #0074BA;
+  margin-bottom: 50px;
 }
 
-.dimensi-card {
-    background: white;
-    border-radius: 15px;
-    padding: 40px 30px;
-    text-align: center;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
-    transition: all 0.3s ease;
-    cursor: pointer;
-    border: 2px solid transparent;
-    position: relative;
-    overflow: hidden;
+/* Wrapper sejajar full */
+.fitur-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 30px;
+
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
 }
 
-.dimensi-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(37, 117, 252, 0.1), transparent);
-    transition: left 0.5s;
+/* Item */
+.fitur-item {
+  width: 160px; /* ukuran tetap */
+  flex-shrink: 0; /* supaya tidak mengecil */
+  text-align: center;
+  cursor: pointer;
+  transition: 0.3s ease;
+  position: relative;
 }
 
-.dimensi-card:hover::before {
-    left: 100%;
+.fitur-item:hover {
+  transform: translateY(-5px);
 }
 
-.dimensi-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 35px rgba(37, 117, 252, 0.2);
-    border-color: var(--primary-200);
+.fitur-item.active .dimensi-icon-circle {
+  background-color: #0074BA;
 }
 
-.dimensi-card:focus {
-    outline: 3px solid var(--primary-200);
-    outline-offset: 2px;
-    transform: translateY(-5px);
-    box-shadow: none;
+.fitur-item.active p {
+  color: #0074BA;
+  font-weight: 600;
 }
 
-.card-icon {
-    width: 80px;
-    height: 80px;
-    margin: 0 auto 25px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--gradient-primary);
-    border-radius: 50%;
-    box-shadow: 0 5px 15px rgba(0, 114, 255, 0.3);
-    transition: all 0.3s ease;
+/* Lingkaran Icon */
+.dimensi-icon-circle {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 15px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+  transition: 0.3s ease;
+  box-shadow: inset 0 0 0 3px #0074BA;
 }
 
-.dimensi-card:hover .card-icon {
-    transform: scale(1.1);
-    box-shadow: 0 8px 25px rgba(0, 114, 255, 0.4);
+/* Icon */
+.dimensi-icon-circle img {
+  width: 50px;
+  height: auto;
+  object-fit: contain;
+  display: block;
 }
 
-.card-icon img,
-.card-icon svg,
-.card-icon i {
-    width: 40px;
-    height: 40px;
-    filter: brightness(0) invert(1);
+/* Text */
+.fitur-item p {
+  font-weight: 600;
+  font-size: 14px;
+  color: #0074BA;
+  transition: 0.3s ease;
 }
 
-.card-icon .icon {
-    font-size: 40px;
-    color: white;
+/* ================= HOVER EFFECT ================= */
+
+.fitur-item:hover .dimensi-icon-circle {
+  background: #0074BA;
 }
 
-/* Jika menggunakan Font Awesome atau icon font lainnya */
-.card-icon::before {
-    font-size: 40px;
-    color: white;
+.fitur-item:hover .dimensi-icon-circle img {
+  filter: brightness(0) invert(1);
 }
 
-.dimensi-card h3 {
-    font-size: 1.5rem;
-    color: #2c3e50;
-    margin-bottom: 15px;
-    font-weight: 600;
+.fitur-item:hover p {
+  color: #0074BA;
 }
 
-.dimensi-card p {
-    color: #7f8c8d;
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.6;
-    transition: color 0.3s ease;
+/* ================= ACTIVE (CLICK) ================= */
+
+.fitur-item.active .dimensi-icon-circle {
+  background: #0074BA;
 }
 
-.dimensi-card:hover p {
-    color: var(--primary-200);
+.fitur-item.active .dimensi-icon-circle img {
+  filter: brightness(0) invert(1);
 }
 
-/* Warna icon untuk setiap dimensi - menggunakan gradient primary */
-.dimensi-card:nth-child(1) .card-icon {
-    background: var(--gradient-primary);
-    box-shadow: 0 5px 15px rgba(0, 114, 255, 0.3);
+.fitur-item.active p {
+  color: #0074BA;
 }
 
-.dimensi-card:nth-child(2) .card-icon {
-    background: var(--gradient-primary);
-    box-shadow: 0 5px 15px rgba(0, 114, 255, 0.3);
+/* ================= BUTTON DETAIL ================= */
+
+.btn-detail {
+  margin-top: 50px;
+  padding: 12px 35px;
+  border-radius: 30px;
+  border: 2px solid #0074BA;
+  background: white;
+  color: #0074BA;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
 }
 
-.dimensi-card:nth-child(3) .card-icon {
-    background: var(--gradient-primary);
-    box-shadow: 0 5px 15px rgba(0, 114, 255, 0.3);
+/* Hover tombol */
+.btn-detail:hover {
+  background: #0074BA;
+  color: white;
 }
 
-.dimensi-card:nth-child(4) .card-icon {
-    background: var(--gradient-primary);
-    box-shadow: 0 5px 15px rgba(0, 114, 255, 0.3);
+/* Active (click) tombol */
+.btn-detail:active {
+  background: #0074BA;
+  color: white;
 }
 
-.dimensi-card:nth-child(5) .card-icon {
-    background: var(--gradient-primary);
-    box-shadow: 0 5px 15px rgba(0, 114, 255, 0.3);
+/* ================= POPUP FITUR ================= */
+
+.fitur-item{
+  position: relative;
 }
 
-.dimensi-card:nth-child(6) .card-icon {
-    background: var(--gradient-primary);
-    box-shadow: 0 5px 15px rgba(0, 114, 255, 0.3);
+/* popup */
+.fitur-popup{
+  position: absolute;
+  top: 140px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 420px;
+  max-width: 90vw;
+  pointer-events: auto;
+
+  background: #f6f9ff;
+  border: 2px solid #0074BA;
+  border-radius: 20px;
+  padding: 30px;
+
+  text-align: left;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  z-index: 100;
+  animation: fadeIn 0.25s ease;
 }
 
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(5px);
+.fitur-item:first-child .fitur-popup{
+  left: 0;
+  transform: translateX(0);
 }
 
-.modal-content {
-    background-color: white;
-    margin: 5% auto;
-    padding: 40px;
-    border-radius: 15px;
-    width: 85%;
-    max-width: 700px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-    animation: modalSlideIn 0.3s ease;
-    position: relative;
-    max-height: 85vh;
-    overflow-y: auto;
+.fitur-item:last-child .fitur-popup{
+  left: auto;
+  right: 0;
+  transform: translateX(0);
 }
 
-@keyframes modalSlideIn {
-    from {
-        opacity: 0;
-        transform: translateY(-50px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+/* segitiga */
+.popup-arrow{
+  position: absolute;
+  top: -4px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+
+  width: 20px;
+  height: 20px;
+  background: #f6f9ff;
+  border-left: 2px solid #0074BA;
+  border-top: 2px solid #0074BA;
 }
 
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-    position: absolute;
-    right: 20px;
-    top: 15px;
-    cursor: pointer;
-    transition: color 0.3s ease;
+.fitur-item:first-child .popup-arrow{
+  left: 40px;
+  transform: rotate(45deg);
 }
 
-.close:hover,
-.close:focus {
-    color: var(--primary-200);
+.fitur-item:last-child .popup-arrow{
+  left: auto;
+  right: 40px;
+  transform: rotate(45deg);
 }
 
-.modal-content h3 {
-    color: var(--primary-200);
-    font-size: 2rem;
-    margin-bottom: 15px;
-    font-weight: 600;
-    padding-right: 40px;
+/* judul */
+.fitur-popup h2{
+  font-size: 22px;
+  color: #0074BA;
+  margin-bottom: 15px;
 }
 
-.modal-content .modal-description {
-    color: #555;
-    font-size: 1.05rem;
-    line-height: 1.8;
-    text-align: justify;
-    margin-bottom: 30px;
+/* text */
+.fitur-popup p{
+  font-size: 14px;
+  line-height: 1.7;
+  color: #444;
 }
 
-.modal-content .modal-details {
-    background-color: #f8f9fa;
-    padding: 20px;
-    border-radius: 10px;
-    margin-bottom: 30px;
-    border-left: 4px solid var(--primary-200);
+/* close button */
+.close-btn{
+  position: absolute;
+  top: 10px;
+  right: 15px;
+
+  border: none;
+  background: none;
+
+  font-size: 18px;
+  cursor: pointer;
 }
 
-.modal-content .modal-details h4 {
-    color: #2c3e50;
-    font-size: 1.1rem;
-    margin-bottom: 12px;
-    font-weight: 600;
+/* tombol bawah */
+.popup-bottom{
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
 }
 
-.modal-content .modal-details ul {
-    list-style: none;
-    padding-left: 0;
-    margin: 0;
+/* animasi */
+@keyframes fadeIn{
+  from{
+    opacity:0;
+    margin-top:15px;
+  }
+  to{
+    opacity:1;
+    margin-top:0;
+  }
 }
 
-.modal-content .modal-details li {
-    color: #666;
-    font-size: 0.95rem;
-    line-height: 1.6;
-    margin-bottom: 8px;
-    padding-left: 20px;
-    position: relative;
+
+/* =====================================
+   RESPONSIVE - Mobile Rapi
+===================================== */
+
+@media (max-width:992px){
+.fitur-wrapper{
+  flex-wrap:wrap;
+  justify-content:center;
+  gap: 20px;
+}
+.fitur-item{
+  width:30%;
+  min-width:140px;
+}
+.dimensi-info {
+  margin: 200px 40px 0 40px;
+  padding: 50px 30px;
+}
+.dimensi-info-container {
+  flex-direction: column;
+  text-align: center;
+}
+.dimensi-info-icon {
+  width: 200px;
+}
+.dimensi-info-text h2 {
+  font-size: 28px;
+}
+.dimensi-info-text p {
+  font-size: 16px;
+}
 }
 
-.modal-content .modal-details li::before {
-    content: "✓";
-    position: absolute;
-    left: 0;
-    color: var(--primary-200);
-    font-weight: bold;
+@media (max-width:576px){
+.fitur-wrapper{
+  flex-wrap:wrap;
+  gap: 15px;
 }
-
-.modal-button-container {
-    display: flex;
-    gap: 15px;
-    margin-top: 30px;
-    justify-content: center;
+.fitur-item{
+  width:45%;
+  max-width:150px;
 }
-
-.modal-btn {
-    padding: 12px 30px;
-    border: none;
-    border-radius: 8px;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
+.dimensi-hero {
+  height: 300px;
+  padding: 50px 15px 0 15px;
 }
-
-.modal-btn-primary {
-    background: var(--gradient-primary);
-    color: white;
-    box-shadow: 0 4px 15px rgba(0, 114, 255, 0.3);
+.hero-text h1 {
+  font-size: 32px;
+  margin-bottom: 30px;
 }
-
-.modal-btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0, 114, 255, 0.4);
+.dimensi-center-image {
+  width: 100%;
 }
-
-.modal-btn-primary:active {
-    transform: translateY(0);
+.dimensi-info {
+  margin: 150px 15px 0 15px;
+  padding: 40px 20px;
+  border-radius: 20px;
 }
-
-.modal-btn-secondary {
-    background: white;
-    color: var(--primary-200);
-    border: 2px solid var(--primary-200);
+.dimensi-info-icon {
+  width: 150px;
 }
-
-.modal-btn-secondary:hover {
-    background: var(--primary-200);
-    color: white;
-    transform: translateY(-2px);
+.dimensi-info-text h2 {
+  font-size: 24px;
 }
-
-.modal-btn-secondary:active {
-    transform: translateY(0);
+.dimensi-info-text p {
+  font-size: 14px;
 }
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
+.fitur {
+padding: 50px 15px 400px 15px;
 }
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .dimensi-hero-section {
-        min-height: 80vh;
-        background-attachment: scroll;
-    }
-
-    .dimensi-hero-section .container {
-        padding: 100px 20px 60px;
-    }
-    
-    .dimensi-hero-section h1 {
-        font-size: 2.5rem;
-    }
-    
-    .dimensi-hero-section p {
-        font-size: 1rem;
-    }
-    
-    .dimensi-content-section {
-        padding: 60px 0;
-    }
-    
-    .dimensi-content-section h2 {
-        font-size: 2rem;
-        margin-bottom: 15px;
-    }
-
-    .dimensi-content-section > .container > p {
-        font-size: 0.95rem;
-        margin-bottom: 40px;
-    }
-    
-    .dimensi-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
-        padding: 0 15px;
-    }
-    
-    .dimensi-card {
-        padding: 30px 20px;
-    }
-    
-    .dimensi-card:hover {
-        transform: translateY(-5px);
-    }
-    
-    .modal-content {
-        width: 95%;
-        margin: 10% auto;
-        padding: 30px 20px;
-        max-height: 80vh;
-    }
-    
-    .close:hover,
-    .close:focus {
-        outline: none;
-    }
-
-    .modal-content h3 {
-        font-size: 1.6rem;
-    }
-    
-    .modal-content .modal-description {
-        font-size: 0.95rem;
-    }
-
-    .modal-content .modal-details {
-        padding: 15px;
-    }
-
-    .modal-content .modal-details h4 {
-        font-size: 1rem;
-    }
-
-    .modal-content .modal-details li {
-        font-size: 0.9rem;
-    }
-
-    .modal-button-container {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .modal-btn {
-        width: 100%;
-        justify-content: center;
-        padding: 12px 20px;
-    }
+.fitur h2 {
+  font-size: 24px;
+  margin-bottom: 30px;
 }
-
-@media (max-width: 480px) {
-    .dimensi-hero-section .container {
-        padding: 80px 20px 40px;
-    }
-    
-    .dimensi-hero-section h1 {
-        font-size: 2rem;
-    }
-    
-    .dimensi-content-section h2 {
-        font-size: 1.8rem;
-    }
-    
-    .card-icon {
-        width: 60px;
-        height: 60px;
-    }
-    
-    .card-icon img,
-    .card-icon svg,
-    .card-icon i {
-        width: 30px;
-        height: 30px;
-    }
-
-    .card-icon .icon {
-        font-size: 30px;
-    }
-    
-    .dimensi-card h3 {
-        font-size: 1.3rem;
-    }
-    
-    .modal-content {
-        margin: 10% auto;
-        padding: 25px 15px;
-    }
-
-    .modal-content h3 {
-        font-size: 1.4rem;
-    }
-
-    .modal-content .modal-description {
-        font-size: 0.9rem;
-    }
-
-    .modal-btn {
-        font-size: 0.95rem;
-        padding: 10px 20px;
-    }
+.dimensi-icon-circle {
+  width: 70px;
+  height: 70px;
 }
-
-@media (hover: none) and (pointer: coarse) {
-    .dimensi-card:hover {
-        transform: none;
-        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
-    }
-    
-    .dimensi-card:active {
-        transform: scale(0.98);
-    }
+.dimensi-icon-circle img {
+  width: 35px;
+}
+.fitur-item p {
+  font-size: 11px;
+}
+.fitur-popup {
+  width: 280px;
+  padding: 20px;
+  left: 50% !important;
+  right: auto !important;
+  transform: translateX(-50%) !important;
+}
+.fitur-item:first-child .fitur-popup,
+.fitur-item:last-child .fitur-popup {
+  left: 50% !important;
+  right: auto !important;
+  transform: translateX(-50%) !important;
+}
+.popup-arrow {
+  left: 50% !important;
+  right: auto !important;
+}
+.fitur-item:first-child .popup-arrow,
+.fitur-item:last-child .popup-arrow {
+  left: 50% !important;
+  right: auto !important;
+}
+.btn-detail {
+  padding: 10px 25px;
+  font-size: 14px;
+}
 }

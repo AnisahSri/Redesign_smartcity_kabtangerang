@@ -1,0 +1,447 @@
+/* =====================================
+   HERO
+===================================== */
+
+.sejarah-hero {
+  position: relative;
+  width: 100%;
+}
+
+.sejarah-center-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* TEXT DI ATAS GAMBAR - POSISI BAWAH KIRI */
+.hero-text {
+  position: absolute;
+  bottom: 40px;   /* jarak dari bawah gambar */
+  left: 60px;     /* jarak dari kiri */
+}
+
+.hero-text h1 {
+  margin: 0;
+  font-size: 48px;
+  font-weight: 700;
+  color: white;
+}
+
+
+/* =====================================
+   KALIMAT AWAL
+===================================== */
+
+.kalimat-awal {
+  background: transparent;  
+  padding: 60px 20px 80px;
+  text-align: center;
+}
+
+.kalimat-awal .container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.kalimat-awal p {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.9;
+  color: #323232;
+}
+
+/* ==========================
+   SEJARAH INTRO
+========================== */
+
+.sejarah-intro {
+  padding: 80px 20px;
+}
+
+/* CARD */
+.intro-card {
+  background: #0074BA;
+  padding: 60px;
+  border-radius: 40px;
+  max-width: 950px;
+  margin: 0 auto;
+  color: white;
+  text-align: center; /* judul tetap tengah */
+}
+
+/* JUDUL */
+.intro-card h2 {
+  font-size: 26px;
+  margin-bottom: 40px;
+  display: inline-block;
+  position: relative;
+}
+
+/* GARIS */
+.intro-card h2::after {
+  content: "";
+  display: block;
+  height: 4px;
+  margin-top: 12px;
+  border-radius: 3px;
+  background: linear-gradient(
+    to right,
+    white 0%,
+    #00BFFF 50%,
+    white 100%
+  );
+}
+
+/* WRAPPER FOTO + TEXT */
+.intro-content {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  text-align: left;
+}
+
+/* FOTO */
+.sejarah-image img {
+  width: 320px;
+  border-radius: 15px;
+}
+
+/* TEXT */
+.intro-content p {
+  flex: 1;
+  line-height: 1.8;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .intro-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .intro-content p {
+    text-align: center;
+  }
+}
+
+/* =====================================
+   VISI MISI
+===================================== */
+
+.vision-mission-section {
+  padding: 80px 40px;
+  background: #0074BA;
+  border-radius: 40px;
+
+  max-width: 950px;
+  margin: 120px auto 100px; /* UBAH JADI INI */
+}
+
+/* ===============================
+   WRAPPER
+================================ */
+
+.vm-wrapper {
+  text-align: center;
+  color: #F5F5F5;
+}
+
+/* ===============================
+   JUDUL
+================================ */
+
+.vm-wrapper h2 {
+  margin-bottom: 40px;
+  display: inline-block;
+  position: relative;
+  font-size: 26px;
+}
+
+.vm-wrapper h2::after {
+  content: "";
+  display: block;
+  height: 4px;
+  margin-top: 12px;
+  border-radius: 3px;
+
+  background: linear-gradient(
+    to right,
+    white 0%,
+    #00BFFF 50%,
+    white 100%
+  );
+}
+
+/* ===============================
+   GRID CARD
+================================ */
+
+.vm-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 320px));
+  justify-content: center; 
+  gap: 40px;
+}
+
+/* ===============================
+   CARD
+================================ */
+
+.vm-card {
+  background: white;
+  color: #0074BA;
+  padding: 30px;
+  border-radius: 20px;
+  transition: 0.3s ease;
+}
+
+.vm-card:hover {
+  transform: translateY(-6px);
+}
+
+.vm-card h3 {
+  color: #0057A4;
+  margin-bottom: 15px;
+}
+
+.vm-card ol {
+  padding-left: 25px;
+  text-align: left;
+  color:#0074BA;
+}
+
+.vm-card ol li {
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+
+/* =====================================
+   ROADMAP SECTION
+===================================== */
+
+.roadmap-section {
+  background: #0074BA;
+  padding: 80px 60px;
+  width: 100%;
+
+  border-top-left-radius: 60px;
+  border-top-right-radius: 60px;
+}
+
+
+/* =====================================
+   WRAPPER
+===================================== */
+
+.roadmap-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+  color: white;
+}
+
+
+/* =====================================
+   TITLE
+===================================== */
+
+.roadmap-title {
+  display: inline-block;
+  margin-bottom: 60px;
+  font-size: 26px;
+}
+
+.roadmap-title::after {
+  content: "";
+  display: block;
+  height: 4px;
+  margin-top: 12px;
+  border-radius: 3px;
+  background: linear-gradient(
+    to right,
+    white 0%,
+    #00BFFF 50%,
+    white 100%
+  );
+}
+
+
+/* =====================================
+   SWIPER
+===================================== */
+
+/* SWIPER */
+.roadmap-swiper {
+  padding-bottom: 120px; /* kasih ruang untuk tombol */
+  position: relative;
+}
+
+.swiper-nav-right{
+  display:flex;
+  justify-content:flex-end;
+  gap:12px;
+  margin-top:40px;
+}
+
+/* BUTTON SWIPER */
+.swiper-button-prev,
+.swiper-button-next{
+  position:static !important;
+  width:45px;
+  height:45px;
+
+  background:#F5F5F5;
+  border:5px solid #0057A4;
+  border-radius:50%;
+
+  color:#0057A4;
+}
+
+/* tombol back */
+.swiper-button-prev {
+  left: auto;
+  right: 70px;
+}
+
+/* tombol next */
+.swiper-button-next {
+  right: 10px;
+}
+
+/* ukuran icon */
+.swiper-button-prev::after,
+.swiper-button-next::after{
+  font-size:16px;
+  font-weight:bold;
+}
+
+.swiper-button-prev:hover,
+.swiper-button-next:hover{
+  background:#0057A4;
+  color:#F5F5F5;
+}
+
+/* =====================================
+   ROADMAP ITEM
+===================================== */
+
+.roadmap-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+/* =====================================
+   TIMELINE (KIRI)
+===================================== */
+
+.roadmap-logo {
+  display: flex;
+}
+
+.roadmap-logo img {
+  width: 35px;
+  height: 100%;
+  object-fit: fill;
+}
+
+/* =====================================
+   CARD
+===================================== */
+
+.roadmap-card {
+  flex: 1;
+  height: 400px;   
+  background: white;
+  border-radius: 16px;
+  padding: 20px;
+  text-align: center;
+  color: #333;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.roadmap-card:hover {
+  transform: translateY(-6px);
+}
+
+
+/* =====================================
+   YEAR
+===================================== */
+
+.roadmap-year {
+  font-size: 24px;
+  color: #0057A4;
+  margin-bottom: 6px;
+}
+
+.year-line {
+  width: 50px;
+  height: 3px;
+  background: #0074BA;
+  margin: 0 auto 15px;
+  border-radius: 2px;
+}
+
+
+/* =====================================
+   IMAGE
+===================================== */
+
+.roadmap-card {
+  flex: 1;
+  height: 450px;  
+  background: white;
+  border-radius: 16px;
+  padding: 20px;
+  text-align: center;
+  color: #333;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.roadmap-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+
+/* =====================================
+   TEXT
+===================================== */
+
+.roadmap-card h4 {
+  margin-bottom: 8px;
+  color: #0074BA;
+}
+
+.roadmap-card p {
+  font-size: 14px;
+  line-height: 1.6;
+  color:#0074BA;
+}
+
+/* =====================================
+   RESPONSIVE
+===================================== */
+
+@media (max-width: 768px) {
+
+  .timeline::before {
+    left: 20px;
+  }
+
+  .timeline-item {
+    width: 100%;
+    padding-left: 50px;
+    left: 0 !important;
+    text-align: left !important;
+  }
+
+}

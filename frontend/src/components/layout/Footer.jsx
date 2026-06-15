@@ -1,8 +1,15 @@
 import React from "react";
-import { Twitter, Facebook, Instagram, Youtube } from "lucide-react";
+import { Instagram, Youtube } from "lucide-react";
 import "../../styles/components/footer.css";
 
+import logoImg from "../../assets/images/logo.svg";
+import googlePlayImg from "../../assets/images/googleplay.svg";
+import appStoreImg from "../../assets/images/appstore.svg";
+
+
 const Footer = () => {
+
+
   return (
     <footer className="footer">
       <div className="footer-top-line"></div>
@@ -11,15 +18,14 @@ const Footer = () => {
         {/* Kolom 1 */}
         <div className="footer-section">
           <img
-            src="/public/gambar/logo.svg"   // pastikan ada di folder public
+            src={logoImg}
             alt="Logo Smart City"
             className="footer-logo"
           />
 
           <h4>Alamat</h4>
           <p>
-            Jl. H. Somawinata No.1, Gedung Smart Building Puspemkab Tangerang,
-            Kec. Tigaraksa, Kabupaten Tangerang, Banten 15720, Indonesia
+            Jl. H. Somawinata No.1, Gedung Smart Building Puspemkab Tangerang, Kec. Tigaraksa, Kabupaten Tangerang, Banten 15720, Indonesia
           </p>
 
           <h4>Kontak</h4>
@@ -32,17 +38,9 @@ const Footer = () => {
           <h4>Temukan kami di sosial media</h4>
 
           <div className="social-icons">
-            <a href="https://x.com/pemkabtangerang" target="_blank" rel="noopener noreferrer">
-              <Twitter size={20} />
-            </a>
-
-            <a href="https://facebook.com/pemkabtangerang" target="_blank" rel="noopener noreferrer">
-              <Facebook size={20} />
-            </a>
-
             <a href="https://www.tiktok.com/@pemkabtangerang" target="_blank" rel="noopener noreferrer">
               <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
-                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 1 1-2.31-2.83V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 1 0 15.86 15.67v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 1 1-2.31-2.83V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 1 0 15.86 15.67v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.10z"/>
               </svg>
             </a>
 
@@ -81,14 +79,16 @@ const Footer = () => {
               rel="noopener noreferrer"
             >
               <img
-                src="/public/gambar/googleplay.svg"
+                src={googlePlayImg}
                 alt="Download di Google Play"
               />
             </a>
 
-            <a href="#" target="_blank" rel="noopener noreferrer">
+            <a href="https://apps.apple.com/id/app/tangerang-gemilang/id1642259427" 
+            target="_blank" 
+            rel="noopener noreferrer">
               <img
-                src="/public/gambar/appstore.svg"
+                src={appStoreImg}
                 alt="Download di App Store"
               />
             </a>
@@ -100,3 +100,4 @@ const Footer = () => {
 };
 
 export default Footer;
+

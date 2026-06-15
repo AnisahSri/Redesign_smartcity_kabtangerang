@@ -1,0 +1,222 @@
+.section-katalog {
+  background: #F5F5F5;
+  padding: 0 0 80px 0;  /* hilangkan jarak atas */
+
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* WRAPPER FOTO (ikut ukuran gambar) */
+.hero-wrapper {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+}
+.hero-center {
+  display: flex;
+  justify-content: center;
+}
+
+/* FOTO */
+.hero-wrapper img {
+  width: 100vw;
+  height: auto;
+  display: block;
+  position: relative;
+  z-index: 2;
+}
+
+/* RECTANGLE KIRI ATAS */
+.rectangle-top {
+  position: absolute;
+  top: -40px;
+  left: -60px;
+  width: 280px;
+  height: 120px;
+  background: linear-gradient(90deg, #1e88c8, #0d5ea8);
+  border-radius: 25px;
+  z-index: 1;
+}
+
+/* RECTANGLE KANAN BAWAH */
+.rectangle-bottom {
+  position: absolute;
+  bottom: -40px;
+  right: -60px;
+  width: 280px;
+  height: 120px;
+  background: linear-gradient(90deg, #1e88c8, #0d5ea8);
+  border-radius: 25px;
+  z-index: 1;
+}
+/* LIST */
+.katalog-list {
+  width: 85%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin-top: 70px;
+}
+
+/* CARD HORIZONTAL */
+.katalog-item {
+  background: #0074BA;
+  border-radius: 18px;
+  padding: 35px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: white;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+  transition: 0.3s ease;
+}
+
+.katalog-item:hover {
+  transform: translateY(-6px);
+}
+
+/* IMAGE */
+.item-image img {
+  width: 110px;
+}
+
+/* TEXT */
+.item-content {
+  flex: 1;
+  text-align: center;
+}
+
+.item-content h3 {
+  font-size: 22px;
+  margin-bottom: 8px;
+}
+
+.item-content p {
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+/* BUTTON */
+.item-button a {
+  background: #F5F5F5;
+  color: #0074BA;
+  padding: 12px 28px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.item-button a:hover {
+  background: #0057A4;
+  color:#F5F5F5;
+}
+
+/* CARD GEOMAPS KHUSUS */
+.geomaps-item {
+  flex-direction: column;
+  text-align: center;
+  padding: 50px;
+}
+
+.geomaps-item .item-content {
+  margin-bottom: 25px;
+}
+
+.geomaps-item .item-image img {
+  width: 100%;
+  max-width: 1100px;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+/* teks */
+.geomaps-item h3 {
+  margin-top: 20px;
+  font-size: 30px;
+}
+
+.geomaps-item p {
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 992px) {
+  .katalog-hero {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero-right img {
+    margin-top: 30px;
+    width: 350px;
+    transform: rotate(0deg);
+  }
+
+  .katalog-item {
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 576px) {
+
+  /* HERO IMAGE */
+  .hero-wrapper img {
+    width: 100%;
+    height: auto;
+  }
+
+  /* LIST KATALOG */
+  .katalog-list {
+    width: 92%;
+    margin-top: 40px;
+    gap: 20px;
+  }
+
+  /* CARD */
+  .katalog-item {
+    padding: 25px 20px;
+    gap: 15px;
+  }
+
+  /* IMAGE ICON */
+  .item-image img {
+    width: 80px;
+  }
+
+  /* TEXT */
+  .item-content h3 {
+    font-size: 18px;
+  }
+
+  .item-content p {
+    font-size: 13px;
+  }
+
+  /* BUTTON */
+  .item-button a {
+    padding: 10px 20px;
+    font-size: 13px;
+  }
+
+  /* GEOMAPS */
+  .geomaps-item {
+    padding: 30px 20px;
+  }
+
+  .geomaps-item h3 {
+    font-size: 22px;
+  }
+
+  .geomaps-item p {
+    font-size: 14px;
+  }
+
+}

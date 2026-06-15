@@ -1,0 +1,29 @@
+<svg width="70" height="70" viewBox="0 0 64 64" fill="#0074BA" xmlns="http://www.w3.org/2000/svg">
+  <g transform="translate(4,4)">
+    {/* Roda gigi di pojok kanan atas */}
+    <g transform="translate(34,2)">
+      {/* gigi-gigi */}
+      <rect x="9" y="0"  width="4" height="4" />
+      <rect x="9" y="18" width="4" height="4" />
+      <rect x="0" y="9"  width="4" height="4" />
+      <rect x="18" y="9" width="4" height="4" />
+      <rect x="2.5"  y="2.5"  width="4" height="4" transform="rotate(45 4.5 4.5)" />
+      <rect x="15.5" y="2.5"  width="4" height="4" transform="rotate(45 17.5 4.5)" />
+      <rect x="2.5"  y="15.5" width="4" height="4" transform="rotate(45 4.5 17.5)" />
+      <rect x="15.5" y="15.5" width="4" height="4" transform="rotate(45 17.5 17.5)" />
+      {/* badan roda gigi */}
+      <circle cx="11" cy="11" r="9" />
+      {/* lubang tengah */}
+      <circle cx="11" cy="11" r="3.5" fill="#ffffff" />
+    </g>
+
+    {/* Grafik batang menaik */}
+    <rect x="2"  y="40" width="9" height="16" rx="1" />
+    <rect x="14" y="32" width="9" height="24" rx="1" />
+    <rect x="26" y="22" width="9" height="34" rx="1" />
+    <rect x="38" y="12" width="9" height="44" rx="1" />
+
+    {/* Garis dasar */}
+    <rect x="0" y="56" width="56" height="2" />
+  </g>
+</svg>
