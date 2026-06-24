@@ -5,19 +5,36 @@
 .sejarah-hero {
   position: relative;
   width: 100%;
+  min-height: 350px;
+  background: linear-gradient(120deg, #023E8A 0%, #0077B6 100%);
+  overflow: hidden;
+  border-bottom-left-radius: 40px;
+  border-bottom-right-radius: 40px;
+}
+
+/* Dekorasi Abstrak */
+.sejarah-hero::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  right: -10%;
+  width: 60%;
+  height: 200%;
+  background: rgba(255, 255, 255, 0.05);
+  transform: rotate(25deg);
+  border-radius: 100px;
 }
 
 .sejarah-center-image {
-  width: 100%;
-  height: auto;
-  display: block;
+  display: none;
 }
 
 /* TEXT DI ATAS GAMBAR - POSISI BAWAH KIRI */
 .hero-text {
   position: absolute;
-  bottom: 40px;   /* jarak dari bawah gambar */
-  left: 60px;     /* jarak dari kiri */
+  bottom: 50px;
+  left: 60px;
+  z-index: 2;
 }
 
 .hero-text h1 {

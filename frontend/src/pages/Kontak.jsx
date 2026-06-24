@@ -259,7 +259,7 @@ export default function Kontak() {
   };
 
   // Handle form submit
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (robotStatus !== "verified") return;
@@ -275,16 +275,38 @@ export default function Kontak() {
 
     setIsSubmitting(true);
 
-    // Simulasi loading 1.2 detik
-    setTimeout(() => {
-      setIsSubmitting(false);
-      showToast("success", "Pesan Anda berhasil dikirim! Terima kasih.");
+    try {
+      // Mengambil URL Formspree dari file .env
+      const FORMSPREE_ENDPOINT = import.meta.env.VITE_FORMSPREE_URL;
+      
+      const response = await fetch(FORMSPREE_ENDPOINT, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify({
+          name: formData.nama,
+          email: formData.email,
+          subject: formData.subjek,
+          message: formData.pesan
+        })
+      });
 
-      // Reset form
-      setFormData({ nama: "", email: "", subjek: "", pesan: "" });
-      setErrors({});
-      setRobotStatus("idle");
-    }, 1200);
+      if (response.ok) {
+        showToast("success", "Pesan Anda berhasil dikirim! Terima kasih.");
+        // Reset form
+        setFormData({ nama: "", email: "", subjek: "", pesan: "" });
+        setErrors({});
+        setRobotStatus("idle");
+      } else {
+        showToast("error", "Gagal mengirim pesan. Silakan coba lagi.");
+      }
+    } catch (error) {
+      showToast("error", "Terjadi kesalahan jaringan.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   // Info cards data
@@ -302,7 +324,7 @@ export default function Kontak() {
     {
       icon: <Mail size={24} />,
       title: "Email",
-      desc: "smartcity@tangerangkab.go.id",
+      desc: "helpdesk@tangerangkab.go.id",
     },
   ];
 

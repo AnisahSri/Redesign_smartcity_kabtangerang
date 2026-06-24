@@ -19,11 +19,6 @@ export default function Sejarah() {
 
       {/* HERO */}
       <div className="sejarah-hero">
-        <img
-          src={websiteImg}
-          alt="Sejarah"
-          className="sejarah-center-image"
-        />
         <div className="hero-text">
           <h1>Sejarah</h1>
         </div>
