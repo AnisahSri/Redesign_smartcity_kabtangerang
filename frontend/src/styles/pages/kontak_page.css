@@ -4,9 +4,9 @@
 ================================== */
 
 :root {
-  --kp-primary: oklch(0.55 0.20 250);
-  --kp-primary-glow: oklch(0.70 0.18 235);
-  --kp-gradient-hero: linear-gradient(135deg, var(--kp-primary), var(--kp-primary-glow));
+  --kp-primary: #0074BA;
+  --kp-primary-glow: #0074BA;
+  --kp-gradient-hero: #0074BA;
   --kp-gradient-soft: linear-gradient(180deg, #f0f7ff 0%, #ffffff 40%, #f8fbff 100%);
   --kp-shadow-elegant: 0 20px 60px rgba(0, 80, 180, 0.12);
   --kp-shadow-card: 0 8px 32px rgba(0, 80, 180, 0.08);

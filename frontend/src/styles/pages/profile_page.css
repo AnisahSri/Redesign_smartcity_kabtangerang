@@ -20,19 +20,118 @@
 .profile-hero {
   position: relative;
   width: 100%;
+  min-height: 350px;
+  background: #0074BA;
+  overflow: hidden;
+  border-bottom-left-radius: 40px;
+  border-bottom-right-radius: 40px;
+  display: flex;
+  align-items: flex-end;
 }
 
+/* Sembunyikan gambar SVG asli */
 .profile-center-image {
-  width: 100%;
-  height: auto;
-  display: block;
+  display: none;
 }
 
-/* TEXT DI ATAS GAMBAR - POSISI BAWAH KIRI */
-.hero-text {
+/* =====================================
+   PROFILE HERO DECORATIONS
+===================================== */
+
+/* Lingkaran besar kanan atas */
+.profile-hero::before {
+  content: "";
   position: absolute;
-  bottom: 40px;   /* jarak dari bawah gambar */
-  left: 60px;     /* jarak dari kiri */
+  top: -60px;
+  right: -60px;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.07);
+  pointer-events: none;
+}
+
+/* Strip diagonal kanan */
+.profile-hero::after {
+  content: "";
+  position: absolute;
+  top: -40%;
+  right: -5%;
+  width: 45%;
+  height: 200%;
+  background: rgba(255, 255, 255, 0.04);
+  transform: rotate(20deg);
+  border-radius: 80px;
+  pointer-events: none;
+}
+
+/* Wrapper dekorasi tambahan */
+.profile-hero-deco {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* Lingkaran kecil melayang kiri atas */
+.profile-hero-deco .deco-circle-sm {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  top: 20px;
+  left: 12%;
+  animation: profileFloat 5s ease-in-out infinite;
+}
+
+/* Lingkaran sedang kanan bawah */
+.profile-hero-deco .deco-circle-md {
+  position: absolute;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  bottom: -50px;
+  right: 25%;
+  animation: profileFloat 7s ease-in-out infinite 1.5s;
+}
+
+/* Pola titik-titik */
+.profile-hero-deco .deco-dots {
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  top: 15%;
+  right: 8%;
+  background-image: radial-gradient(rgba(255,255,255,0.25) 2px, transparent 2px);
+  background-size: 18px 18px;
+  opacity: 0.5;
+  transform: rotate(10deg);
+}
+
+/* Garis horizontal dekoratif */
+.profile-hero-deco .deco-line {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(255,255,255,0.3), transparent);
+}
+
+@keyframes profileFloat {
+  0%   { transform: translateY(0px); }
+  50%  { transform: translateY(-18px); }
+  100% { transform: translateY(0px); }
+}
+
+/* TEXT DI ATAS - POSISI BAWAH KIRI */
+.hero-text {
+  position: relative;
+  z-index: 2;
+  padding: 0 60px 50px;
 }
 
 .hero-text h1 {
@@ -40,6 +139,7 @@
   font-size: 48px;
   font-weight: 700;
   color: #F5F5F5;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.15);
 }
 
 

@@ -144,11 +144,15 @@ export default function Profile() {
 
       {/* HERO */}
       <div className="profile-hero">
-        <img
-          src={websiteImg}
-          alt="Profile"
-          className="profile-center-image"
-        />
+
+        {/* Dekorasi Kreatif */}
+        <div className="profile-hero-deco">
+          <div className="deco-circle-sm"></div>
+          <div className="deco-circle-md"></div>
+          <div className="deco-dots"></div>
+          <div className="deco-line"></div>
+        </div>
+
         <div className="hero-text">
           <h1>Tentang Kami</h1>
         </div>

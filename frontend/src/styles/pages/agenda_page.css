@@ -11,7 +11,7 @@
 
 /* === Hero Section === */
 .event-hero-section {
-    background: var(--primary-200);
+    background: #0074BA;
     color: #F5F5F5;
     text-align: center;
     padding: 100px 20px 60px;
@@ -26,7 +26,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.3);
+    background: transparent; /* Changed from rgba(0,0,0,0.3) so the #0074BA color remains pure */
     z-index: 1;
 }
 
